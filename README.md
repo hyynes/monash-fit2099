@@ -3,5 +3,7 @@
 
 ## XX_LabYYTeamZZ
 Team members:
+- Kenan Baydar
+- Danny Duong
 
 ## Design Rationale
