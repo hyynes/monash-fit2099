@@ -20,6 +20,7 @@ import edu.monash.fit2099.engine.actions.MoveActorAction;
 public class FollowBehaviour implements Behaviour {
 
 	private final Actor target;
+	private final int maxDistance = 2;
 
 	/**
 	 * Constructor.
@@ -39,6 +40,10 @@ public class FollowBehaviour implements Behaviour {
 		Location there = map.locationOf(target);
 
 		int currentDistance = distance(here, there);
+		// When the target is too far away
+		if (currentDistance > maxDistance) {
+			return null;
+		}
 		for (Exit exit : here.getExits()) {
 			Location destination = exit.getDestination();
 			if (destination.canActorEnter(actor)) {
