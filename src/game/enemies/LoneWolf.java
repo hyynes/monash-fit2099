@@ -23,6 +23,7 @@ import java.util.Map;
 public class LoneWolf extends Actor {
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
 
+
     public LoneWolf(Actor target) {
         super("Lone Wolf", 'h', 102);
         this.behaviours.put(999, new WanderBehaviour());
@@ -56,16 +57,21 @@ public class LoneWolf extends Actor {
      * @param map        current GameMap
      * @return
      */
+
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)){
             actions.add(new AttackAction(this, direction));
-            // HINT 1: The AttackAction above allows you to attak the enemy with your intrinsic weapon.
+            // HINT 1: The AttackAction above allows you to attack the enemy with your intrinsic weapon.
             // HINT 1: How would you attack the enemy with a weapon?
         }
         return actions;
     }
+
+
+
+    //map.locationOf(otherActor) == map.locationOf(this).getExits()
 
 
     @Override
