@@ -20,7 +20,7 @@ public class AttackBehaviour implements Behaviour {
         this.target = actor;
     }
 
-
+    @Override
     public Action getAction(Actor actor, GameMap map){
         Location here = map.locationOf(actor);
 
