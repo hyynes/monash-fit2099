@@ -41,6 +41,14 @@ public class AttackBehaviour implements Behaviour {
 
         for (Exit exit : here.getExits()){
             Location destination = exit.getDestination();
+            //Checks if the enemy has the spin attack ability
+            /**
+             * if (spinAttack(actor)!= null{
+             *    for (Exit exit: here.getExits()){
+             *       String direction = exit.getName()
+             *       List of attack actions, then returns all the attackActions, so it attacks in all exits.
+             *       Attacks its surroundings.
+             */
             Actor adjacent = map.getActorAt(destination);
             if (adjacent != null && adjacent.equals(target)) {
                 String direction = exit.getName();

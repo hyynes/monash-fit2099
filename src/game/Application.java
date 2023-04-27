@@ -68,7 +68,7 @@ public class Application {
 		world.addPlayer(player, gameMap.at(36, 10));
 
 		gameMap.at(23, 17).addActor(new LoneWolf(player));
-		gameMap.at(29, 14).addActor(new HeavySkeletalSwordsman(player));
+		gameMap.at(20, 13).addActor(new HeavySkeletalSwordsman(player));
 
 		world.run();
 	}

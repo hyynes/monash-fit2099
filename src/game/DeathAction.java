@@ -5,7 +5,10 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.enemies.HeavySkeletalSwordsman;
+import game.enemies.Skeleton;
 
 /**
  * An action executed if an actor is killed.
@@ -16,6 +19,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  */
 public class DeathAction extends Action {
     private Actor attacker;
+    private int turnsAfterDeath = 0;
 
     public DeathAction(Actor actor) {
         this.attacker = actor;
@@ -32,6 +36,13 @@ public class DeathAction extends Action {
     @Override
     public String execute(Actor target, GameMap map) {
         String result = "";
+
+        if (target instanceof Skeleton){
+            Location location = map.locationOf(target);
+            map.removeActor(target);
+            map.addActor(new PileOfBones(target,turnsAfterDeath),location);
+            return result;
+        }
 
         ActionList dropActions = new ActionList();
         // drop all items

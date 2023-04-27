@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.AttackAction;
@@ -15,8 +15,8 @@ import game.Behaviours.AttackBehaviour;
 import game.Behaviours.Behaviour;
 import game.Behaviours.FollowBehaviour;
 import game.Behaviours.WanderBehaviour;
+import game.PileOfBones;
 import game.Status;
-import game.Weapons.Club;
 import game.Weapons.Grossmesser;
 
 import java.util.ArrayList;
@@ -24,8 +24,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HeavySkeletalSwordsman extends Actor{
+public class HeavySkeletalSwordsman extends Actor implements Skeleton{
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
+
+    private int turnsAfterDeath = 0;
 
 
     public HeavySkeletalSwordsman(Actor target) {
@@ -47,6 +49,12 @@ public class HeavySkeletalSwordsman extends Actor{
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+
+        if (pileOfBone) {
+            turnsAfterDeath++;
+            new PileOfBones(this, turnsAfterDeath);
+            return new DoNothingAction();
+        }
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
             if(action != null)
@@ -93,7 +101,20 @@ public class HeavySkeletalSwordsman extends Actor{
     }
 
     @Override
-    public IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(97, "bites", 95);
+    public int getTurnsAfterDeath(){
+        return turnsAfterDeath;
     }
+
+    @Override
+    public void setTurnsAfterDeath(int turnsAfterDeath){
+        this.turnsAfterDeath = turnsAfterDeath;
+    }
+
+    @Override
+    public void revive(GameMap map, Location location){
+
+        // Reset the turnsSinceDeath counter
+        setTurnsAfterDeath(0);
+    }
+
 }
