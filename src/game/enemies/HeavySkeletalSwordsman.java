@@ -16,6 +16,8 @@ import game.Behaviours.Behaviour;
 import game.Behaviours.FollowBehaviour;
 import game.Behaviours.WanderBehaviour;
 import game.Status;
+import game.Weapons.Club;
+import game.Weapons.Grossmesser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +30,7 @@ public class HeavySkeletalSwordsman extends Actor{
 
     public HeavySkeletalSwordsman(Actor target) {
         super("Heavy Skeletal Swordsman", 'q', 153);
+        this.addWeaponToInventory(new Grossmesser());
         this.behaviours.put(998, new WanderBehaviour());
         this.behaviours.put(997, new FollowBehaviour(target));
         this.behaviours.put(996, new AttackBehaviour(target));

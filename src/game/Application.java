@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
+import game.enemies.HeavySkeletalSwordsman;
 import game.enemies.LoneWolf;
 
 /**
@@ -67,6 +68,7 @@ public class Application {
 		world.addPlayer(player, gameMap.at(36, 10));
 
 		gameMap.at(23, 17).addActor(new LoneWolf(player));
+		gameMap.at(29, 14).addActor(new HeavySkeletalSwordsman(player));
 
 		world.run();
 	}

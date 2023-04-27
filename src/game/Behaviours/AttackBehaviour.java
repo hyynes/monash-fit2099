@@ -10,9 +10,6 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.AttackAction;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AttackBehaviour implements Behaviour {
 
     private final Actor target;
@@ -28,9 +25,9 @@ public class AttackBehaviour implements Behaviour {
 
     // Method that returns the weapon an actor is holding, otherwise returns null
     public Weapon getWeapon(Actor actor){
-        for (Item item : actor.getItemInventory()) {
-            if (item instanceof WeaponItem) {
-                return (Weapon) item;
+        for (Item weaponItem : actor.getWeaponInventory()) {
+            if (weaponItem instanceof WeaponItem) {
+                return (Weapon) weaponItem;
             }
         }
         return null;
