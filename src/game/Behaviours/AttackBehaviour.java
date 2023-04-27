@@ -2,10 +2,16 @@ package game.Behaviours;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import edu.monash.fit2099.engine.weapons.Weapon;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.AttackAction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AttackBehaviour implements Behaviour {
 
@@ -20,6 +26,18 @@ public class AttackBehaviour implements Behaviour {
         this.target = actor;
     }
 
+    // Method that returns the weapon an actor is holding, otherwise returns null
+    public Weapon getWeapon(Actor actor){
+        for (Item item : actor.getItemInventory()) {
+            if (item instanceof WeaponItem) {
+                return (Weapon) item;
+            }
+        }
+        return null;
+    }
+
+
+
     @Override
     public Action getAction(Actor actor, GameMap map){
         Location here = map.locationOf(actor);
@@ -29,7 +47,14 @@ public class AttackBehaviour implements Behaviour {
             Actor adjacent = map.getActorAt(destination);
             if (adjacent != null && adjacent.equals(target)) {
                 String direction = exit.getName();
-                return new AttackAction(target, direction);
+
+                // Checks if the Enemy has a weapon or not. If so it uses the weapon, otherwise not.
+                if (getWeapon(actor)!= null){
+                    return new AttackAction(target,direction,getWeapon(actor));
+                }
+                else{
+                    return new AttackAction(target,direction);
+                }
             }
         }
         return null;
