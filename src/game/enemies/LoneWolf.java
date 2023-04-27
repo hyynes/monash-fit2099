@@ -69,6 +69,7 @@ public class LoneWolf extends Actor {
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)){
             // Check if 'otherActor' has weapon, use AttackAction with weapon, else, with intrinsic weapon
             actions.add(new AttackAction(this, direction));
+            actions.add(new AttackAction((Actor) this,direction))
             // HINT 1: The AttackAction above allows you to attack the enemy with your intrinsic weapon.
             // HINT 1: How would you attack the enemy with a weapon?
         }
