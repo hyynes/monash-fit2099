@@ -57,7 +57,7 @@ public class SurroundingAttack extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " performs a spin attack";
+        return actor + " performs a Special Spin Attack!";
     }
 
 }

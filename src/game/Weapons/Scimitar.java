@@ -7,20 +7,17 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actions.SurroundingAttack;
 import game.Status;
 
-public class Grossmesser extends WeaponItem{
-
-    public Grossmesser() {
-        super("Grossmesser", '?', 115, "Slices", 85);
+public class Scimitar extends WeaponItem {
+    public Scimitar() {
+        super("Scimitar", 's', 118, "Slashes", 88);
         this.addCapability(Status.SPECIAL_ATTACK);
     }
 
     @Override
     public void tick(Location currentLocation, Actor actor) {}
 
-    // Special Spin Attack Skill
     @Override
     public Action getSkill(Actor holder){
         return new SurroundingAttack(this);
     }
-
 }
