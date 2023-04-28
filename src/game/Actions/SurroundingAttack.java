@@ -7,38 +7,49 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 
+import java.util.Random;
+
 public class SurroundingAttack extends Action {
     private Weapon weapon;
-    private Actor target;
+    //private Actor target;
 
-    public SurroundingAttack(Actor target, Weapon weapon) {
-        this.target = target;
+    /**
+     * Random number generator
+     */
+    private Random rand = new Random();
+
+
+    /**
+     * Doesn't necesarilly have a target, so only paramater needed is the weapon used.
+     * @param weapon
+     */
+    public SurroundingAttack(Weapon weapon) {
+        //this.target = target;
         this.weapon = weapon;
     }
 
-    /**
     @Override
     public String execute(Actor actor, GameMap map) {
+        // Actor performs a spin attack
+        String result = menuDescription(actor);
+
+        // Damage dealt by weapon
         int damage = weapon.damage();
-        Location here = map.locationOf(actor);
-        for (Exit exit : here.getExits()) {
-            Location destination = exit.getDestination();
-            if (destination.containsAnActor()) {
-                Actor target = destination.getActor();
-                target.hurt(damage);
-            }
-        }
-        return System.lineSeparator() + menuDescription(actor);
-    }
-     */
-    @Override
-    public String execute(Actor actor, GameMap map) {
-        String result = "";
         for (Exit exit : map.locationOf(actor).getExits()) {
             Location destination = exit.getDestination();
             if (destination.containsAnActor()) {
                 Actor targetActor = destination.getActor();
-                result += new AttackAction(targetActor, exit.getName(), weapon).execute(actor, map);
+                if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
+                    result += System.lineSeparator() + actor + " misses " + targetActor + ".";
+                }
+                else {
+                    result += System.lineSeparator() + actor + " " + weapon.verb() + " " + targetActor +
+                            " for " + damage + " damage.";
+                    targetActor.hurt(damage);
+                }
+                if (!targetActor.isConscious()){
+                    result += new DeathAction(actor).execute(targetActor, map);
+                }
             }
         }
         return result;

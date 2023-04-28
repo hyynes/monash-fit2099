@@ -35,7 +35,7 @@ public class LoneWolf extends Actor {
 
 
     public LoneWolf(Actor target) {
-        super("Lone Wolf", 'h', 102);
+        super("Lone Wolf", 'h', 10200);
         this.behaviours.put(998, new WanderBehaviour());
         this.behaviours.put(997, new FollowBehaviour(target));
         this.behaviours.put(996, new AttackBehaviour(target));
@@ -73,17 +73,18 @@ public class LoneWolf extends Actor {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)){
-            List<Weapon> weapons = new ArrayList<>();
+            List<WeaponItem> weapons = new ArrayList<>();
             // Checks if the Player has a weapon
-            for (Item weaponItem : otherActor.getWeaponInventory()) {
-                if (weaponItem instanceof WeaponItem) {
-                    weapons.add((Weapon) weaponItem);
-                }
+            for (WeaponItem weaponItem : otherActor.getWeaponInventory()) {
+                weapons.add(weaponItem);
             }
             // If Player has a weapon, it may choose to either use it or its intrinsic weapon
             if (!weapons.isEmpty()) {
                 // Use equipped weapon
-                for (Weapon weapon : weapons) {
+                for (WeaponItem weapon : weapons) {
+                    if (weapon.hasCapability(Status.SPECIAL_ATTACK)){
+                        actions.add(weapon.getSkill(otherActor));
+                    }
                     actions.add(new AttackAction(this, direction, weapon));
                 }
             } else {

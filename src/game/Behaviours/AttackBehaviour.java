@@ -41,28 +41,34 @@ public class AttackBehaviour implements Behaviour {
 
     @Override
     public Action getAction(Actor actor, GameMap map){
+        // location of where the actor is standing
         Location here = map.locationOf(actor);
 
+        // looping through all the exits of where the actor is standing
         for (Exit exit : here.getExits()){
+
+            // storing one of the exits in destination at a time
             Location destination = exit.getDestination();
-            //Checks if the enemy has the spin attack ability
-            /**
-             * if (spinAttack(actor)!= null{
-             *    for (Exit exit: here.getExits()){
-             *       String direction = exit.getName()
-             *       List of attack actions, then returns all the attackActions, so it attacks in all exits.
-             *       Attacks its surroundings.
-             */
+
+            // Sees if there is an actor at that destination. If there is, then it is stored in adjacent. If not, null.
             Actor adjacent = map.getActorAt(destination);
+
+            // If there is a target at that destination, which is stored in adjacent
             if (adjacent != null && adjacent.equals(target)) {
+
+                // Get the name of the exit, store it in direction
                 String direction = exit.getName();
 
                 // Checks if the Enemy has a weapon or not. If so it uses the weapon, otherwise not.
                 if (getWeapon(actor)!= null){
+
+                    // Makes a list of actions, which is either going to be AttackAction or SurroundingAttack.
                     ActionList actions = new ActionList();
                     actions.add(new AttackAction(target,direction,getWeapon(actor)));
-                    actions.add(new SurroundingAttack(target,getWeapon(actor)));
-                    int randomNumber = RandomNumberGenerator.getRandomInt(0,100);
+                    actions.add(new SurroundingAttack(getWeapon(actor)));
+
+                    // Randomly choose which attack, 50/50 chance
+                    int randomNumber = RandomNumberGenerator.getRandomInt(100);
                     if (randomNumber <= 50){
                         return actions.get(0);
                     }
