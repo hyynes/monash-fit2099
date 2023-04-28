@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.*;
+import game.Actions.AttackAction;
 import game.Behaviours.AttackBehaviour;
 import game.Behaviours.Behaviour;
 import game.Behaviours.FollowBehaviour;

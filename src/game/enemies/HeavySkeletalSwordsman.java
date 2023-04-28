@@ -9,7 +9,8 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.AttackAction;
+import game.Actions.AttackAction;
+import game.Actions.DespawnAction;
 import game.Behaviours.AttackBehaviour;
 import game.Behaviours.Behaviour;
 import game.Behaviours.FollowBehaviour;
@@ -18,10 +19,7 @@ import game.PileOfBones;
 import game.Status;
 import game.Weapons.Grossmesser;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class HeavySkeletalSwordsman extends Actor implements Skeleton{
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
@@ -35,8 +33,8 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
         super("Heavy Skeletal Swordsman", 'q', 153);
         this.addWeaponToInventory(new Grossmesser());
         this.behaviours.put(998, new WanderBehaviour());
-        this.behaviours.put(996, new FollowBehaviour(target));
-        this.behaviours.put(997, new AttackBehaviour(target));
+        this.behaviours.put(997, new FollowBehaviour(target));
+        this.behaviours.put(996, new AttackBehaviour(target));
     }
 
     /**
@@ -52,30 +50,38 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
-        if (pileOfBones.checkState(this, getTurnsAfterDeath(),maxHitPoints,getPileOfBones()) && initialCheck){
-            this.setDisplayChar('X');
-            // Set its health to 1
-            this.resetMaxHp(hitPoints);
-            this.hurt(hitPoints-1);
-            initialCheck = false;
-        }
-
-        if (pileOfBones.checkState(this, getTurnsAfterDeath(),maxHitPoints,getPileOfBones())) {
-            setTurnsAfterDeath(++turnsAfterDeath);
-            return new DoNothingAction();
-        }
-
-        else {
-            if (!initialCheck){
-                this.setDisplayChar('q');
-                this.hitPoints = maxHitPoints;
-                setTurnsAfterDeath(0);
+        // Extra steps for Skeleton types with Pile of Bones ability
+        if (this instanceof Skeleton){
+        // If Skeleton just turned into a Pile of Bones that turn, initialises all values.
+            if (pileOfBones.checkState(this, getTurnsAfterDeath(),getPileOfBones()) && initialCheck){
+                this.setDisplayChar('X');
+                // Set its health to 1
+                this.resetMaxHp(hitPoints);
+                this.hurt(hitPoints-1);
+                initialCheck = false;
             }
-            initialCheck = true;
-            for (Behaviour behaviour : behaviours.values()) {
-                Action action = behaviour.getAction(this, map);
-                if (action != null)
-                    return action;
+
+            // If Skeleton is in Pile of Bones state
+            if (pileOfBones.checkState(this, getTurnsAfterDeath(),getPileOfBones())) {
+                setTurnsAfterDeath(++turnsAfterDeath);
+                return new DoNothingAction();
+            }
+
+            else {
+                if (!initialCheck) {
+                    this.setDisplayChar('q');
+                    this.hitPoints = maxHitPoints;
+                    setTurnsAfterDeath(0);
+                }
+                initialCheck = true;
+            }
+
+        // General playTurn step for all enemies
+        for (Behaviour behaviour : behaviours.values()) {
+            Action action = behaviour.getAction(this, map);
+            if (action != null) {
+                return action;
+            }
             }
         }
         return new DoNothingAction();

@@ -5,7 +5,7 @@ import game.enemies.Skeleton;
 
 public class PileOfBones{
 
-    public boolean checkState(Actor actor, int deathTimer, int maxHitPoints, boolean pileOfBone) {
+    public boolean checkState(Actor actor, int deathTimer, boolean pileOfBone) {
         if (pileOfBone) {
             if (deathTimer >= 3) {
                 ((Skeleton) actor).setPileOfBones(false);

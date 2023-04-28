@@ -1,4 +1,4 @@
-package game;
+package game.Actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -17,10 +17,6 @@ import game.enemies.Skeleton;
  */
 public class DeathAction extends Action {
     private Actor attacker;
-    private int turnsAfterDeath = 0;
-    PileOfBones pileOfBone = new PileOfBones();
-
-
 
     public DeathAction(Actor actor) {
         this.attacker = actor;
