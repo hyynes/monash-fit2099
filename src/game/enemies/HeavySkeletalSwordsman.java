@@ -104,6 +104,7 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
                 // Use equipped weapon
                 for (Weapon weapon : weapons) {
                     actions.add(new AttackAction(this, direction, weapon));
+                    //actions.add(new SurroundingAttack(this,weapon);
                 }
             } else {
                 // Use intrinsic weapon

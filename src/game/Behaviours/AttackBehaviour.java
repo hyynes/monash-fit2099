@@ -61,19 +61,19 @@ public class AttackBehaviour implements Behaviour {
                 if (getWeapon(actor)!= null){
                     ActionList actions = new ActionList();
                     actions.add(new AttackAction(target,direction,getWeapon(actor)));
-                    actions.add(new SurroundingAttack(0,1));
+                    actions.add(new SurroundingAttack(target,getWeapon(actor)));
                     int randomNumber = RandomNumberGenerator.getRandomInt(0,100);
-                        if (randomNumber <= 50){
-                            return actions.get(0);
-                        }
-                        return actions.get(1);
+                    if (randomNumber <= 50){
+                        return actions.get(0);
                     }
+                    return actions.get(1);
+                    }
+
+                else {
+                    return new AttackAction(target, direction);
                 }
-                else{
-                    return new AttackAction(target,direction);
                 }
             }
-        }
         return null;
 
     }
