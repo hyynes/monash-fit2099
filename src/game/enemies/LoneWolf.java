@@ -73,11 +73,8 @@ public class LoneWolf extends Actor {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)){
-            List<WeaponItem> weapons = new ArrayList<>();
             // Checks if the Player has a weapon
-            for (WeaponItem weaponItem : otherActor.getWeaponInventory()) {
-                weapons.add(weaponItem);
-            }
+            List<WeaponItem> weapons = new ArrayList<>(otherActor.getWeaponInventory());
             // If Player has a weapon, it may choose to either use it or its intrinsic weapon
             if (!weapons.isEmpty()) {
                 // Use equipped weapon
