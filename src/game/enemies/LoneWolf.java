@@ -5,10 +5,8 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.*;
 import game.Actions.AttackAction;
@@ -35,7 +33,7 @@ public class LoneWolf extends Actor {
 
 
     public LoneWolf(Actor target) {
-        super("Lone Wolf", 'h', 10200);
+        super("Lone Wolf", 'h', 1020);
         this.behaviours.put(998, new WanderBehaviour());
         this.behaviours.put(997, new FollowBehaviour(target));
         this.behaviours.put(996, new AttackBehaviour(target));
@@ -93,7 +91,6 @@ public class LoneWolf extends Actor {
         }
         return actions;
     }
-
 
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
