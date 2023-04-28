@@ -28,6 +28,14 @@ import java.util.Map;
  * Modified by:
  *
  */
+
+
+/**
+ * MY MESSAGE:
+ * CAN IMPLEMENT 'playTurn' AND 'allowableActions' METHODS IN THE 'Enemy' ABSTRACT CLASS.
+ * THIS IS BECAUSE ALL ENEMIES WILL HAVE THESE SAME METHODS.
+ *
+ */
 public class LoneWolf extends Actor {
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
 

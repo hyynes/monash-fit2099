@@ -12,6 +12,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actions.AttackAction;
 import game.Actions.SurroundingAttack;
 import game.RandomNumberGenerator;
+import game.Status;
 
 public class AttackBehaviour implements Behaviour {
 
@@ -20,10 +21,10 @@ public class AttackBehaviour implements Behaviour {
     /**
      * Constructor.
      *
-     * @param actor the Actor to attack
+     * @param target the Actor to attack
      */
-    public AttackBehaviour(Actor actor){
-        this.target = actor;
+    public AttackBehaviour(Actor target){
+        this.target = target;
     }
 
 
@@ -36,7 +37,6 @@ public class AttackBehaviour implements Behaviour {
         }
         return null;
     }
-
 
 
     @Override
@@ -59,25 +59,35 @@ public class AttackBehaviour implements Behaviour {
                 // Get the name of the exit, store it in direction
                 String direction = exit.getName();
 
-                // Checks if the Enemy has a weapon or not. If so it uses the weapon, otherwise not.
-                if (getWeapon(actor)!= null){
+                // Makes a list of actions, which is either going to be AttackAction or SurroundingAttack.
+                ActionList actions = new ActionList();
 
-                    // Makes a list of actions, which is either going to be AttackAction or SurroundingAttack.
-                    ActionList actions = new ActionList();
-                    actions.add(new AttackAction(target,direction,getWeapon(actor)));
+                // Checks if the Enemy has a weapon or not. If so it uses the weapon, otherwise not.
+                if (getWeapon(actor)!= null) {
+
+                    actions.add(new AttackAction(target, direction, getWeapon(actor)));
                     actions.add(new SurroundingAttack(getWeapon(actor)));
 
                     // Randomly choose which attack, 50/50 chance
-                    int randomNumber = RandomNumberGenerator.getRandomInt(100);
-                    if (randomNumber <= 50){
-                        return actions.get(0);
-                    }
-                    return actions.get(1);
-                    }
+                }
 
+                // Checks if the enemy has a surrounding attack ability with no weapon
+                else if (actor.hasCapability(Status.SLAM_ATTACK)){
+
+                    actions.add(new AttackAction(target,direction));
+                    actions.add(new SurroundingAttack(actor.getIntrinsicWeapon()));
+                }
+                // Otherwise if actor has no weapon, use intrinsic weapon.
                 else {
                     return new AttackAction(target, direction);
                 }
+
+                int randomNumber = RandomNumberGenerator.getRandomInt(100);
+                if (randomNumber <= 50){
+                    return actions.get(0);
+                }
+                return actions.get(1);
+
                 }
             }
         return null;

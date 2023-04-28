@@ -6,12 +6,12 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.Status;
 
 import java.util.Random;
 
 public class SurroundingAttack extends Action {
     private Weapon weapon;
-    //private Actor target;
 
     /**
      * Random number generator
@@ -24,12 +24,12 @@ public class SurroundingAttack extends Action {
      * @param weapon
      */
     public SurroundingAttack(Weapon weapon) {
-        //this.target = target;
         this.weapon = weapon;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
+
         // Actor performs a spin attack
         String result = menuDescription(actor);
 
@@ -57,6 +57,9 @@ public class SurroundingAttack extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
+        if (actor.hasCapability(Status.SLAM_ATTACK)){
+            return actor + " slams its surroundings!";
+        }
         return actor + " performs a Special Spin Attack!";
     }
 

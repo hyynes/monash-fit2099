@@ -1,4 +1,76 @@
 package game.enemies;
 
-public class GiantCrab {
+import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
+import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.Actions.AttackAction;
+import game.Behaviours.AttackBehaviour;
+import game.Behaviours.Behaviour;
+import game.Behaviours.FollowBehaviour;
+import game.Behaviours.WanderBehaviour;
+import game.Status;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class GiantCrab extends Actor{
+    private Map<Integer, Behaviour> behaviours = new HashMap<>();
+
+
+    public GiantCrab(Actor target) {
+        super("Giant Crab", 'C', 407);
+        this.addCapability(Status.SLAM_ATTACK);
+        this.behaviours.put(998, new WanderBehaviour());
+        this.behaviours.put(997, new FollowBehaviour(target));
+        this.behaviours.put(996, new AttackBehaviour(target));
+    }
+
+    @Override
+    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        for (Behaviour behaviour : behaviours.values()) {
+            Action action = behaviour.getAction(this, map);
+            if(action != null)
+                return action;
+        }
+        return new DoNothingAction();
+    }
+
+    @Override
+    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        ActionList actions = new ActionList();
+        // nevermind, dont have to change this, never will be used by NPC enemies
+        if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)){
+            // Checks if the Player has a weapon
+            List<WeaponItem> weapons = new ArrayList<>(otherActor.getWeaponInventory());
+            // If Player has a weapon, it may choose to either use it or its intrinsic weapon
+            if (!weapons.isEmpty()) {
+                // Use equipped weapon
+                for (WeaponItem weapon : weapons) {
+                    if (weapon.hasCapability(Status.SPECIAL_ATTACK)){
+                        actions.add(weapon.getSkill(otherActor));
+                    }
+                    actions.add(new AttackAction(this, direction, weapon));
+                }
+            } else {
+                // Use intrinsic weapon
+                actions.add(new AttackAction(this, direction));
+            }
+            // If player has no weapon in its inventory, it may only choose to use its intrinsic weapon.
+            actions.add(new AttackAction(this, direction));
+        }
+        return actions;
+    }
+
+
+    @Override
+    public IntrinsicWeapon getIntrinsicWeapon() {
+        return new IntrinsicWeapon(208, "slams", 90);
+    }
 }

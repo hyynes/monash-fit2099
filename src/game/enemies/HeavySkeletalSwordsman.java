@@ -10,7 +10,6 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actions.AttackAction;
-import game.Actions.DespawnAction;
 import game.Behaviours.AttackBehaviour;
 import game.Behaviours.Behaviour;
 import game.Behaviours.FollowBehaviour;
