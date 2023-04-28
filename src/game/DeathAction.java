@@ -20,6 +20,9 @@ import game.enemies.Skeleton;
 public class DeathAction extends Action {
     private Actor attacker;
     private int turnsAfterDeath = 0;
+    PileOfBones pileOfBone = new PileOfBones();
+
+
 
     public DeathAction(Actor actor) {
         this.attacker = actor;
@@ -36,11 +39,9 @@ public class DeathAction extends Action {
     @Override
     public String execute(Actor target, GameMap map) {
         String result = "";
-
-        if (target instanceof Skeleton){
-            Location location = map.locationOf(target);
-            map.removeActor(target);
-            map.addActor(new PileOfBones(target,turnsAfterDeath),location);
+        if (target instanceof Skeleton && !((Skeleton) target).getPileOfBones()){
+            target.heal(1);
+            ((Skeleton) target).setPileOfBones(true);
             return result;
         }
 

@@ -26,16 +26,19 @@ import java.util.Map;
 
 public class HeavySkeletalSwordsman extends Actor implements Skeleton{
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
-
     private int turnsAfterDeath = 0;
+    private boolean initialCheck = true;
+    private boolean isPileOfBones = false;
+    PileOfBones pileOfBones = new PileOfBones();
+    private final int maxHitPoints = 153;
 
 
     public HeavySkeletalSwordsman(Actor target) {
         super("Heavy Skeletal Swordsman", 'q', 153);
         this.addWeaponToInventory(new Grossmesser());
         this.behaviours.put(998, new WanderBehaviour());
-        this.behaviours.put(997, new FollowBehaviour(target));
-        this.behaviours.put(996, new AttackBehaviour(target));
+        this.behaviours.put(996, new FollowBehaviour(target));
+        this.behaviours.put(997, new AttackBehaviour(target));
     }
 
     /**
@@ -47,30 +50,35 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
      * @param display    the I/O object to which messages may be written
      * @return the valid action that can be performed in that iteration or null if no valid action is found
      */
+
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
-        if (pileOfBone) {
-            turnsAfterDeath++;
-            new PileOfBones(this, turnsAfterDeath);
+        if (pileOfBones.checkState(this, getTurnsAfterDeath(),maxHitPoints,getPileOfBones()) && initialCheck){
+            this.setDisplayChar('X');
+            initialCheck = false;
+        }
+
+        if (pileOfBones.checkState(this, getTurnsAfterDeath(),maxHitPoints,getPileOfBones())) {
+            setTurnsAfterDeath(++turnsAfterDeath);
             return new DoNothingAction();
         }
-        for (Behaviour behaviour : behaviours.values()) {
-            Action action = behaviour.getAction(this, map);
-            if(action != null)
-                return action;
+
+        else {
+            if (!initialCheck){
+                this.setDisplayChar('q');
+            }
+            initialCheck = true;
+            for (Behaviour behaviour : behaviours.values()) {
+                Action action = behaviour.getAction(this, map);
+                if (action != null)
+                    return action;
+            }
         }
+        turnsAfterDeath = 0;
         return new DoNothingAction();
     }
 
-    /**
-     * The lone wolf can be attacked by any actor that has the HOSTILE_TO_ENEMY capability
-     *
-     * @param otherActor the Actor that might be performing attack
-     * @param direction  String representing the direction of the other Actor
-     * @param map        current GameMap
-     * @return
-     */
 
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
@@ -110,11 +118,23 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
         this.turnsAfterDeath = turnsAfterDeath;
     }
 
-    @Override
-    public void revive(GameMap map, Location location){
-
-        // Reset the turnsSinceDeath counter
-        setTurnsAfterDeath(0);
+    public boolean getPileOfBones() {
+        return isPileOfBones;
     }
 
+    public void setPileOfBones(boolean pileOfBones) {
+        isPileOfBones = pileOfBones;
+    }
+
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
+    }
+
+    public boolean isInitialCheck() {
+        return initialCheck;
+    }
+
+    public void setInitialCheck(boolean initialCheck) {
+        this.initialCheck = initialCheck;
+    }
 }

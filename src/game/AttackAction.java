@@ -83,13 +83,13 @@ public class AttackAction extends Action {
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
 		if (!target.isConscious()) {
-			if (actor instanceof Skeleton){
-				String bonesResult = actor + "has turned into a Pile of Bones!";
-				result += bonesResult + " " + new DeathAction(actor).execute(target, map);
+			if (target instanceof Skeleton){
+				String bonesResult = target + " has turned into a Pile of Bones!";
+				result += System.lineSeparator() + bonesResult + " " + new DeathAction(actor).execute(target, map);
+				return result;
 			}
 			result += new DeathAction(actor).execute(target, map);
 		}
-
 		return result;
 	}
 
