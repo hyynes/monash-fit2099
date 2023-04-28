@@ -7,7 +7,6 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.AttackAction;
@@ -32,7 +31,6 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
     PileOfBones pileOfBones = new PileOfBones();
     private final int maxHitPoints = 153;
 
-
     public HeavySkeletalSwordsman(Actor target) {
         super("Heavy Skeletal Swordsman", 'q', 153);
         this.addWeaponToInventory(new Grossmesser());
@@ -56,6 +54,9 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
 
         if (pileOfBones.checkState(this, getTurnsAfterDeath(),maxHitPoints,getPileOfBones()) && initialCheck){
             this.setDisplayChar('X');
+            // Set its health to 1
+            this.resetMaxHp(hitPoints);
+            this.hurt(hitPoints-1);
             initialCheck = false;
         }
 
@@ -67,6 +68,8 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
         else {
             if (!initialCheck){
                 this.setDisplayChar('q');
+                this.hitPoints = maxHitPoints;
+                setTurnsAfterDeath(0);
             }
             initialCheck = true;
             for (Behaviour behaviour : behaviours.values()) {
@@ -75,7 +78,6 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
                     return action;
             }
         }
-        turnsAfterDeath = 0;
         return new DoNothingAction();
     }
 
@@ -126,15 +128,4 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
         isPileOfBones = pileOfBones;
     }
 
-    public void setHitPoints(int hitPoints) {
-        this.hitPoints = hitPoints;
-    }
-
-    public boolean isInitialCheck() {
-        return initialCheck;
-    }
-
-    public void setInitialCheck(boolean initialCheck) {
-        this.initialCheck = initialCheck;
-    }
 }

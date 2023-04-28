@@ -71,6 +71,7 @@ public class AttackAction extends Action {
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
+		String result;
 		if (weapon == null) {
 			weapon = actor.getIntrinsicWeapon();
 		}
@@ -80,14 +81,14 @@ public class AttackAction extends Action {
 		}
 
 		int damage = weapon.damage();
-		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+		if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()){
+			result = actor + " " + weapon.verb() + " Pile of Bones for " + damage + " damage.";
+		}
+		else{
+			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+		}
 		target.hurt(damage);
 		if (!target.isConscious()) {
-			if (target instanceof Skeleton){
-				String bonesResult = target + " has turned into a Pile of Bones!";
-				result += System.lineSeparator() + bonesResult + " " + new DeathAction(actor).execute(target, map);
-				return result;
-			}
 			result += new DeathAction(actor).execute(target, map);
 		}
 		return result;
@@ -101,6 +102,9 @@ public class AttackAction extends Action {
 	 */
 	@Override
 	public String menuDescription(Actor actor) {
+		if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()){
+			return actor + " attacks Pile of Bones at " + direction + " with " + (weapon != null ? weapon : "Intrinsic Weapon");
+		}
 		return actor + " attacks " + target + " at " + direction + " with " + (weapon != null ? weapon : "Intrinsic Weapon");
 	}
 }

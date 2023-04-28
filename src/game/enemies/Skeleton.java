@@ -9,6 +9,4 @@ public interface Skeleton {
     boolean getPileOfBones();
     void setPileOfBones(boolean pileOfBones);
 
-    void setInitialCheck(boolean initialCheck);
-
 }
