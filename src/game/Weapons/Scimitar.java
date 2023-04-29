@@ -24,6 +24,7 @@ public class Scimitar extends WeaponItem {
     @Override
     public void tick(Location currentLocation, Actor actor) {}
 
+    // Special Spin Attack Skill
     @Override
     public Action getSkill(Actor holder){
         return new SurroundingAttack(this);

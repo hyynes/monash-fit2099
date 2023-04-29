@@ -62,7 +62,7 @@ public Action getAction(Actor actor, GameMap map){
                 // Checks if the Enemy has a weapon or not. If so it uses the weapon, otherwise not.
                 if (getWeapon(actor)!= null) {
                     actions.add(new AttackAction(adjacent, direction, getWeapon(actor)));
-                    actions.add(new SurroundingAttack(adjacent, getWeapon(actor)));
+                    actions.add(getWeapon(actor).getSkill(actor));
                 }
 
                 // Checks if the enemy has a slam attack ability with no weapon
