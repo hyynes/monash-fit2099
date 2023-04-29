@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import game.Actions.AttackAction;
 import game.Weapons.Club;
 
 /**
@@ -14,12 +15,12 @@ import game.Weapons.Club;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
- *
+ * @modifier Danny Duong
  */
 public class Player extends Actor implements Resettable {
 
 	private final Menu menu = new Menu();
-
+	Rune runes = new Rune();
 	/**
 	 * Constructor.
 	 *
@@ -31,7 +32,7 @@ public class Player extends Actor implements Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addWeaponToInventory(new Club());
-		this.addItemToInventory(new Rune());
+		this.addItemToInventory(runes);
 	}
 
 	@Override
@@ -46,4 +47,22 @@ public class Player extends Actor implements Resettable {
 
 	@Override
 	public void reset() {}
+
+	/**
+	 * Add Runes function.
+	 * Adds a number of runes to the player's inventory.
+	 *
+	 * @param min	the minimum number of runes that can be generated
+	 * @param max	the maximum number of runes that can be generated
+	 * @see AttackAction
+	 */
+	public void addRunes(int min, int max){
+		int generatedRunes = RandomNumberGenerator.getRandomInt(min, max);
+		if (runes.addStacks(generatedRunes)){
+			System.out.println("The player has picked up " + generatedRunes);
+		}
+		else {
+			System.out.println("Something went wrong.");
+		}
+	}
 }

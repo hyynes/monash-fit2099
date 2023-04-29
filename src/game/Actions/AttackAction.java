@@ -6,6 +6,8 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.Player;
+import game.enemies.Enemy;
 import game.enemies.Skeleton;
 
 /**
@@ -13,7 +15,7 @@ import game.enemies.Skeleton;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
- *
+ * @modifier Danny Duong
  */
 public class AttackAction extends Action {
 
@@ -92,6 +94,11 @@ public class AttackAction extends Action {
 		}
 		target.hurt(damage);
 		if (!target.isConscious()) {
+			if (actor instanceof Player){
+				if (target instanceof Enemy){
+					((Player) actor).addRunes(((Enemy) target).runeMin, ((Enemy) target).runeMax);
+				}
+			}
 			result += new DeathAction(actor).execute(target, map);
 		}
 		return result;

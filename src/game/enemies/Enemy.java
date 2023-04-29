@@ -25,8 +25,4 @@ public abstract class Enemy extends Actor {
 
     public int runeMax;
     public int runeMin;
-
-    public void generateRunes(int max, int min) {
-
-    }
 }
