@@ -13,5 +13,7 @@ public enum Status {
     FRIENDLY_TO_WOLF,
     FRIENDLY_TO_SKELETON,
     FRIENDLY_TO_SEA,
-    SLAM_ATTACK
+    SLAM_ATTACK,
+    EAST,
+    WEST
 }
