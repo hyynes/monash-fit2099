@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GiantCrab extends Actor{
+public class GiantCrab extends Enemy{
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
 
 
@@ -31,6 +31,8 @@ public class GiantCrab extends Actor{
         this.behaviours.put(998, new WanderBehaviour());
         this.behaviours.put(997, new AttackBehaviour());
         this.behaviours.put(996, new FollowBehaviour(target));
+        this.runeMin = 318;
+        this.runeMax = 4961;
     }
 
     @Override

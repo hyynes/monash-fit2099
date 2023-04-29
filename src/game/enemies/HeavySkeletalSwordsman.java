@@ -20,7 +20,7 @@ import game.Weapons.Grossmesser;
 
 import java.util.*;
 
-public class HeavySkeletalSwordsman extends Actor implements Skeleton{
+public class HeavySkeletalSwordsman extends Enemy implements Skeleton{
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
     private int turnsAfterDeath = 0;
     private boolean initialCheck = true;
@@ -34,6 +34,8 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
         this.behaviours.put(998, new WanderBehaviour());
         this.behaviours.put(997, new AttackBehaviour());
         this.behaviours.put(996, new FollowBehaviour(target));
+        this.runeMin = 35;
+        this.runeMax = 892;
     }
 
     /**
