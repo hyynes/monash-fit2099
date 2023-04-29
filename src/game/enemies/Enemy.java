@@ -69,9 +69,9 @@ public abstract class Enemy extends Actor {
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
         // Extra steps for Skeleton types with Pile of Bones ability
-        if (this instanceof Skeleton){
+        if (this instanceof Skeleton) {
             // If Skeleton just turned into a Pile of Bones that turn, initialises all values.
-            if (pileOfBones.checkState(this, turnsAfterDeath,getPileOfBones()) && initialCheck){
+            if (pileOfBones.checkState(this, turnsAfterDeath, getPileOfBones()) && initialCheck) {
                 this.setDisplayChar('X');
                 // Set its health to 1
                 this.hitPoints = 1;
@@ -79,12 +79,10 @@ public abstract class Enemy extends Actor {
             }
 
             // If Skeleton is in Pile of Bones state
-            if (pileOfBones.checkState(this, turnsAfterDeath,getPileOfBones())) {
+            if (pileOfBones.checkState(this, turnsAfterDeath, getPileOfBones())) {
                 ++turnsAfterDeath;
                 return new DoNothingAction();
-            }
-
-            else {
+            } else {
                 if (!initialCheck) {
                     // Set its display character back to that of Heavy Skeletal Swordsman
                     this.setDisplayChar(((Skeleton) this).getOriginalDisplayChar());
@@ -93,15 +91,16 @@ public abstract class Enemy extends Actor {
                 }
                 initialCheck = true;
             }
+        }
 
-            // General playTurn step for all enemies
-            for (Behaviour behaviour : behaviours.values()) {
-                Action action = behaviour.getAction(this, map);
-                if (action != null) {
-                    return action;
-                }
+        // General playTurn step for all enemies
+        for (Behaviour behaviour : behaviours.values()) {
+            Action action = behaviour.getAction(this, map);
+            if (action != null) {
+                return action;
             }
         }
+
         return new DoNothingAction();
     }
 
@@ -152,7 +151,6 @@ public abstract class Enemy extends Actor {
         isPileOfBones = pileOfBones;
     }
 
-    //@Override
     public void setTurnsAfterDeath(int turnsAfterDeath){
         this.turnsAfterDeath = turnsAfterDeath;
     }

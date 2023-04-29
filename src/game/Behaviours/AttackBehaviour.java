@@ -17,14 +17,11 @@ import game.Status;
 
 public class AttackBehaviour implements Behaviour {
 
-
     /**
      * Constructor.
      */
     public AttackBehaviour() {
     }
-
-
     // Method that returns the weapon an actor is holding, otherwise returns null
     public Weapon getWeapon(Actor actor) {
         for (Item weaponItem : actor.getWeaponInventory()) {
