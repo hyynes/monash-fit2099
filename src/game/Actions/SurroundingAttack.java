@@ -7,11 +7,13 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.Status;
+import game.enemies.Skeleton;
 
 import java.util.Random;
 
 public class SurroundingAttack extends Action {
     private Weapon weapon;
+    private Actor target;
 
     /**
      * Random number generator
@@ -19,9 +21,13 @@ public class SurroundingAttack extends Action {
     private Random rand = new Random();
 
 
+    public SurroundingAttack(Actor target, Weapon weapon) {
+        this.target = target;
+        this.weapon = weapon;
+    }
+
     /**
-     * Doesn't necesarilly have a target, so only paramater needed is the weapon used.
-     * @param weapon
+     * Doesn't necessarily have a target, so only parameter needed is the weapon used.
      */
     public SurroundingAttack(Weapon weapon) {
         this.weapon = weapon;
@@ -40,11 +46,23 @@ public class SurroundingAttack extends Action {
             if (destination.containsAnActor()) {
                 Actor targetActor = destination.getActor();
                 if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
-                    result += System.lineSeparator() + actor + " misses " + targetActor + ".";
+                    if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()) {
+                        result += System.lineSeparator() + actor + " misses Pile of Bones.";
+                    }
+                    else {
+                        result += System.lineSeparator() + actor + " misses " + targetActor + ".";
+                    }
                 }
                 else {
-                    result += System.lineSeparator() + actor + " " + weapon.verb() + " " + targetActor +
+                    if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()) {
+                        result += System.lineSeparator() + actor + " " + weapon.verb() + " Pile of Bones for "
+                                + damage + " damage.";
+                    }
+                    else{
+                        result += System.lineSeparator() + actor + " " + weapon.verb() + " " + targetActor +
                             " for " + damage + " damage.";
+
+                    }
                     targetActor.hurt(damage);
                 }
                 if (!targetActor.isConscious()){

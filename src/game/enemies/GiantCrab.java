@@ -29,7 +29,7 @@ public class GiantCrab extends Enemy{
         this.addCapability(Status.SLAM_ATTACK);
         this.addCapability(Status.FRIENDLY_TO_SEA);
         this.behaviours.put(998, new WanderBehaviour());
-        this.behaviours.put(997, new AttackBehaviour(target));
+        this.behaviours.put(997, new AttackBehaviour());
         this.behaviours.put(996, new FollowBehaviour(target));
         this.runeMin = 318;
         this.runeMax = 4961;
