@@ -3,6 +3,13 @@ package game;
 import edu.monash.fit2099.engine.actors.Actor;
 import game.enemies.Skeleton;
 
+/**
+ * For when a skeleton dies.
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ *
+ */
 public class PileOfBones{
 
     public boolean checkState(Actor actor, int deathTimer, boolean pileOfBone) {

@@ -7,6 +7,14 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actions.SurroundingAttack;
 import game.Status;
 
+/**
+ * The knife that goes spin v2.
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ *
+ */
+
 public class Scimitar extends WeaponItem {
     public Scimitar() {
         super("Scimitar", 's', 118, "Slashes", 88);

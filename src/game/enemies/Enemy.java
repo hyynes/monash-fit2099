@@ -22,6 +22,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * An abstract class to identify enemy actors.
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ * @modifier Danny Duong
+ */
+
 public abstract class Enemy extends Actor {
 
     private Map<Integer, Behaviour> behaviours = new HashMap<>();

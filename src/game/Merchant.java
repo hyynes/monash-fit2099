@@ -6,6 +6,14 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Weapons.*;
 
+/**
+ * For buying stuff.
+ * Created by:
+ * @author Danny Duong
+ * Modified by:
+ *
+ */
+
 public class Merchant extends Actor {
 
     public Merchant(String name, char displayChar, int hitPoints) {
