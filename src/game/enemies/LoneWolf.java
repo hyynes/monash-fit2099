@@ -42,8 +42,9 @@ public class LoneWolf extends Actor {
 
     public LoneWolf(Actor target) {
         super("Lone Wolf", 'h', 102);
+        this.addCapability(Status.FRIENDLY_TO_WOLF);
         this.behaviours.put(998, new WanderBehaviour());
-        this.behaviours.put(997, new AttackBehaviour(target));
+        this.behaviours.put(997, new AttackBehaviour());
         this.behaviours.put(996, new FollowBehaviour(target));
     }
 

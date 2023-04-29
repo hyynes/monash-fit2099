@@ -26,13 +26,13 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
     private boolean initialCheck = true;
     private boolean isPileOfBones = false;
     PileOfBones pileOfBones = new PileOfBones();
-    private final int maxHitPoints = 153;
 
     public HeavySkeletalSwordsman(Actor target) {
         super("Heavy Skeletal Swordsman", 'q', 153);
+        this.addCapability(Status.FRIENDLY_TO_SKELETON);
         this.addWeaponToInventory(new Grossmesser());
         this.behaviours.put(998, new WanderBehaviour());
-        this.behaviours.put(997, new AttackBehaviour(target));
+        this.behaviours.put(997, new AttackBehaviour());
         this.behaviours.put(996, new FollowBehaviour(target));
     }
 
@@ -55,8 +55,7 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
             if (pileOfBones.checkState(this, getTurnsAfterDeath(),getPileOfBones()) && initialCheck){
                 this.setDisplayChar('X');
                 // Set its health to 1
-                this.resetMaxHp(hitPoints);
-                this.hurt(hitPoints-1);
+                this.hitPoints = 1;
                 initialCheck = false;
             }
 
@@ -68,8 +67,9 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
 
             else {
                 if (!initialCheck) {
-                    this.setDisplayChar('q');
-                    this.hitPoints = maxHitPoints;
+                    // Set its display character back to that of Heavy Skeletal Swordsman
+                    this.setDisplayChar(this.getOriginalDisplayChar());
+                    this.hitPoints = 153;
                     setTurnsAfterDeath(0);
                 }
                 initialCheck = true;
@@ -134,4 +134,7 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
         isPileOfBones = pileOfBones;
     }
 
+    public final char getOriginalDisplayChar() {
+        return 'q';
+    }
 }

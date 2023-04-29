@@ -40,6 +40,7 @@ public class FollowBehaviour implements Behaviour {
 		Location there = map.locationOf(target);
 
 		int currentDistance = distance(here, there);
+
 		// When the target is too far away
 		if (currentDistance > MAX_DISTANCE) {
 			return null;

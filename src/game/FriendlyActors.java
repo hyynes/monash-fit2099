@@ -18,7 +18,7 @@ public class FriendlyActors {
         else if (actor.hasCapability(Status.FRIENDLY_TO_SKELETON) && otherActor.hasCapability(Status.FRIENDLY_TO_SKELETON)){
             return true;
         }
-        else if (actor.hasCapability(Status.FRINDLY_TO_SEA) && otherActor.hasCapability(Status.FRINDLY_TO_SEA)){
+        else if (actor.hasCapability(Status.FRIENDLY_TO_SEA) && otherActor.hasCapability(Status.FRIENDLY_TO_SEA)){
             return true;
         }
         else{

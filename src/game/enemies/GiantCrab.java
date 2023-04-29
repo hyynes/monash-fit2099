@@ -27,9 +27,9 @@ public class GiantCrab extends Actor{
     public GiantCrab(Actor target) {
         super("Giant Crab", 'C', 407);
         this.addCapability(Status.SLAM_ATTACK);
-        this.addCapability(Status.FRINDLY_TO_SEA);
+        this.addCapability(Status.FRIENDLY_TO_SEA);
         this.behaviours.put(998, new WanderBehaviour());
-        this.behaviours.put(997, new AttackBehaviour(target));
+        this.behaviours.put(997, new AttackBehaviour());
         this.behaviours.put(996, new FollowBehaviour(target));
     }
 
