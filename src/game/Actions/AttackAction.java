@@ -77,6 +77,9 @@ public class AttackAction extends Action {
 		}
 
 		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
+			if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()) {
+				return actor + " misses Pile of Bones." ;
+			}
 			return actor + " misses " + target + ".";
 		}
 
