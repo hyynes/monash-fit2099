@@ -2,6 +2,13 @@ package game;
 
 import edu.monash.fit2099.engine.actors.Actor;
 
+/**
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ *
+ */
+
 public class FriendlyActors {
 
     private Actor actor;

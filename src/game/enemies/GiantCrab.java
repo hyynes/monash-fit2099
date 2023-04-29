@@ -20,6 +20,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A giant crab.
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ * @modifier Danny Duong
+ */
+
 public class GiantCrab extends Enemy{
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
 

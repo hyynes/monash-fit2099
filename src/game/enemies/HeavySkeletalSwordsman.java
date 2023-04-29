@@ -20,6 +20,14 @@ import game.Weapons.Grossmesser;
 
 import java.util.*;
 
+/**
+ * A skeletal swordsman that has the ability to revive.
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ * @modifier Danny Duong
+ */
+
 public class HeavySkeletalSwordsman extends Enemy implements Skeleton{
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
     private int turnsAfterDeath = 0;
