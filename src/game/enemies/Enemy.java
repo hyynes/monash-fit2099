@@ -5,9 +5,7 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actions.AttackAction;
 import game.Behaviours.AttackBehaviour;
@@ -113,34 +111,32 @@ public abstract class Enemy extends Actor {
      * @param map        current GameMap
      * @return
      */
+
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
-        if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)){
-            List<Weapon> weapons = new ArrayList<>();
+        if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             // Checks if the Player has a weapon
-            for (Item weaponItem : otherActor.getWeaponInventory()) {
-                if (weaponItem instanceof WeaponItem) {
-                    weapons.add((Weapon) weaponItem);
-                }
-            }
+            List<WeaponItem> weapons = new ArrayList<>(otherActor.getWeaponInventory());
             // If Player has a weapon, it may choose to either use it or its intrinsic weapon
             if (!weapons.isEmpty()) {
                 // Use equipped weapon
-                for (Weapon weapon : weapons) {
+                for (WeaponItem weapon : weapons) {
+                    if (weapon.hasCapability(Status.SPECIAL_ATTACK)) {
+                        actions.add(weapon.getSkill(otherActor));
+                    }
                     actions.add(new AttackAction(this, direction, weapon));
-                    //actions.add(new SurroundingAttack(this,weapon);
                 }
             } else {
                 // Use intrinsic weapon
                 actions.add(new AttackAction(this, direction));
-                return actions;
             }
             // If player has no weapon in its inventory, it may only choose to use its intrinsic weapon.
             actions.add(new AttackAction(this, direction));
         }
         return actions;
     }
+
 
 
     public boolean getPileOfBones() {

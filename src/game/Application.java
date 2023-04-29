@@ -11,9 +11,7 @@ import edu.monash.fit2099.engine.positions.World;
 import game.Grounds.Dirt;
 import game.Grounds.Floor;
 import game.Grounds.Wall;
-import game.enemies.GiantCrab;
-import game.enemies.HeavySkeletalSwordsman;
-import game.enemies.LoneWolf;
+import game.enemies.*;
 import game.environments.Graveyard;
 import game.environments.GustOfWind;
 import game.environments.PuddleOfWater;
@@ -84,6 +82,9 @@ public class Application {
 		gameMap.at(23, 17).addActor(new LoneWolf(player));
 		gameMap.at(30, 10).addActor(new HeavySkeletalSwordsman(player));
 		gameMap.at(24, 18).addActor(new GiantCrab(player));
+		gameMap.at(3, 8).addActor(new SkeletalBandit(player));
+		gameMap.at(13, 23).addActor(new GiantDog(player));
+		gameMap.at(12, 3).addActor(new GiantCrayfish(player));
 
 		world.run();
 	}

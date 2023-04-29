@@ -15,6 +15,6 @@ public class GiantCrayfish extends Enemy{
 
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(527, "slams with giant pincer", 100);
+        return new IntrinsicWeapon(527, "uses its Giant Pincer to slam", 100);
     }
 }
