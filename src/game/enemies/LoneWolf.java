@@ -36,7 +36,7 @@ import java.util.Map;
  * THIS IS BECAUSE ALL ENEMIES WILL HAVE THESE SAME METHODS.
  *
  */
-public class LoneWolf extends Actor {
+public class LoneWolf extends Enemy {
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
 
 
@@ -45,6 +45,8 @@ public class LoneWolf extends Actor {
         this.behaviours.put(998, new WanderBehaviour());
         this.behaviours.put(997, new AttackBehaviour(target));
         this.behaviours.put(996, new FollowBehaviour(target));
+        this.runeMin = 55;
+        this.runeMax = 1470;
     }
 
     /**

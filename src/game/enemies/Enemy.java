@@ -22,4 +22,11 @@ public abstract class Enemy extends Actor {
     public Enemy(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
     }
+
+    public int runeMax;
+    public int runeMin;
+
+    public void generateRunes(int max, int min) {
+
+    }
 }
