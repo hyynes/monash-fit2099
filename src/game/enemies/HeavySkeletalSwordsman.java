@@ -4,6 +4,15 @@ import edu.monash.fit2099.engine.actors.Actor;
 import game.Status;
 import game.Weapons.Grossmesser;
 
+/**
+ * A skeletal swordsman that has the ability to revive.
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ * @modifier Danny Duong
+ */
+
+
 public class HeavySkeletalSwordsman extends Enemy implements Skeleton{
 
     public HeavySkeletalSwordsman(Actor target) {

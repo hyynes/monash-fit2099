@@ -4,6 +4,15 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Status;
 
+/**
+ * A giant crab.
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ * @modifier Danny Duong
+ */
+
+
 public class GiantCrab extends Enemy{
 
 
