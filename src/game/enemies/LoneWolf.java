@@ -43,8 +43,8 @@ public class LoneWolf extends Actor {
     public LoneWolf(Actor target) {
         super("Lone Wolf", 'h', 102);
         this.behaviours.put(998, new WanderBehaviour());
-        this.behaviours.put(997, new FollowBehaviour(target));
-        this.behaviours.put(996, new AttackBehaviour(target));
+        this.behaviours.put(997, new AttackBehaviour(target));
+        this.behaviours.put(996, new FollowBehaviour(target));
     }
 
     /**

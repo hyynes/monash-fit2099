@@ -71,7 +71,7 @@ public class AttackBehaviour implements Behaviour {
                     // Randomly choose which attack, 50/50 chance
                 }
 
-                // Checks if the enemy has a surrounding attack ability with no weapon
+                // Checks if the enemy has a slam attack ability with no weapon
                 else if (actor.hasCapability(Status.SLAM_ATTACK)){
 
                     actions.add(new AttackAction(target,direction));
@@ -83,7 +83,7 @@ public class AttackBehaviour implements Behaviour {
                 }
 
                 int randomNumber = RandomNumberGenerator.getRandomInt(100);
-                if (randomNumber <= 50){
+                if (randomNumber < 50){
                     return actions.get(0);
                 }
                 return actions.get(1);

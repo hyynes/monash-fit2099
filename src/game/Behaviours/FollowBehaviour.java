@@ -6,8 +6,6 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.actions.MoveActorAction;
-import game.Actions.DespawnAction;
-import game.Behaviours.Behaviour;
 
 /**
  * A class that figures out a MoveAction that will move the actor one step 

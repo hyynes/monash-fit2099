@@ -32,8 +32,8 @@ public class HeavySkeletalSwordsman extends Actor implements Skeleton{
         super("Heavy Skeletal Swordsman", 'q', 153);
         this.addWeaponToInventory(new Grossmesser());
         this.behaviours.put(998, new WanderBehaviour());
-        this.behaviours.put(997, new FollowBehaviour(target));
-        this.behaviours.put(996, new AttackBehaviour(target));
+        this.behaviours.put(997, new AttackBehaviour(target));
+        this.behaviours.put(996, new FollowBehaviour(target));
     }
 
     /**

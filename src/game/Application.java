@@ -68,7 +68,7 @@ public class Application {
 		Player player = new Player("Tarnished", '@', 300);
 		world.addPlayer(player, gameMap.at(36, 10));
 
-		gameMap.at(33, 8).addActor(new GiantCrab(player));
+		gameMap.at(23, 18).addActor(new GiantCrab(player));
 		gameMap.at(23, 17).addActor(new LoneWolf(player));
 		gameMap.at(30, 10).addActor(new HeavySkeletalSwordsman(player));
 
