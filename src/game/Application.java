@@ -3,6 +3,7 @@ package game;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
@@ -13,6 +14,7 @@ import game.Grounds.Wall;
 import game.enemies.GiantCrab;
 import game.enemies.HeavySkeletalSwordsman;
 import game.enemies.LoneWolf;
+import game.environments.GustOfWind;
 
 /**
  * The main class to start the game.
@@ -27,7 +29,12 @@ public class Application {
 
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor());
+		Player player = new Player("Tarnished", '@', 300);
+
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
+				new GustOfWind());
+
+		GustOfWind.setTarget(player);
 
 		List<String> map = Arrays.asList(
 				"...........................................................................",
@@ -41,7 +48,7 @@ public class Application {
 				"...........................................................................",
 				"..................................###___###................................",
 				"..................................________#................................",
-				"..................................#________................................",
+				".....................&............#________................................",
 				"..................................#_______#................................",
 				"..................................###___###................................",
 				"....................................#___#..................................",
@@ -68,7 +75,6 @@ public class Application {
 		}
 
 		// HINT: what does it mean to prefer composition to inheritance?
-		Player player = new Player("Tarnished", '@', 300);
 		world.addPlayer(player, gameMap.at(36, 10));
 
 		gameMap.at(23, 17).addActor(new LoneWolf(player));
