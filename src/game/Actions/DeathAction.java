@@ -6,6 +6,8 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.Player;
+import game.enemies.Enemy;
 import game.enemies.Skeleton;
 
 /**
@@ -48,6 +50,13 @@ public class DeathAction extends Action {
         for (Action drop : dropActions)
             drop.execute(target, map);
 
+        // Player obtains runes from enemy, printed to the screen.
+        if (attacker instanceof Player){
+            if (target instanceof Enemy){
+                result += System.lineSeparator() +
+                        ((Player) attacker).addRunes(target,(((Enemy) target).runeMin), ((Enemy) target).runeMax);
+            }
+        }
         // remove actor
         map.removeActor(target);
         result += System.lineSeparator() + menuDescription(target);
@@ -56,6 +65,6 @@ public class DeathAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " is killed.";
+        return actor + " is killed." + System.lineSeparator();
     }
 }

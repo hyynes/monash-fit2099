@@ -56,13 +56,11 @@ public class Player extends Actor implements Resettable {
 	 * @param max	the maximum number of runes that can be generated
 	 * @see AttackAction
 	 */
-	public void addRunes(int min, int max){
+	public String addRunes(Actor enemy, int min, int max){
 		int generatedRunes = RandomNumberGenerator.getRandomInt(min, max);
 		if (runes.addStacks(generatedRunes)){
-			System.out.println("The player has picked up " + generatedRunes);
+			return enemy + " drops " + generatedRunes + " runes";
 		}
-		else {
-			System.out.println("Something went wrong.");
-		}
+		return null;
 	}
 }

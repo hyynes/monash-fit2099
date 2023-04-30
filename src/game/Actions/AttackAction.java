@@ -94,11 +94,6 @@ public class AttackAction extends Action {
 		}
 		target.hurt(damage);
 		if (!target.isConscious()) {
-			if (actor instanceof Player){
-				if (target instanceof Enemy){
-					((Player) actor).addRunes(((Enemy) target).runeMin, ((Enemy) target).runeMax);
-				}
-			}
 			result += new DeathAction(actor).execute(target, map);
 		}
 		return result;
