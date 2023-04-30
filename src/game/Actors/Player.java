@@ -1,4 +1,4 @@
-package game;
+package game.Actors;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -7,6 +7,10 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Actions.AttackAction;
+import game.RandomNumberGenerator;
+import game.Resettable;
+import game.Rune;
+import game.Status;
 import game.Weapons.Club;
 
 /**
@@ -21,6 +25,8 @@ public class Player extends Actor implements Resettable {
 
 	private final Menu menu = new Menu();
 	Rune runes = new Rune();
+
+	String stats;
 	/**
 	 * Constructor.
 	 *
@@ -40,6 +46,11 @@ public class Player extends Actor implements Resettable {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+
+		stats = this.getHealth();
+		stats += this.getRunes().displayToString();
+
+		System.out.println(stats);
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
@@ -62,5 +73,13 @@ public class Player extends Actor implements Resettable {
 			return enemy + " drops " + generatedRunes + " runes";
 		}
 		return null;
+	}
+
+	public String getHealth(){
+		return name + " (" + this.hitPoints + "/" + this.getMaxHp() + "), ";
+	}
+
+	public Rune getRunes() {
+		return runes;
 	}
 }

@@ -6,7 +6,8 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.Player;
+import game.Actors.Player;
+import game.Status;
 import game.enemies.Enemy;
 import game.enemies.Skeleton;
 
@@ -51,7 +52,7 @@ public class DeathAction extends Action {
             drop.execute(target, map);
 
         // Player obtains runes from enemy, printed to the screen.
-        if (attacker instanceof Player){
+        if (attacker.hasCapability(Status.HOSTILE_TO_ENEMY)){
             if (target instanceof Enemy){
                 result += System.lineSeparator() +
                         ((Player) attacker).addRunes(target,(((Enemy) target).runeMin), ((Enemy) target).runeMax);

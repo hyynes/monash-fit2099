@@ -16,8 +16,9 @@ public class Rune extends Item implements Stackable{
 
     @Override
     public String displayToString(){
-        return "Runes (" + noOfStacks() + ")";
+        return "runes: " + noOfRunes;
     }
+
 
     @Override
     public boolean addStacks(int stacks){

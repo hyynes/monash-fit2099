@@ -8,10 +8,10 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
+import game.Actors.Player;
 import game.Grounds.Dirt;
 import game.Grounds.Floor;
 import game.Grounds.Wall;
-import game.enemies.*;
 import game.environments.Environment;
 import game.environments.Graveyard;
 import game.environments.GustOfWind;
@@ -103,6 +103,7 @@ public class Application {
 				}
 			}
 		}
+
 		world.run();
 	}
 }
