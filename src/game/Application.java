@@ -22,6 +22,7 @@ import game.environments.PuddleOfWater;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
+ * @modifier Kenan Baydar
  *
  */
 public class Application {
@@ -35,6 +36,7 @@ public class Application {
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
 				new Graveyard(), new GustOfWind(), new PuddleOfWater());
 
+		// Setting the target for the enemies spawned from the environments to Tarnished.
 		Graveyard.setTarget(player);
 		GustOfWind.setTarget(player);
 		PuddleOfWater.setTarget(player);
@@ -78,7 +80,7 @@ public class Application {
 			}
 		}
 
-			// HINT: what does it mean to prefer composition to inheritance?
+		// HINT: what does it mean to prefer composition to inheritance?
 		world.addPlayer(player, gameMap.at(36, 10));
 
 		NumberRange xRange = gameMap.getXRange();
@@ -88,7 +90,7 @@ public class Application {
 
 		NumberRange yRange = gameMap.getYRange();
 
-		// Checks whether the environment is located east or west of the map to determine what type of enemy should spawn
+		// Checks whether the environment is located east or west of the map to determine what type of enemy should spawn.
 		for (int y = 0; y <= yRange.max(); y++) {
 			for (int x = 0; x <= xRange.max(); x++) {
 				if (gameMap.at(x, y).getGround() instanceof Environment) {

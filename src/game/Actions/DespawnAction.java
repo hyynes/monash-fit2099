@@ -7,16 +7,11 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import java.util.Random;
 
 public class DespawnAction extends Action{
-    private final Random random = new Random();
-
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (random.nextInt(10) == 0) {
-            map.removeActor(actor);
-            return System.lineSeparator() + menuDescription(actor);
-        }
-        return null;
+        map.removeActor(actor);
+        return menuDescription(actor);
     }
 
     @Override

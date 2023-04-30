@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actions.AttackAction;
+import game.Actions.DespawnAction;
 import game.Actions.SurroundingAttack;
 import game.FriendlyActors;
 import game.RandomNumberGenerator;
@@ -85,6 +86,6 @@ public Action getAction(Actor actor, GameMap map){
         }
     }
     return null;
-}
+    }
 }
 
