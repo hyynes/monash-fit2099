@@ -6,11 +6,13 @@ import java.util.List;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
 import game.Grounds.Dirt;
 import game.Grounds.Floor;
 import game.Grounds.Wall;
 import game.enemies.*;
+import game.environments.Environment;
 import game.environments.Graveyard;
 import game.environments.GustOfWind;
 import game.environments.PuddleOfWater;
@@ -41,8 +43,8 @@ public class Application {
 				"...........................................................................",
 				"......................#####....######......................................",
 				"......................#..___....____#......................................",
-				"..................................__#...........................~~~........",
-				"......................._____........#...........................~~~........",
+				"......~~~.........................__#...........................~~~........",
+				"......~~~.............._____........#...........................~~~........",
 				"......................#............_#......................................",
 				"......................#...........###......................................",
 				"...........................................................................",
@@ -51,7 +53,7 @@ public class Application {
 				"..................................________#................................",
 				"..................................#________................................",
 				"..................................#_______#................................",
-				"...&&.............................###___###................................",
+				"...&&.............................###___###........................&&......",
 				"....................................#___#..................................",
 				"...........................................................................",
 				"...........................................................................",
@@ -60,9 +62,10 @@ public class Application {
 				"..#.....__....................................................#....____....",
 				"..#___..........................................................__.....#...",
 				"..####__###..................................................._.....__.#...",
-				"....................................................nn........###..__###...",
+				"...........nn.......................................nn........###..__###...",
 				"...........................................................................");
 		GameMap gameMap = new GameMap(groundFactory, map);
+
 		world.addGameMap(gameMap);
 
 		// BEHOLD, ELDEN RING
@@ -75,16 +78,40 @@ public class Application {
 			}
 		}
 
-		// HINT: what does it mean to prefer composition to inheritance?
+			// HINT: what does it mean to prefer composition to inheritance?
 		world.addPlayer(player, gameMap.at(36, 10));
 
-		gameMap.at(23, 17).addActor(new LoneWolf(player));
-		gameMap.at(30, 10).addActor(new HeavySkeletalSwordsman(player));
-		gameMap.at(24, 18).addActor(new GiantCrab(player));
-		gameMap.at(3, 8).addActor(new SkeletalBandit(player));
-		gameMap.at(13, 23).addActor(new GiantDog(player));
-		gameMap.at(12, 3).addActor(new GiantCrayfish(player));
+		NumberRange xRange = gameMap.getXRange();
 
+		int xRangeSize = xRange.max() - xRange.min() + 1;
+		int middleX = xRange.min() + xRangeSize / 2;
+
+		NumberRange yRange = gameMap.getYRange();
+
+		// Checks whether the environment is located east or west of the map to determine what type of enemy should spawn
+		for (int y = 0; y <= yRange.max(); y++) {
+			for (int x = 0; x <= xRange.max(); x++) {
+				if (gameMap.at(x, y).getGround() instanceof Environment) {
+					if (x <= middleX){
+						gameMap.at(x, y).getGround().addCapability(Status.WEST);
+					}
+					else {
+						gameMap.at(x, y).getGround().addCapability(Status.EAST);
+					}
+				}
+			}
+		}
 		world.run();
 	}
 }
+
+
+/**
+ gameMap.at(23, 17).addActor(new LoneWolf(player));
+ gameMap.at(20, 10).addActor(new HeavySkeletalSwordsman(player));
+ gameMap.at(40, 18).addActor(new GiantCrab(player));
+ gameMap.at(3, 8).addActor(new SkeletalBandit(player));
+ gameMap.at(13, 23).addActor(new GiantDog(player));
+ gameMap.at(12, 3).addActor(new GiantCrayfish(player));
+
+ */
