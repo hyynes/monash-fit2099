@@ -3,7 +3,6 @@ package game.Utils;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
-import game.Environments.EnemyEnvironments.Environment;
 
 import java.util.ArrayList;
 import java.util.List;

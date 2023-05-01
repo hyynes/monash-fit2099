@@ -6,10 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
-import game.Actions.BuyAction;
-import game.Actions.DeathAction;
-import game.Actions.HealAction;
-import game.Actions.RestAction;
+import game.Actions.*;
 import game.Environments.FriendlyEnvironments.SiteOfLostGrace;
 import game.Items.StackableItems.FlaskOfCrimsonTears;
 import game.Utils.PlayerSpawnPoint;
@@ -66,6 +63,10 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 
 		if (SiteOfLostGrace.isPlayerInSite){
 			actions.add(new RestAction());
+		}
+
+		if (map.locationOf(this).getDisplayChar() == '$'){
+			actions.add(new PickUpRunesAction((Rune) map.locationOf(this).getItems()));
 		}
 
 		// return/print the console menu

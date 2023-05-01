@@ -6,6 +6,8 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.Actors.Enemies.Enemy;
+import game.Actors.FriendlyActors.Player;
 import game.Displays.DisplayStrings;
 import game.Actors.Enemies.Skeleton;
 
@@ -93,7 +95,12 @@ public class AttackAction extends Action implements DisplayStrings {
 		}
 		target.hurt(damage);
 		if (!target.isConscious()) {
-			result += new DeathAction(actor).execute(target, map);
+			if (target instanceof Enemy) {
+				result += new DeathAction(actor).execute(target, map);
+			}
+			else if (target instanceof Player){
+				result += new PlayerDeathAction().execute(target, map);
+			}
 		}
 		return result;
 	}
