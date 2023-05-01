@@ -117,6 +117,10 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	}
 
 	public String displayStats(){
-		return name + " (" + this.hitPoints + "/" + this.getMaxHp() + "), " + "runes: " + runes.getNoOfStacks();
+		String stats;
+		stats = name + " (" + this.hitPoints + "/" + this.getMaxHp() + ")";
+		stats += System.lineSeparator() + runes.displayToString();
+		stats += System.lineSeparator() + flask.displayToString();
+		return stats;
 	}
 }

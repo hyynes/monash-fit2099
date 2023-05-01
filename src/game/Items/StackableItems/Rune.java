@@ -6,12 +6,6 @@ public class Rune extends StackableItem{
         super("Rune",'$',false, 0);
     }
 
-    public void setNoOfStacks(int newStacks) {
-        if (newStacks >= 0){
-            this.noOfRunes = newStacks;
-        }
-    }
-
     @Override
     public String displayToString() {
         return "Runes (" + getNoOfStacks() + ')';
