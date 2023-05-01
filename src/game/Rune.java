@@ -10,7 +10,7 @@ public class Rune extends Item implements Stackable{
     }
 
     @Override
-    public int noOfStacks() {
+    public int getNoOfStacks() {
         return noOfRunes;
     }
 
@@ -27,6 +27,17 @@ public class Rune extends Item implements Stackable{
             return true;
         }
         else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean removeStacks(int stacks){
+        if (noOfRunes - stacks >= 0){
+            noOfRunes -= stacks;
+            return true;
+        }
+        else{
             return false;
         }
     }

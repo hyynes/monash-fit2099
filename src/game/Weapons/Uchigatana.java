@@ -2,6 +2,7 @@ package game.Weapons;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
+import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 /**
@@ -12,7 +13,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  *
  */
 
-public class Uchigatana extends WeaponItem {
+public class Uchigatana extends WeaponItem implements WeaponRunes {
 
     // Constructor
     public Uchigatana() {
@@ -21,4 +22,9 @@ public class Uchigatana extends WeaponItem {
 
     @Override
     public void tick(Location currentLocation, Actor actor) {}
+
+    @Override
+    public int runePrice() {
+        return 5000;
+    }
 }

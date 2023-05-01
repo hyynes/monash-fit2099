@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * Modified by:
  *
  */
-public class GreatKnife extends WeaponItem {
+public class GreatKnife extends WeaponItem implements WeaponRunes{
 
 
     public GreatKnife() {
@@ -20,4 +20,10 @@ public class GreatKnife extends WeaponItem {
 
     @Override
     public void tick(Location currentLocation, Actor actor) {}
+
+
+    @Override
+    public int runePrice() {
+        return 3500;
+    }
 }

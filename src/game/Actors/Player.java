@@ -6,7 +6,8 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
-import game.Actions.AttackAction;
+import game.Actions.BuyAction;
+import game.Actions.DeathAction;
 import game.RandomNumberGenerator;
 import game.Resettable;
 import game.Rune;
@@ -19,14 +20,13 @@ import game.Weapons.Club;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
- * @modifier Danny Duong
+ * @modifier Danny Duong, Kenan Baydar
  */
-public class Player extends Actor implements Resettable {
+public class Player extends Actor implements Resettable, PlayableCharacter {
 
 	private final Menu menu = new Menu();
 	Rune runes = new Rune();
 
-	String stats;
 	/**
 	 * Constructor.
 	 *
@@ -47,10 +47,9 @@ public class Player extends Actor implements Resettable {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
-		stats = this.getHealth();
-		stats += this.getRunes().displayToString();
-
-		System.out.println(stats);
+		// Displays its health and runes, and updates it every turn.
+		System.out.println(displayStats());
+		//actions.add(new BuyAction())
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
@@ -61,11 +60,12 @@ public class Player extends Actor implements Resettable {
 
 	/**
 	 * Add Runes function.
-	 * Adds a number of runes to the player's inventory.
+	 * Adds a number of runes to the player's inventory after defeating an enemy.
 	 *
+	 * @param enemy the enemy that drops the runes
 	 * @param min	the minimum number of runes that can be generated
 	 * @param max	the maximum number of runes that can be generated
-	 * @see AttackAction
+	 * @see DeathAction
 	 */
 	public String addRunes(Actor enemy, int min, int max){
 		int generatedRunes = RandomNumberGenerator.getRandomInt(min, max);
@@ -75,11 +75,20 @@ public class Player extends Actor implements Resettable {
 		return null;
 	}
 
-	public String getHealth(){
-		return name + " (" + this.hitPoints + "/" + this.getMaxHp() + "), ";
+	/**
+	 * Removes a number of runes from the player's inventory.
+	 *
+	 * @param removeRunes the amount of runes to be removed.
+	 * @return true or false on whether the player will have a positive amount of runes after removing runes.
+	 * @see BuyAction
+	 */
+	@Override
+	public boolean removeRunes(int removeRunes){
+		return runes.removeStacks(removeRunes);
 	}
 
-	public Rune getRunes() {
-		return runes;
+	public String displayStats(){
+		return name + " (" + this.hitPoints + "/" + this.getMaxHp() + "), " + runes.displayToString();
 	}
+
 }

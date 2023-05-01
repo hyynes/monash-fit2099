@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
+import game.Actors.Merchant;
 import game.Actors.Player;
 import game.Grounds.Dirt;
 import game.Grounds.Floor;
@@ -32,6 +33,8 @@ public class Application {
 		World world = new World(new Display());
 
 		Player player = new Player("Tarnished", '@', 300);
+
+		Merchant merchant = new Merchant("Merchant Kale", 'K', 100);
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
 				new Graveyard(), new GustOfWind(), new PuddleOfWater());
@@ -81,6 +84,9 @@ public class Application {
 		}
 
 		// HINT: what does it mean to prefer composition to inheritance?
+
+		// Add merchant and player to the game
+		world.addPlayer(merchant, gameMap.at(40, 12));
 		world.addPlayer(player, gameMap.at(36, 10));
 
 		NumberRange xRange = gameMap.getXRange();

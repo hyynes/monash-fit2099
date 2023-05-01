@@ -1,7 +1,8 @@
 package game;
 
 public interface Stackable {
-    int noOfStacks();
+    int getNoOfStacks();
     String displayToString();
     boolean addStacks(int stacks);
+    boolean removeStacks(int stacks);
 }

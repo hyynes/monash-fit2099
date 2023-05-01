@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.Actors.PlayableCharacter;
 import game.Actors.Player;
 import game.Status;
 import game.enemies.Enemy;
@@ -55,7 +56,7 @@ public class DeathAction extends Action {
         if (attacker.hasCapability(Status.HOSTILE_TO_ENEMY)){
             if (target instanceof Enemy){
                 result += System.lineSeparator() +
-                        ((Player) attacker).addRunes(target,(((Enemy) target).runeMin), ((Enemy) target).runeMax);
+                        ((PlayableCharacter) attacker).addRunes(target,(((Enemy) target).runeMin), ((Enemy) target).runeMax);
             }
         }
         // remove actor

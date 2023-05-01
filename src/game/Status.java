@@ -7,12 +7,13 @@ package game;
  */
 public enum Status {
     HOSTILE_TO_ENEMY,
+    TRADER,
     RESPAWNABLE,
     RESTING,
-    SPECIAL_ATTACK,
     FRIENDLY_TO_WOLF,
     FRIENDLY_TO_SKELETON,
     FRIENDLY_TO_SEA,
+    SPECIAL_ATTACK,
     SLAM_ATTACK,
     EAST,
     WEST

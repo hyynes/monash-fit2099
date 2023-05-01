@@ -1,7 +1,5 @@
 package game.Weapons;
 
-import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 /**
@@ -12,7 +10,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * Modified by:
  *
  */
-public class Club extends WeaponItem {
+public class Club extends WeaponItem implements WeaponRunes{
 
     /**
      * Constructor
@@ -21,6 +19,7 @@ public class Club extends WeaponItem {
         super("Club", '!', 103, "bonks", 80);
     }
 
-    @Override
-    public void tick(Location currentLocation, Actor actor) {}
+    public int runePrice(){
+        return 600;
+    }
 }
