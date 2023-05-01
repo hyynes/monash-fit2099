@@ -9,6 +9,8 @@ import edu.monash.fit2099.engine.displays.Menu;
 import game.Actions.BuyAction;
 import game.Actions.DeathAction;
 import game.Actions.HealAction;
+import game.Actions.RestAction;
+import game.Environments.FriendlyEnvironments.SiteOfLostGrace;
 import game.Items.StackableItems.FlaskOfCrimsonTears;
 import game.Utils.PlayerSpawnPoint;
 import game.Utils.RandomNumberGenerator;
@@ -56,9 +58,14 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 
 		// Displays its health and runes, and updates it every turn.
 		System.out.println(displayStats());
+
 		//actions.add(new BuyAction())
 		if (this.flask.getNoOfStacks() > 0) {
 			actions.add(new HealAction());
+		}
+
+		if (SiteOfLostGrace.isPlayerInSite){
+			actions.add(new RestAction());
 		}
 
 		// return/print the console menu
@@ -67,7 +74,10 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 
 	@Override
 	public void reset(GameMap map){
-		map.moveActor(this, PlayerSpawnPoint.getInstance().getSpawnLocation());
+		// as to avoid runtime errors
+		if (map.locationOf(this) != PlayerSpawnPoint.getInstance().getSpawnLocation()) {
+			map.moveActor(this, PlayerSpawnPoint.getInstance().getSpawnLocation());
+		}
 		this.heal(maxHP);
 		flask.setNoOfStacks(2);
 	}
