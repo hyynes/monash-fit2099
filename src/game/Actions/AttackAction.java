@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.Displays.DisplayStrings;
-import game.enemies.Skeleton;
+import game.Actors.Enemies.Skeleton;
 
 /**
  * An Action to attack another Actor.

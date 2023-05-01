@@ -7,9 +7,9 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.Actors.PlayableCharacter;
-import game.Status;
-import game.Weapons.WeaponRunes;
+import game.Actors.FriendlyActors.PlayableCharacter;
+import game.Utils.Status;
+import game.Items.Weapons.WeaponRunes;
 
 // Sell action allows Actor that is nearby a merchant to sell their items. In this case the player.
 // Could possibly make another class that the player extends called 'PlayableCharacter', where all those players
