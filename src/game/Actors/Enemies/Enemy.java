@@ -12,7 +12,6 @@ import game.Behaviours.AttackBehaviour;
 import game.Behaviours.Behaviour;
 import game.Behaviours.FollowBehaviour;
 import game.Behaviours.WanderBehaviour;
-import game.Grounds.FriendlyEnvironments.PileOfBones;
 import game.Utils.Resettable;
 import game.Utils.Status;
 

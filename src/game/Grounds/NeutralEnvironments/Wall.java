@@ -1,4 +1,4 @@
-package game.Grounds.FriendlyEnvironments;
+package game.Grounds.NeutralEnvironments;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
