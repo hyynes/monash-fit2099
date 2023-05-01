@@ -12,6 +12,10 @@ import game.enemies.Skeleton;
 
 import java.util.Random;
 
+/**
+ * Class that allows the actor to attack its surrounding with its weapon, including intrinsic weapon.
+ *
+ */
 public class SurroundingAttack extends Action implements DisplayStrings {
     private Weapon weapon;
     private Actor target;
