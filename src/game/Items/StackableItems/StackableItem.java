@@ -20,7 +20,8 @@ public abstract class StackableItem extends Item {
     }
 
     public boolean addStacks(int stacks) {
-        return false;
+        noOfStacks += stacks;
+        return true;
     }
 
     public boolean removeStacks(int stacks) {

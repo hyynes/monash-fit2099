@@ -22,6 +22,7 @@ import game.Grounds.EnemyEnvironments.GustOfWind;
 import game.Grounds.EnemyEnvironments.PuddleOfWater;
 import game.Items.Weapons.Club;
 import game.Items.Weapons.GreatKnife;
+import game.Items.Weapons.Grossmesser;
 import game.Items.Weapons.Uchigatana;
 import game.Utils.ResetManager;
 import game.Utils.Status;
@@ -93,7 +94,7 @@ public class Application {
 			case "s" -> new Player("Tarnished", '@', 455, new Uchigatana());
 			case "b" -> new Player("Tarnished", '@', 414, new GreatKnife());
 			case "w" -> new Player("Tarnished", '@', 414, new Club());
-			default -> new Player("Tarnished", '@', 300, new Club());
+			default -> new Player("Tarnished", '@', 30000, new Grossmesser());
 		};
 
 		Merchant merchant = new Merchant("Merchant Kale", 'K', 100);

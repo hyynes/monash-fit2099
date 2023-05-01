@@ -52,18 +52,18 @@ public class SurroundingAttack extends Action implements DisplayStrings {
                 Actor targetActor = destination.getActor();
                 if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
                     if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()) {
-                        return missPileOfBones(actor);
+                        return result + missPileOfBones(actor);
                     }
                     else {
-                        return missEnemy(actor, targetActor);
+                        return result + missEnemy(actor, targetActor);
                     }
                 }
                 else {
                     if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()) {
-                        result = hitPileOfBones(actor, weapon, damage);
+                        result += hitPileOfBones(actor, weapon, damage);
                     }
                     else{
-                        result = hitEnemy(actor, targetActor, weapon, damage);
+                        result += hitEnemy(actor, targetActor, weapon, damage);
                     }
                     targetActor.hurt(damage);
                 }
