@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Actions.BuyAction;
 import game.Actions.DeathAction;
+import game.Items.StackableItems.FlaskOfCrimsonTears;
 import game.Utils.RandomNumberGenerator;
 import game.Utils.Resettable;
 import game.Items.StackableItems.Rune;
@@ -27,6 +28,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	private int maxHP;
 	private final Menu menu = new Menu();
 	Rune runes = new Rune();
+	FlaskOfCrimsonTears flask = new FlaskOfCrimsonTears();
 
 	/**
 	 * Constructor.
@@ -40,6 +42,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addWeaponToInventory(new Club());
 		this.addItemToInventory(runes);
+		this.addItemToInventory(flask);
 		maxHP = hitPoints;
 	}
 
@@ -87,6 +90,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	 * @return true or false on whether the player will have a positive amount of runes after removing runes.
 	 * @see BuyAction
 	 */
+
 	@Override
 	public boolean removeRunes(int removeRunes){
 		return runes.removeStacks(removeRunes);
@@ -98,7 +102,11 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	}
 
 	public String displayStats(){
-		return name + " (" + this.hitPoints + "/" + this.getMaxHp() + "), " + runes.displayToString();
+		String stats;
+		stats = name + " (" + this.hitPoints + "/" + this.getMaxHp() + "), \n";
+		stats += runes.displayToString() + '\n';
+		stats += flask.displayToString() + '\n';
+		return stats;
 	}
 
 }

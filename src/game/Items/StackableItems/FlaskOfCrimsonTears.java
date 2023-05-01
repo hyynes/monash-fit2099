@@ -18,16 +18,28 @@ public class FlaskOfCrimsonTears extends Item implements Stackable{
 
     @Override
     public String displayToString() {
-        return null;
+        return "Flask of Crimson Tears: " + noOfStacks;
     }
 
     @Override
     public boolean addStacks(int stacks) {
-        return false;
+        if (stacks >= 0){
+            noOfStacks += stacks;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @Override
     public boolean removeStacks(int stacks) {
-        return false;
+        if (stacks >= 0){
+            noOfStacks += stacks;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

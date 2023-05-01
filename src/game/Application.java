@@ -10,14 +10,15 @@ import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
 import game.Actors.FriendlyActors.Merchant;
 import game.Actors.FriendlyActors.Player;
+import game.Actors.FriendlyActors.PlayerSpawnPoint;
 import game.Displays.FancyMessage;
-import game.Grounds.FriendlyEnvironments.Dirt;
-import game.Grounds.FriendlyEnvironments.Floor;
-import game.Grounds.FriendlyEnvironments.Wall;
-import game.Grounds.EnemyEnvironments.Environment;
-import game.Grounds.EnemyEnvironments.Graveyard;
-import game.Grounds.EnemyEnvironments.GustOfWind;
-import game.Grounds.EnemyEnvironments.PuddleOfWater;
+import game.Environments.FriendlyEnvironments.Dirt;
+import game.Environments.FriendlyEnvironments.Floor;
+import game.Environments.FriendlyEnvironments.Wall;
+import game.Environments.EnemyEnvironments.Environment;
+import game.Environments.EnemyEnvironments.Graveyard;
+import game.Environments.EnemyEnvironments.GustOfWind;
+import game.Environments.EnemyEnvironments.PuddleOfWater;
 import game.Utils.Status;
 
 /**
@@ -87,9 +88,10 @@ public class Application {
 
 		// HINT: what does it mean to prefer composition to inheritance?
 
-		// Add merchant and player to the game
+		// initialise merchant and player locations
 		world.addPlayer(merchant, gameMap.at(40, 12));
 		world.addPlayer(player, gameMap.at(36, 10));
+		PlayerSpawnPoint.getInstance().setSpawnLocation(gameMap.at(36, 10));
 
 		NumberRange xRange = gameMap.getXRange();
 
