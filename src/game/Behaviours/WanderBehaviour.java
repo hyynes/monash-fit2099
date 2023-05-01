@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Actions.DespawnAction;
-import game.Status;
+import game.Utils.Status;
 
 /**
  * Created by:
