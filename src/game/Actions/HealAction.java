@@ -13,13 +13,13 @@ public class HealAction extends Action implements DisplayStrings {
     public String execute(Actor actor, GameMap map) {
         String result;
         if (actor instanceof Player){
-            if (((Player)actor).flask.getNoOfStacks() > 0) {
-                ((Player)actor).flask.setNoOfStacks(((Player)actor).flask.getNoOfStacks() - 1);
-                ((Player) actor).heal(250);
-                result = actor + " has healed.";
+            if (((Player)actor).flask.removeStacks(1)) {
+                //((Player)actor).flask.setNoOfStacks(((Player)actor).flask.getNoOfStacks() - 1);
+                actor.heal(250);
+                result = actor + " consumed " + ((Player)actor).flask + ".";
             }
             else {
-                result = actor + " has no charges in their Flask of Crimson tears.";
+                result = actor + " has no charges left in their " + ((Player)actor).flask + ".";
             }
         }
         else {
@@ -30,6 +30,6 @@ public class HealAction extends Action implements DisplayStrings {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " heals using the Flask of Crimson Tears";
+        return actor + " consumes " + ((Player)actor).flask + " (" + ((Player)actor).flask.getNoOfStacks() + "/2)";
     }
 }

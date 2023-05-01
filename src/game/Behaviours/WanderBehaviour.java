@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Actions.DespawnAction;
-import game.Behaviours.Behaviour;
+import game.Utils.Status;
 
 /**
  * Created by:
@@ -34,25 +34,23 @@ public class WanderBehaviour implements Behaviour {
 		ArrayList<Action> actions = new ArrayList<>();
 
 		// 10% Chance of being removed from the game before performing WanderBehaviour
-		if (random.nextInt(10) == 0){
+
+		if (random.nextInt(10) == 0) {
 			return new DespawnAction();
 		}
-		else {
 
-			for (Exit exit : map.locationOf(actor).getExits()) {
-				Location destination = exit.getDestination();
-				if (destination.canActorEnter(actor)) {
-					actions.add(exit.getDestination().getMoveAction(actor, "around", exit.getHotKey()));
-				}
-			}
-
-			if (!actions.isEmpty()) {
-				return actions.get(random.nextInt(actions.size()));
-			} else {
-				return null;
+		for (Exit exit : map.locationOf(actor).getExits()) {
+			Location destination = exit.getDestination();
+			if (destination.canActorEnter(actor)) {
+				actions.add(exit.getDestination().getMoveAction(actor, "around", exit.getHotKey()));
 			}
 		}
 
+		if (!actions.isEmpty()) {
+			return actions.get(random.nextInt(actions.size()));
+		} else {
+			return null;
+		}
 	}
 
 }

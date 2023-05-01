@@ -2,6 +2,7 @@ package game;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
@@ -10,16 +11,19 @@ import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
 import game.Actors.FriendlyActors.Merchant;
 import game.Actors.FriendlyActors.Player;
-import game.Environments.FriendlyEnvironments.SiteOfLostGrace;
-import game.Utils.PlayerSpawnPoint;
+import game.Grounds.NeutralGrounds.SiteOfLostGrace;
 import game.Displays.FancyMessage;
-import game.Environments.FriendlyEnvironments.Dirt;
-import game.Environments.FriendlyEnvironments.Floor;
-import game.Environments.FriendlyEnvironments.Wall;
-import game.Environments.EnemyEnvironments.Environment;
-import game.Environments.EnemyEnvironments.Graveyard;
-import game.Environments.EnemyEnvironments.GustOfWind;
-import game.Environments.EnemyEnvironments.PuddleOfWater;
+import game.Grounds.NeutralGrounds.Dirt;
+import game.Grounds.NeutralGrounds.Floor;
+import game.Grounds.NeutralGrounds.Wall;
+import game.Grounds.EnemyEnvironments.Environment;
+import game.Grounds.EnemyEnvironments.Graveyard;
+import game.Grounds.EnemyEnvironments.GustOfWind;
+import game.Grounds.EnemyEnvironments.PuddleOfWater;
+import game.Items.Weapons.Club;
+import game.Items.Weapons.GreatKnife;
+import game.Items.Weapons.Uchigatana;
+import game.Utils.PlayerSpawnPoint;
 import game.Utils.ResetManager;
 import game.Utils.Status;
 
@@ -35,19 +39,12 @@ public class Application {
 
 	public static void main(String[] args) {
 
+		Player player;
+
 		World world = new World(new Display());
-
-		Player player = new Player("Tarnished", '@', 300);
-
-		Merchant merchant = new Merchant("Merchant Kale", 'K', 100);
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
 				new Graveyard(), new GustOfWind(), new PuddleOfWater(), new SiteOfLostGrace());
-
-		// Setting the target for the enemies spawned from the environments to Tarnished.
-		Graveyard.setTarget(player);
-		GustOfWind.setTarget(player);
-		PuddleOfWater.setTarget(player);
 
 		List<String> map = Arrays.asList(
 				"...........................................................................",
@@ -89,12 +86,31 @@ public class Application {
 			}
 		}
 
+		// Optional req 4 implementation
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Choose your class:\ns: Samurai\nb: Bandit\nw: Wretch");
+		String classes = scanner.next();
+		player = switch (classes) {
+			case "s" -> new Player("Tarnished", '@', 455, new Uchigatana());
+			case "b" -> new Player("Tarnished", '@', 414, new GreatKnife());
+			case "w" -> new Player("Tarnished", '@', 414, new Club());
+			default -> new Player("Tarnished", '@', 300, new Club());
+		};
+
+		Merchant merchant = new Merchant("Merchant Kale", 'K', 100);
+
+		// Setting the target for the enemies spawned from the environments to Tarnished.
+		Graveyard.setTarget(player);
+		GustOfWind.setTarget(player);
+		PuddleOfWater.setTarget(player);
+
 		// HINT: what does it mean to prefer composition to inheritance?
 
 		// initialise merchant and player locations
 		world.addPlayer(merchant, gameMap.at(40, 12));
 		world.addPlayer(player, gameMap.at(36, 10));
-		PlayerSpawnPoint.getInstance().setSpawnLocation(gameMap.at(36, 10));
+
+		//PlayerSpawnPoint.getInstance().setSpawnLocation(gameMap.at(36, 10));
 
 		NumberRange xRange = gameMap.getXRange();
 

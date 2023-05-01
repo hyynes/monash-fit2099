@@ -1,4 +1,4 @@
-package game.Environments.EnemyEnvironments;
+package game.Grounds.EnemyEnvironments;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import game.Utils.Status;

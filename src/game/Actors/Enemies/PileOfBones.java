@@ -1,4 +1,4 @@
-package game.Environments.FriendlyEnvironments;
+package game.Actors.Enemies;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import game.Actors.Enemies.Skeleton;

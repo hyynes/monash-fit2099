@@ -1,4 +1,4 @@
-package game.Environments.FriendlyEnvironments;
+package game.Grounds.NeutralGrounds;
 
 import edu.monash.fit2099.engine.positions.Ground;
 
