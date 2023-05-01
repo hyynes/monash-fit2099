@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
 import game.Actors.FriendlyActors.Merchant;
 import game.Actors.FriendlyActors.Player;
+import game.Environments.FriendlyEnvironments.SiteOfLostGrace;
 import game.Utils.PlayerSpawnPoint;
 import game.Displays.FancyMessage;
 import game.Grounds.NeutralGrounds.Dirt;
@@ -41,7 +42,7 @@ public class Application {
 		Merchant merchant = new Merchant("Merchant Kale", 'K', 100);
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
-				new Graveyard(), new GustOfWind(), new PuddleOfWater());
+				new Graveyard(), new GustOfWind(), new PuddleOfWater(), new SiteOfLostGrace());
 
 		// Setting the target for the enemies spawned from the environments to Tarnished.
 		Graveyard.setTarget(player);
@@ -59,7 +60,7 @@ public class Application {
 				"...........................................................................",
 				"...........................................................................",
 				"..................................###___###................................",
-				"..................................________#................................",
+				"..................................______U_#................................",
 				"..................................#________................................",
 				"..................................#_______#................................",
 				"...&&.............................###___###........................&&......",
