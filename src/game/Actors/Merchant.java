@@ -27,6 +27,7 @@ public class Merchant extends Actor{
         super(name, displayChar, hitPoints);
         this.addCapability(Status.TRADER);
         this.addWeaponToInventory(new Club());
+        this.addWeaponToInventory(new Scimitar());
         this.addWeaponToInventory(new GreatKnife());
         this.addWeaponToInventory(new Uchigatana());
     }

@@ -5,7 +5,7 @@ public class Rune extends Item implements Stackable{
     private int noOfRunes;
 
     public Rune(){
-        super("Rune",'$',true);
+        super("Rune",'$',false);
         noOfRunes = 0;
     }
 

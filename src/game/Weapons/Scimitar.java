@@ -15,7 +15,7 @@ import game.Status;
  *
  */
 
-public class Scimitar extends WeaponItem {
+public class Scimitar extends WeaponItem implements WeaponRunes{
     public Scimitar() {
         super("Scimitar", 's', 118, "Slashes", 88);
         this.addCapability(Status.SPECIAL_ATTACK);
@@ -28,5 +28,15 @@ public class Scimitar extends WeaponItem {
     @Override
     public Action getSkill(Actor holder){
         return new SurroundingAttack(this);
+    }
+
+    @Override
+    public int buyPrice() {
+        return 600;
+    }
+
+    @Override
+    public int sellPrice() {
+        return 100;
     }
 }

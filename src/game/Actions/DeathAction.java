@@ -7,7 +7,6 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actors.PlayableCharacter;
-import game.Actors.Player;
 import game.Status;
 import game.enemies.Enemy;
 import game.enemies.Skeleton;
@@ -37,6 +36,8 @@ public class DeathAction extends Action {
     @Override
     public String execute(Actor target, GameMap map) {
         String result = "";
+
+        // Instead of dying, Skeleton types are turned into a Pile Of Bones
         if (target instanceof Skeleton && !((Skeleton) target).getPileOfBones()){
             ((Skeleton) target).setPileOfBones(true);
             result += System.lineSeparator() + target + " has turned into a Pile of Bones!";
@@ -55,8 +56,7 @@ public class DeathAction extends Action {
         // Player obtains runes from enemy, printed to the screen.
         if (attacker.hasCapability(Status.HOSTILE_TO_ENEMY)){
             if (target instanceof Enemy){
-                result += System.lineSeparator() +
-                        ((PlayableCharacter) attacker).enemyDefeatedRunes(target,(((Enemy) target).runeMin), ((Enemy) target).runeMax);
+                result += System.lineSeparator() + ((PlayableCharacter) attacker).enemyDefeatedRunes(target,(((Enemy) target).runeMin), ((Enemy) target).runeMax);
             }
         }
         // remove actor

@@ -15,7 +15,7 @@ import game.Status;
  *
  */
 
-public class Grossmesser extends WeaponItem{
+public class Grossmesser extends WeaponItem implements WeaponRunes{
 
     public Grossmesser() {
         super("Grossmesser", '?', 115, "Slices", 85);
@@ -29,6 +29,16 @@ public class Grossmesser extends WeaponItem{
     @Override
     public Action getSkill(Actor holder){
         return new SurroundingAttack(this);
+    }
+
+    @Override
+    public int buyPrice() {
+        return 0;
+    }
+
+    @Override
+    public int sellPrice() {
+        return 100;
     }
 
 }
