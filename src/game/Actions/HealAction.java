@@ -14,7 +14,7 @@ public class HealAction extends Action implements DisplayStrings {
         String result;
         if (actor instanceof Player){
             if (((Player)actor).flask.removeStacks(1)) {
-                //((Player)actor).flask.setNoOfStacks(((Player)actor).flask.getNoOfStacks() - 1);
+                ((Player)actor).flask.setNoOfStacks(((Player)actor).flask.getNoOfStacks() - 1);
                 actor.heal(250);
                 result = actor + " consumed " + ((Player)actor).flask + ".";
             }

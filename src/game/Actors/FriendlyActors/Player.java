@@ -57,7 +57,9 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		// Displays its health and runes, and updates it every turn.
 		System.out.println(displayStats());
 
-		actions.add(new HealAction());
+		if (flask.getNoOfStacks() > 0) {
+			actions.add(new HealAction());
+		}
 
 		if (SiteOfLostGrace.isPlayerInSite){
 			actions.add(new RestAction());
