@@ -10,7 +10,7 @@ import game.Actions.BuyAction;
 import game.Actions.DeathAction;
 import game.RandomNumberGenerator;
 import game.Resettable;
-import game.Rune;
+import game.Items.Rune;
 import game.Status;
 import game.Weapons.Club;
 

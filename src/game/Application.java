@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
 import game.Actors.Merchant;
 import game.Actors.Player;
+import game.Displays.FancyMessage;
 import game.Grounds.Dirt;
 import game.Grounds.Floor;
 import game.Grounds.Wall;

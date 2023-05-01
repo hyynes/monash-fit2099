@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.Displays.DisplayStrings;
 import game.enemies.Skeleton;
 
 /**
@@ -15,7 +16,7 @@ import game.enemies.Skeleton;
  * Modified by:
  * @modifier Danny Duong
  */
-public class AttackAction extends Action implements DisplayStrings{
+public class AttackAction extends Action implements DisplayStrings {
 
 	/**
 	 * The Actor that is to be attacked

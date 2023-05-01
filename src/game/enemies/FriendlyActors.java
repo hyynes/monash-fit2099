@@ -1,6 +1,7 @@
-package game;
+package game.enemies;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import game.Status;
 
 /**
  * Created by:

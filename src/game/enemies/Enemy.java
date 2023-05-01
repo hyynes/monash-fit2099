@@ -12,7 +12,7 @@ import game.Behaviours.AttackBehaviour;
 import game.Behaviours.Behaviour;
 import game.Behaviours.FollowBehaviour;
 import game.Behaviours.WanderBehaviour;
-import game.PileOfBones;
+import game.Grounds.PileOfBones;
 import game.Status;
 
 import java.util.ArrayList;

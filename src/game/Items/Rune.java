@@ -1,7 +1,7 @@
-package game;
+package game.Items;
 import edu.monash.fit2099.engine.items.Item;
 
-public class Rune extends Item implements Stackable{
+public class Rune extends Item implements Stackable {
     private int noOfRunes;
 
     public Rune(){

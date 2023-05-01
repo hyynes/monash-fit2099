@@ -6,12 +6,13 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.Displays.DisplayStrings;
 import game.Status;
 import game.enemies.Skeleton;
 
 import java.util.Random;
 
-public class SurroundingAttack extends Action implements DisplayStrings{
+public class SurroundingAttack extends Action implements DisplayStrings {
     private Weapon weapon;
     private Actor target;
 

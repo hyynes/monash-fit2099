@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actions.AttackAction;
 import game.Actions.SurroundingAttack;
-import game.FriendlyActors;
+import game.enemies.FriendlyActors;
 import game.RandomNumberGenerator;
 import game.Status;
 
