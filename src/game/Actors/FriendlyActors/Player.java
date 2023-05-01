@@ -10,7 +10,7 @@ import game.Actions.BuyAction;
 import game.Actions.DeathAction;
 import game.Actions.HealAction;
 import game.Actions.RestAction;
-import game.Environments.FriendlyEnvironments.SiteOfLostGrace;
+import game.Grounds.NeutralGrounds.SiteOfLostGrace;
 import game.Items.StackableItems.FlaskOfCrimsonTears;
 import game.Utils.PlayerSpawnPoint;
 import game.Utils.RandomNumberGenerator;
@@ -59,10 +59,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		// Displays its health and runes, and updates it every turn.
 		System.out.println(displayStats());
 
-		//actions.add(new BuyAction())
-		if (this.flask.getNoOfStacks() > 0) {
-			actions.add(new HealAction());
-		}
+		actions.add(new HealAction());
 
 		if (SiteOfLostGrace.isPlayerInSite){
 			actions.add(new RestAction());

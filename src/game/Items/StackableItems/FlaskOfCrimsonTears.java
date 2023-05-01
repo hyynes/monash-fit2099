@@ -28,6 +28,10 @@ public class FlaskOfCrimsonTears extends Item implements Stackable{
 
     @Override
     public boolean removeStacks(int stacks) {
+        if (noOfStacks > 0){
+            noOfStacks -= stacks;
+            return true;
+        }
         return false;
     }
 }

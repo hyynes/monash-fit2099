@@ -13,7 +13,7 @@ public class PlayerSpawnPoint {
         return spawnLocation;
     }
 
-    public void setSpawnLocation(){
-
+    public void setSpawnLocation(Location location){
+        spawnLocation = location;
     }
 }
