@@ -4,17 +4,17 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import edu.monash.fit2099.engine.positions.GameMap;
 import game.Actions.*;
-import game.Environments.FriendlyEnvironments.SiteOfLostGrace;
+import game.Grounds.NeutralGrounds.SiteOfLostGrace;
 import game.Items.StackableItems.FlaskOfCrimsonTears;
+import game.Items.StackableItems.Rune;
+import game.Items.Weapons.Club;
 import game.Utils.PlayerSpawnPoint;
 import game.Utils.RandomNumberGenerator;
 import game.Utils.Resettable;
-import game.Items.StackableItems.Rune;
 import game.Utils.Status;
-import game.Items.Weapons.Club;
 
 /**
  * Class representing the Player. It implements the Resettable interface.
