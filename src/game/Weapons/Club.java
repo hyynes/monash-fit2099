@@ -19,7 +19,11 @@ public class Club extends WeaponItem implements WeaponRunes{
         super("Club", '!', 103, "bonks", 80);
     }
 
-    public int runePrice(){
+    public int buyPrice(){
         return 600;
+    }
+
+    public int sellPrice(){
+        return 100;
     }
 }

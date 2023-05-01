@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actions.BuyAction;
+import game.Actions.SellAction;
 import game.Status;
 import game.Weapons.*;
 import java.util.ArrayList;
@@ -46,14 +47,22 @@ public class Merchant extends Actor{
         if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
 
             // A list that will store all weapons that the merchant has.
-            List<WeaponItem> weapons = new ArrayList<>(this.getWeaponInventory());
+            List<WeaponItem> purchaseWeapons = new ArrayList<>(this.getWeaponInventory());
 
             // If Player has a weapon, it may choose to either use it or its intrinsic weapon
-            if (!weapons.isEmpty()) {
-                for (WeaponItem weapon : weapons) {
+            if (!purchaseWeapons.isEmpty()) {
+                for (WeaponItem weapon : purchaseWeapons) {
                     actions.add(new BuyAction(weapon));
                 }
             }
+            // A list that will store all weapons that the other actor has, in this case, the Player.
+            List<WeaponItem> sellWeapons = new ArrayList<>(otherActor.getWeaponInventory());
+            if (!sellWeapons.isEmpty()) {
+                for (WeaponItem weapon : sellWeapons) {
+                    actions.add(new SellAction(weapon));
+                }
+            }
+
         }
         return actions;
     }

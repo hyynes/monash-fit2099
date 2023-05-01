@@ -37,9 +37,9 @@ public class BuyAction extends Action{
                 merchantActor = destination.getActor();
                 if (merchantActor.hasCapability(Status.TRADER)) {
                     if (actor instanceof PlayableCharacter) {
-                        if (((PlayableCharacter) actor).removeRunes(((WeaponRunes) weapon).runePrice())){
+                        if (((PlayableCharacter) actor).removeRunes(((WeaponRunes) weapon).buyPrice())){
                             actor.addWeaponToInventory(weapon);
-                            return menuDescription(actor);
+                            return actor + " purchased " + weapon + " for " + ((WeaponRunes) weapon).buyPrice() + " runes.";
                         }
                         else {
                             return actor + " does not have enough runes to purchase " + weapon + "!";
@@ -58,8 +58,6 @@ public class BuyAction extends Action{
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " purchased " + weapon + " for " + ((WeaponRunes) weapon).runePrice() + "runes.";
-
+        return actor + " purchases " + weapon + " for " + ((WeaponRunes) weapon).buyPrice() + " runes.";
     }
-
 }

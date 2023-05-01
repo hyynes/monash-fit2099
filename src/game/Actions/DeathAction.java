@@ -56,7 +56,7 @@ public class DeathAction extends Action {
         if (attacker.hasCapability(Status.HOSTILE_TO_ENEMY)){
             if (target instanceof Enemy){
                 result += System.lineSeparator() +
-                        ((PlayableCharacter) attacker).addRunes(target,(((Enemy) target).runeMin), ((Enemy) target).runeMax);
+                        ((PlayableCharacter) attacker).enemyDefeatedRunes(target,(((Enemy) target).runeMin), ((Enemy) target).runeMax);
             }
         }
         // remove actor

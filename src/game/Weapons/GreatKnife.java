@@ -23,7 +23,12 @@ public class GreatKnife extends WeaponItem implements WeaponRunes{
 
 
     @Override
-    public int runePrice() {
+    public int buyPrice() {
         return 3500;
+    }
+
+    @Override
+    public int sellPrice() {
+        return 350;
     }
 }

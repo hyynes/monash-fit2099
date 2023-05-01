@@ -1,5 +1,6 @@
 package game.Weapons;
 
 public interface WeaponRunes {
-    int runePrice();
+    int buyPrice();
+    int sellPrice();
 }

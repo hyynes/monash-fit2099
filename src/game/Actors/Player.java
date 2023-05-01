@@ -67,7 +67,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	 * @param max	the maximum number of runes that can be generated
 	 * @see DeathAction
 	 */
-	public String addRunes(Actor enemy, int min, int max){
+	public String enemyDefeatedRunes(Actor enemy, int min, int max){
 		int generatedRunes = RandomNumberGenerator.getRandomInt(min, max);
 		if (runes.addStacks(generatedRunes)){
 			return enemy + " drops " + generatedRunes + " runes";
@@ -85,6 +85,11 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	@Override
 	public boolean removeRunes(int removeRunes){
 		return runes.removeStacks(removeRunes);
+	}
+
+	@Override
+	public boolean addRunes(int addRunes) {
+		return runes.addStacks(addRunes);
 	}
 
 	public String displayStats(){

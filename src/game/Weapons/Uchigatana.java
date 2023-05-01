@@ -24,7 +24,11 @@ public class Uchigatana extends WeaponItem implements WeaponRunes {
     public void tick(Location currentLocation, Actor actor) {}
 
     @Override
-    public int runePrice() {
+    public int buyPrice() {
         return 5000;
+    }
+
+    public int sellPrice(){
+        return 500;
     }
 }
