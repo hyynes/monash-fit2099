@@ -7,8 +7,8 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.Displays.DisplayStrings;
-import game.Status;
-import game.enemies.Skeleton;
+import game.Utils.Status;
+import game.Actors.Enemies.Skeleton;
 
 import java.util.Random;
 

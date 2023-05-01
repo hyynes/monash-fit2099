@@ -8,16 +8,17 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
-import game.Actors.Merchant;
-import game.Actors.Player;
+import game.Actors.FriendlyActors.Merchant;
+import game.Actors.FriendlyActors.Player;
 import game.Displays.FancyMessage;
-import game.Grounds.Dirt;
-import game.Grounds.Floor;
-import game.Grounds.Wall;
-import game.environments.Environment;
-import game.environments.Graveyard;
-import game.environments.GustOfWind;
-import game.environments.PuddleOfWater;
+import game.Grounds.FriendlyEnvironments.Dirt;
+import game.Grounds.FriendlyEnvironments.Floor;
+import game.Grounds.FriendlyEnvironments.Wall;
+import game.Grounds.EnemyEnvironments.Environment;
+import game.Grounds.EnemyEnvironments.Graveyard;
+import game.Grounds.EnemyEnvironments.GustOfWind;
+import game.Grounds.EnemyEnvironments.PuddleOfWater;
+import game.Utils.Status;
 
 /**
  * The main class to start the game.

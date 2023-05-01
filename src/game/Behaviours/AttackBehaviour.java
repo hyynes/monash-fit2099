@@ -11,9 +11,9 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actions.AttackAction;
 import game.Actions.SurroundingAttack;
-import game.enemies.FriendlyActors;
-import game.RandomNumberGenerator;
-import game.Status;
+import game.Actors.FriendlyActors.FriendlyActors;
+import game.Utils.RandomNumberGenerator;
+import game.Utils.Status;
 
 public class AttackBehaviour implements Behaviour {
 

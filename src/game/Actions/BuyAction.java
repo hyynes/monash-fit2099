@@ -5,9 +5,9 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.Actors.PlayableCharacter;
-import game.Status;
-import game.Weapons.WeaponRunes;
+import game.Actors.FriendlyActors.PlayableCharacter;
+import game.Utils.Status;
+import game.Items.Weapons.WeaponRunes;
 
 // Buy action allows Actor that is nearby to purchase from the merchant. merchant class will use this class.
 // Can check the merchants surrounding, if there is an actor nearby that has the status HOSTILE_TO_ENEMY,

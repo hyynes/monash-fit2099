@@ -6,10 +6,10 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.Actors.PlayableCharacter;
-import game.Status;
-import game.enemies.Enemy;
-import game.enemies.Skeleton;
+import game.Actors.FriendlyActors.PlayableCharacter;
+import game.Utils.Status;
+import game.Actors.Enemies.Enemy;
+import game.Actors.Enemies.Skeleton;
 
 /**
  * An action executed if an actor is killed.
