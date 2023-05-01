@@ -1,6 +1,11 @@
 package game.Utils;
 
+import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.NumberRange;
+import game.Environments.EnemyEnvironments.Environment;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -10,22 +15,37 @@ import java.util.List;
  * Modified by:
  *
  */
-public class ResetManager {
+public class ResetManager{
     private List<Resettable> resettables;
-    private static ResetManager instance;
+    private GameMap map;
 
-    /**
-     * HINT 1: where have we seen a private constructor before?
-     * HINT 2: see the instance attribute above.
-     */
     private ResetManager() {
         this.resettables = new ArrayList<>();
     }
+    private static ResetManager instance = null;
 
-    public void run() {}
+    public static ResetManager getInstance(){
+        if (instance == null){
+            instance = new ResetManager();
+        }
+        return instance;
+    }
+
+    public void run() {
+        if (map != null) {
+            for (int i = 0; i < resettables.size(); i++) {
+                resettables.get(i).reset(map);
+            }
+        }
+    }
 
     public void registerResettable(Resettable resettable) {
+
     }
 
     public void removeResettable(Resettable resettable) {}
+
+    public void setMap(GameMap currentMap){
+        this.map = currentMap;
+    }
 }

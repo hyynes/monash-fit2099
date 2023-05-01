@@ -10,7 +10,7 @@ import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
 import game.Actors.FriendlyActors.Merchant;
 import game.Actors.FriendlyActors.Player;
-import game.Actors.FriendlyActors.PlayerSpawnPoint;
+import game.Utils.PlayerSpawnPoint;
 import game.Displays.FancyMessage;
 import game.Environments.FriendlyEnvironments.Dirt;
 import game.Environments.FriendlyEnvironments.Floor;
@@ -19,6 +19,7 @@ import game.Environments.EnemyEnvironments.Environment;
 import game.Environments.EnemyEnvironments.Graveyard;
 import game.Environments.EnemyEnvironments.GustOfWind;
 import game.Environments.EnemyEnvironments.PuddleOfWater;
+import game.Utils.ResetManager;
 import game.Utils.Status;
 
 /**
@@ -75,6 +76,7 @@ public class Application {
 		GameMap gameMap = new GameMap(groundFactory, map);
 
 		world.addGameMap(gameMap);
+		ResetManager.getInstance().setMap(gameMap);
 
 		// BEHOLD, ELDEN RING
 		for (String line : FancyMessage.ELDEN_RING.split("\n")) {
@@ -119,12 +121,3 @@ public class Application {
 }
 
 
-/**
- gameMap.at(23, 17).addActor(new LoneWolf(player));
- gameMap.at(20, 10).addActor(new HeavySkeletalSwordsman(player));
- gameMap.at(40, 18).addActor(new GiantCrab(player));
- gameMap.at(3, 8).addActor(new SkeletalBandit(player));
- gameMap.at(13, 23).addActor(new GiantDog(player));
- gameMap.at(12, 3).addActor(new GiantCrayfish(player));
-
- */

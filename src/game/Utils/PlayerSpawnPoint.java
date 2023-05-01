@@ -1,4 +1,4 @@
-package game.Actors.FriendlyActors;
+package game.Utils;
 import edu.monash.fit2099.engine.positions.Location;
 
 public class PlayerSpawnPoint {
