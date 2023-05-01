@@ -11,6 +11,12 @@ public class FlaskOfCrimsonTears extends Item implements Stackable{
         noOfStacks = 2;
     }
 
+    public void setNoOfStacks(int newStacks) {
+        if (newStacks >= 0){
+            this.noOfStacks = newStacks;
+        }
+    }
+
     @Override
     public int getNoOfStacks() {
         return noOfStacks;

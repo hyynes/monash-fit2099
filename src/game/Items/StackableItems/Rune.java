@@ -9,6 +9,12 @@ public class Rune extends Item implements Stackable {
         noOfRunes = 0;
     }
 
+    public void setNoOfStacks(int newStacks) {
+        if (newStacks >= 0){
+            this.noOfRunes = newStacks;
+        }
+    }
+
     @Override
     public int getNoOfStacks() {
         return noOfRunes;

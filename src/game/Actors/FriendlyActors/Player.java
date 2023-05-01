@@ -8,14 +8,13 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actions.*;
-import game.Environments.FriendlyEnvironments.SiteOfLostGrace;
+import game.Grounds.NeutralGrounds.SiteOfLostGrace;
 import game.Items.StackableItems.FlaskOfCrimsonTears;
 import game.Utils.PlayerSpawnPoint;
 import game.Utils.RandomNumberGenerator;
 import game.Utils.Resettable;
 import game.Items.StackableItems.Rune;
 import game.Utils.Status;
-import game.Items.Weapons.Club;
 
 /**
  * Class representing the Player. It implements the Resettable interface.
@@ -57,10 +56,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		// Displays its health and runes, and updates it every turn.
 		System.out.println(displayStats());
 
-		//actions.add(new BuyAction())
-		if (this.flask.getNoOfStacks() > 0) {
-			actions.add(new HealAction());
-		}
+		actions.add(new HealAction());
 
 		if (SiteOfLostGrace.isPlayerInSite){
 			actions.add(new RestAction());
@@ -120,12 +116,6 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	}
 
 	public String displayStats(){
-		String stats;
-		stats = "=======================================================\n";
-		stats += name + " (" + this.hitPoints + "/" + this.getMaxHp() + ") \n";
-		stats += runes.displayToString() + '\n';
-		stats += flask.displayToString() + '\n';
-		stats += "=======================================================\n";
-		return stats;
+		return name + " (" + this.hitPoints + "/" + this.getMaxHp() + "), " + "runes: " + runes.getNoOfStacks();
 	}
 }
