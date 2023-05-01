@@ -64,6 +64,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	public void reset(GameMap map){
 		map.moveActor(this, PlayerSpawnPoint.getInstance().getSpawnLocation());
 		this.heal(maxHP);
+		flask.setNoOfStacks(2);
 	}
 
 	/**
@@ -103,9 +104,11 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 
 	public String displayStats(){
 		String stats;
-		stats = name + " (" + this.hitPoints + "/" + this.getMaxHp() + "), \n";
+		stats = "=======================================================\n";
+		stats += name + " (" + this.hitPoints + "/" + this.getMaxHp() + ") \n";
 		stats += runes.displayToString() + '\n';
 		stats += flask.displayToString() + '\n';
+		stats += "=======================================================\n";
 		return stats;
 	}
 
