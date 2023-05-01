@@ -11,7 +11,7 @@ import game.enemies.Skeleton;
 
 import java.util.Random;
 
-public class SurroundingAttack extends Action {
+public class SurroundingAttack extends Action implements DisplayStrings{
     private Weapon weapon;
     private Actor target;
 
@@ -47,21 +47,18 @@ public class SurroundingAttack extends Action {
                 Actor targetActor = destination.getActor();
                 if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
                     if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()) {
-                        result += System.lineSeparator() + actor + " misses Pile of Bones.";
+                        return missPileOfBones(actor);
                     }
                     else {
-                        result += System.lineSeparator() + actor + " misses " + targetActor + ".";
+                        return missEnemy(actor, targetActor);
                     }
                 }
                 else {
                     if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()) {
-                        result += System.lineSeparator() + actor + " " + weapon.verb() + " Pile of Bones for "
-                                + damage + " damage.";
+                        result = hitPileOfBones(actor, weapon, damage);
                     }
                     else{
-                        result += System.lineSeparator() + actor + " " + weapon.verb() + " " + targetActor +
-                            " for " + damage + " damage.";
-
+                        result = hitEnemy(actor, targetActor, weapon, damage);
                     }
                     targetActor.hurt(damage);
                 }

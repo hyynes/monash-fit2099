@@ -19,7 +19,7 @@ import game.enemies.Skeleton;
  *
  */
 public class DeathAction extends Action {
-    private Actor attacker;
+    private final Actor attacker;
 
     public DeathAction(Actor actor) {
         this.attacker = actor;

@@ -15,8 +15,7 @@ import game.Weapons.WeaponRunes;
 // In the merchant class can use the allowableActions method on itself.
 public class BuyAction extends Action{
 
-    private Actor merchantActor;
-    private WeaponItem weapon;
+    private final WeaponItem weapon;
 
     public BuyAction(WeaponItem weapon){
         this.weapon = weapon;
@@ -34,7 +33,7 @@ public class BuyAction extends Action{
         for (Exit exit : map.locationOf(actor).getExits()) {
             Location destination = exit.getDestination();
             if (destination.containsAnActor()){
-                merchantActor = destination.getActor();
+                Actor merchantActor = destination.getActor();
                 if (merchantActor.hasCapability(Status.TRADER)) {
                     if (actor instanceof PlayableCharacter) {
                         if (((PlayableCharacter) actor).removeRunes(((WeaponRunes) weapon).buyPrice())){

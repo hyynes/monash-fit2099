@@ -15,8 +15,7 @@ import game.Weapons.WeaponRunes;
 // Could possibly make another class that the player extends called 'PlayableCharacter', where all those players
 // have the capability to sell to the merchant, not just the player, to make it easier to extend the assignment.
 public class SellAction extends Action {
-    private Actor merchantActor;
-    private WeaponItem weapon;
+    private final WeaponItem weapon;
 
     public SellAction(WeaponItem weapon){
         this.weapon = weapon;
@@ -34,7 +33,7 @@ public class SellAction extends Action {
         for (Exit exit : map.locationOf(actor).getExits()) {
             Location destination = exit.getDestination();
             if (destination.containsAnActor()){
-                merchantActor = destination.getActor();
+                Actor merchantActor = destination.getActor();
                 if (merchantActor.hasCapability(Status.TRADER)) {
                     if (actor instanceof PlayableCharacter) {
                         if (((PlayableCharacter) actor).addRunes(((WeaponRunes) weapon).sellPrice())){

@@ -15,7 +15,7 @@ import game.enemies.Skeleton;
  * Modified by:
  * @modifier Danny Duong
  */
-public class AttackAction extends Action {
+public class AttackAction extends Action implements DisplayStrings{
 
 	/**
 	 * The Actor that is to be attacked
@@ -78,17 +78,17 @@ public class AttackAction extends Action {
 
 		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
 			if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()) {
-				return actor + " misses Pile of Bones." ;
+				return missPileOfBones(actor);
 			}
-			return actor + " misses " + target + ".";
+			return missEnemy(actor, target);
 		}
 
 		int damage = weapon.damage();
 		if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()){
-			result = actor + " " + weapon.verb() + " Pile of Bones for " + damage + " damage.";
+			result = hitPileOfBones(actor, weapon, damage);
 		}
 		else{
-			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+			result = hitEnemy(actor, target, weapon, damage);
 		}
 		target.hurt(damage);
 		if (!target.isConscious()) {
