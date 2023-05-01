@@ -2,7 +2,6 @@ package game.Actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import game.Actors.FriendlyActors.Player;
@@ -28,9 +27,7 @@ public class PlayerDeathAction extends Action{
 
         for (int y = 0; y <= yRange.max(); y++) {
             for (int x = 0; x <= xRange.max(); x++) {
-                if (map.at(x,y).getItems() == rune){
-                    map.at(x,y).removeItem(rune);
-                }
+                map.at(x,y).removeItem(rune);
             }
         }
 
