@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Actions.BuyAction;
 import game.Actions.DeathAction;
+import game.Actions.HealAction;
 import game.Items.StackableItems.FlaskOfCrimsonTears;
 import game.Utils.RandomNumberGenerator;
 import game.Utils.Resettable;
@@ -27,8 +28,8 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 
 	private int maxHP;
 	private final Menu menu = new Menu();
-	Rune runes = new Rune();
-	FlaskOfCrimsonTears flask = new FlaskOfCrimsonTears();
+	public Rune runes = new Rune();
+	public FlaskOfCrimsonTears flask = new FlaskOfCrimsonTears();
 
 	/**
 	 * Constructor.
@@ -55,6 +56,9 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		// Displays its health and runes, and updates it every turn.
 		System.out.println(displayStats());
 		//actions.add(new BuyAction())
+		if (this.flask.getNoOfStacks() > 0) {
+			actions.add(new HealAction());
+		}
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
@@ -111,5 +115,4 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		stats += "=======================================================\n";
 		return stats;
 	}
-
 }

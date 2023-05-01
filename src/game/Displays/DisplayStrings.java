@@ -20,7 +20,7 @@ public interface DisplayStrings {
         return actor + " " + weapon.verb() + " Pile of Bones for " + damage + " damage.";
     }
 
-    default String hitEnemy(Actor actor, Actor target, Weapon weapon, int damage){
+    default String hitEnemy(Actor actor, Actor target, Weapon weapon, int damage) {
         return actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
     }
 }
