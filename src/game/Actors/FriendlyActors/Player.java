@@ -57,10 +57,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		// Displays its health and runes, and updates it every turn.
 		System.out.println(displayStats());
 
-		//actions.add(new BuyAction())
-		if (this.flask.getNoOfStacks() > 0) {
-			actions.add(new HealAction());
-		}
+		actions.add(new HealAction());
 
 		if (SiteOfLostGrace.isPlayerInSite){
 			actions.add(new RestAction());
@@ -120,12 +117,6 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	}
 
 	public String displayStats(){
-		String stats;
-		stats = "=======================================================\n";
-		stats += name + " (" + this.hitPoints + "/" + this.getMaxHp() + ") \n";
-		stats += runes.displayToString() + '\n';
-		stats += flask.displayToString() + '\n';
-		stats += "=======================================================\n";
-		return stats;
+		return name + " (" + this.hitPoints + "/" + this.getMaxHp() + "), " + "runes: " + runes.getNoOfStacks();
 	}
 }
