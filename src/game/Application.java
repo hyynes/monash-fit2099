@@ -89,20 +89,13 @@ public class Application {
 		// Optional req 4 implementation
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Choose your class:\ns: Samurai\nb: Bandit\nw: Wretch");
-		String role = scanner.next();
-		switch (role) {
-			case "s":
-				player = new Player("Tarnished", '@', 455, new Uchigatana());
-				break;
-			case "b":
-				player = new Player("Tarnished", '@', 414, new GreatKnife());
-				break;
-			case "w":
-				player = new Player("Tarnished", '@', 414, new Club());
-				break;
-			default:
-				player = new Player("Tarnished", '@', 300, new Club());
-		}
+		String classes = scanner.next();
+		player = switch (classes) {
+			case "s" -> new Player("Tarnished", '@', 455, new Uchigatana());
+			case "b" -> new Player("Tarnished", '@', 414, new GreatKnife());
+			case "w" -> new Player("Tarnished", '@', 414, new Club());
+			default -> new Player("Tarnished", '@', 300, new Club());
+		};
 
 		Merchant merchant = new Merchant("Merchant Kale", 'K', 100);
 
