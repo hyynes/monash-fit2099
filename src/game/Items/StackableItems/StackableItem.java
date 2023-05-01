@@ -19,10 +19,6 @@ public abstract class StackableItem extends Item {
         return noOfStacks;
     }
 
-    public String displayToString() {
-        return null;
-    }
-
     public boolean addStacks(int stacks) {
         return false;
     }
@@ -39,4 +35,6 @@ public abstract class StackableItem extends Item {
             this.noOfStacks = stacks;
         }
     }
+
+    public abstract String displayToString();
 }

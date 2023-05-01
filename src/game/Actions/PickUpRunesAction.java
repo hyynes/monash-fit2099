@@ -18,8 +18,8 @@ public class PickUpRunesAction extends Action {
         String result;
         if (actor instanceof Player){
             ((Player) actor).addRunes(runes.getNoOfStacks());
-            map.locationOf(actor).removeItem(runes);
             result = actor + " has picked up " + runes.getNoOfStacks() + " runes.";
+            map.locationOf(actor).removeItem(runes);
         }
         else {
             result = "Something went wrong.";

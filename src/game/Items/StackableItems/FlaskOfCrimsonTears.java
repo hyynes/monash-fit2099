@@ -5,4 +5,9 @@ public class FlaskOfCrimsonTears extends StackableItem{
     public FlaskOfCrimsonTears(){
         super("Flask of Crimson Tears", '.', false, 2);
     }
+
+    @Override
+    public String displayToString() {
+        return "Flask of Crimson Tears (" + getNoOfStacks() + ')';
+    }
 }
