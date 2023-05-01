@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actions.*;
 import game.Environments.FriendlyEnvironments.SiteOfLostGrace;
 import game.Items.StackableItems.FlaskOfCrimsonTears;
@@ -38,10 +39,10 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	 * @param displayChar Character to represent the player in the UI
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
-	public Player(String name, char displayChar, int hitPoints) {
+	public Player(String name, char displayChar, int hitPoints, WeaponItem weapon) {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
-		this.addWeaponToInventory(new Club());
+		this.addWeaponToInventory(weapon);
 		this.addItemToInventory(runes);
 		this.addItemToInventory(flask);
 		maxHP = hitPoints;
