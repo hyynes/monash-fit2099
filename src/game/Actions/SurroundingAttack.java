@@ -17,13 +17,13 @@ import java.util.Random;
  *
  */
 public class SurroundingAttack extends Action implements DisplayStrings {
-    private Weapon weapon;
+    private final Weapon weapon;
     private Actor target;
 
     /**
      * Random number generator
      */
-    private Random rand = new Random();
+    private final Random rand = new Random();
 
 
     public SurroundingAttack(Actor target, Weapon weapon) {
@@ -42,7 +42,7 @@ public class SurroundingAttack extends Action implements DisplayStrings {
     public String execute(Actor actor, GameMap map) {
 
         // Actor performs a spin attack
-        String result = menuDescription(actor);
+        StringBuilder result = new StringBuilder(menuDescription(actor));
 
         // Damage dealt by weapon
         int damage = weapon.damage();
@@ -60,19 +60,19 @@ public class SurroundingAttack extends Action implements DisplayStrings {
                 }
                 else {
                     if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()) {
-                        result += hitPileOfBones(actor, weapon, damage);
+                        result.append(hitPileOfBones(actor, weapon, damage));
                     }
                     else{
-                        result += hitEnemy(actor, targetActor, weapon, damage);
+                        result.append(hitEnemy(actor, targetActor, weapon, damage));
                     }
                     targetActor.hurt(damage);
                 }
                 if (!targetActor.isConscious()){
-                    result += new DeathAction(actor).execute(targetActor, map);
+                    result.append(new DeathAction(actor).execute(targetActor, map));
                 }
             }
         }
-        return result;
+        return result.toString();
     }
 
     @Override
