@@ -97,7 +97,7 @@ public class AttackAction extends Action implements DisplayStrings {
 		target.hurt(damage);
 		if (!target.isConscious()) {
 			if (target.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-				result += new PlayerDeathAction().execute(target, map);
+				result += new PlayerDeathAction(actor).execute(target, map);
 			}
 			else{
 				result += new DeathAction(actor).execute(target, map);
