@@ -14,7 +14,6 @@ public class HealAction extends Action {
         if (actor instanceof Player){
             if (((Player)actor).flask.removeStacks(1)) {
                 actor.heal(250);
-                ((Player) actor).addRunes(300);
                 result = actor + " consumed " + ((Player)actor).flask + ".";
             }
             else {

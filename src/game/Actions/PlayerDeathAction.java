@@ -2,14 +2,12 @@ package game.Actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import game.Actors.FriendlyActors.Player;
 import game.Displays.FancyMessage;
 import game.Items.StackableItems.Rune;
 import game.Utils.ResetManager;
-import game.Utils.Status;
 
 public class PlayerDeathAction extends Action{
 
@@ -24,12 +22,14 @@ public class PlayerDeathAction extends Action{
      * @return result of the action to be displayed on the UI
      */
     @Override
-    public String execute(Actor target, GameMap map) {
+    public String execute(Actor target, GameMap map)
+    {
         String result = "";
         Rune runesDropped = new Rune();
 
         NumberRange xRange = map.getXRange();
         NumberRange yRange = map.getYRange();
+
         for (int y = 0; y <= yRange.max(); y++) {
             for (int x = 0; x <= xRange.max(); x++) {
                 for (int i = 0; i < map.at(x,y).getItems().size(); i++){
@@ -39,6 +39,7 @@ public class PlayerDeathAction extends Action{
                 }
             }
         }
+
         if (target instanceof Player) {
             runesDropped.setNoOfStacks(((Player) target).runes.getNoOfStacks());
             result += System.lineSeparator() + target + " has dropped " + (runesDropped.getNoOfStacks()) + " runes.";
@@ -50,6 +51,7 @@ public class PlayerDeathAction extends Action{
             ((Player) target).runes.setNoOfStacks(0);
         }
         ResetManager.getInstance().run();
+        ((Player) target).reset(map);
         return result;
     }
 

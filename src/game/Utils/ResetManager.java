@@ -28,6 +28,7 @@ public class ResetManager{
      * Instance setter.
      * @return the singleton instance of ResetManager.
      */
+
     public static ResetManager getInstance(){
         if (instance == null){
             instance = new ResetManager();
@@ -41,23 +42,27 @@ public class ResetManager{
      */
     public void run() {
 
-        NumberRange xRange = map.getXRange();
-        NumberRange yRange = map.getYRange();
+        if (map != null) {
+            NumberRange xRange = map.getXRange();
+            NumberRange yRange = map.getYRange();
 
-        for (int y = 0; y <= yRange.max(); y++) {
-            for (int x = 0; x <= xRange.max(); x++) {
-                Actor actor = map.at(x, y).getActor();
-                if (actor != null && actor instanceof Resettable){
-                    registerResettable((Resettable) actor);
+            for (int y = 0; y <= yRange.max(); y++) {
+                for (int x = 0; x <= xRange.max(); x++) {
+                    Actor actor = map.at(x, y).getActor();
+                    if (actor != null && actor instanceof Resettable) {
+                        registerResettable((Resettable) actor);
+                    }
                 }
             }
-        }
 
-        if (map != null) {
             for (int i = 0; i < resettables.size(); i++) {
                 resettables.get(i).reset(map);
                 removeResettable(resettables.get(i));
             }
+
+        }
+        else {
+            System.out.println("Something went wrong!");
         }
     }
 
