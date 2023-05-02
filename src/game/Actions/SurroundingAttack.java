@@ -49,10 +49,9 @@ public class SurroundingAttack extends Action{
             if (destination.containsAnActor()) {
                 Actor targetActor = destination.getActor();
                 if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
-                    return result + System.lineSeparator() + actor + " misses " + target + ".";
+                    return result + System.lineSeparator() + actor + " misses " + targetActor + ".";
                 }
-
-                result.append(System.lineSeparator() + " " + weapon.verb() + " " + target + " for " + damage + " damage.");
+                result.append(System.lineSeparator() + actor + " " + weapon.verb() + " " + targetActor + " for " + damage + " damage.");
                 targetActor.hurt(damage);
 
                 if (!targetActor.isConscious()){

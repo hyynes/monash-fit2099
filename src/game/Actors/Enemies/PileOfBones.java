@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.Actors.FriendlyActors.Player;
 import game.Utils.Status;
 
 import java.awt.*;
@@ -25,8 +26,8 @@ public class PileOfBones extends Enemy{
 
     private int turnsAfterDeath = 0;
 
-    public PileOfBones(Actor target, List<WeaponItem> weapons){
-        super("Pile of Bones",'X',1,target);
+    public PileOfBones(Actor targets, List<WeaponItem> weapons){
+        super("Pile of Bones",'X',1,targets);
         this.addCapability(Status.FRIENDLY_TO_SKELETON);
         for (WeaponItem weapon : weapons){
             this.addWeaponToInventory(weapon);
@@ -37,12 +38,12 @@ public class PileOfBones extends Enemy{
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        if (turnsAfterDeath > 3) {
+        if (turnsAfterDeath >= 3) {
             Location location = map.locationOf(this);
             map.removeActor(this);
             map.addActor(new HeavySkeletalSwordsman(target), location);
         } else {
-            turnsAfterDeath++;
+            ++turnsAfterDeath;
         }
         return new DoNothingAction();
     }

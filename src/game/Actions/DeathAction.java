@@ -6,16 +6,12 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
-import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actors.Enemies.PileOfBones;
 import game.Actors.FriendlyActors.PlayableCharacter;
 import game.Utils.Status;
 import game.Actors.Enemies.Enemy;
-import game.Actors.Enemies.Skeleton;
 
-import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +24,15 @@ import java.util.List;
  */
 public class DeathAction extends Action {
     private final Actor attacker;
+    private Actor actorsTarget;
 
     public DeathAction(Actor actor) {
         this.attacker = actor;
+    }
+
+    public DeathAction(Actor actor, Actor actorsTarget){
+        this.attacker = actor;
+        this.actorsTarget = actorsTarget;
     }
 
     /**
@@ -57,7 +59,7 @@ public class DeathAction extends Action {
             // Transfer all weapons to the Pile of Bones
             List<WeaponItem> allWeapons = new ArrayList<>(target.getWeaponInventory());
 
-            map.addActor(new PileOfBones(null, allWeapons), location);
+            map.addActor(new PileOfBones(actorsTarget, allWeapons), location);
             return System.lineSeparator() + target + " has turned into a Pile of Bones!";
         }
 

@@ -32,7 +32,7 @@ public abstract class Enemy extends Actor implements Resettable {
 
     private final Map<Integer, Behaviour> behaviours = new HashMap<>();
 
-    protected Actor target;
+    protected final Actor target;
 
 
     /**
@@ -46,7 +46,7 @@ public abstract class Enemy extends Actor implements Resettable {
         super(name, displayChar, hitPoints);
         this.target = target;
         this.behaviours.put(998, new WanderBehaviour());
-        this.behaviours.put(997, new AttackBehaviour());
+        this.behaviours.put(997, new AttackBehaviour(getTarget()));
         this.behaviours.put(996, new FollowBehaviour(target));
     }
 
@@ -94,14 +94,14 @@ public abstract class Enemy extends Actor implements Resettable {
                 // Use equipped weapon
                 for (WeaponItem weapon : weapons) {
                     actions.add(weapon.getSkill(otherActor));
-                    actions.add(new AttackAction(this, direction, weapon));
+                    actions.add(new AttackAction(this, this.getTarget(), direction, weapon));
                 }
             } else {
                 // Use intrinsic weapon
-                actions.add(new AttackAction(this, direction));
+                actions.add(new AttackAction(this, this.getTarget(), direction));
             }
             // If player has no weapon in its inventory, it may only choose to use its intrinsic weapon.
-            actions.add(new AttackAction(this, direction));
+            actions.add(new AttackAction(this, this.getTarget(), direction));
         }
         return actions;
     }
@@ -109,6 +109,10 @@ public abstract class Enemy extends Actor implements Resettable {
     @Override
     public void reset(GameMap map){
         map.removeActor(this);
+    }
+
+    public Actor getTarget() {
+        return target;
     }
 
     public int runeMax;
