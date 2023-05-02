@@ -55,9 +55,7 @@ public class DeathAction extends Action {
 
         // Player obtains runes from enemy, printed to the screen.
         if (attacker.hasCapability(Status.HOSTILE_TO_ENEMY)){
-            if (target instanceof Enemy){
-                result += System.lineSeparator() + ((PlayableCharacter) attacker).enemyDefeatedRunes(target,(((Enemy) target).runeMin), ((Enemy) target).runeMax);
-            }
+            result += System.lineSeparator() + ((PlayableCharacter) attacker).enemyDefeatedRunes(target,(((Enemy) target).runeMin), ((Enemy) target).runeMax);
         }
         // remove actor
         map.removeActor(target);

@@ -22,6 +22,7 @@ import game.Grounds.EnemyEnvironments.GustOfWind;
 import game.Grounds.EnemyEnvironments.PuddleOfWater;
 import game.Items.Weapons.Club;
 import game.Items.Weapons.GreatKnife;
+import game.Items.Weapons.Grossmesser;
 import game.Items.Weapons.Uchigatana;
 import game.Utils.ResetManager;
 import game.Utils.Status;
@@ -38,7 +39,7 @@ public class Application {
 
 	public static void main(String[] args) {
 
-		Player player;
+		Player player = null;
 
 		World world = new World(new Display());
 
@@ -87,14 +88,19 @@ public class Application {
 
 		// Optional req 4 implementation
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Choose your class:\ns: Samurai\nb: Bandit\nw: Wretch");
-		String classes = scanner.next();
-		player = switch (classes) {
-			case "s" -> new Player("Tarnished", '@', 455, new Uchigatana());
-			case "b" -> new Player("Tarnished", '@', 414, new GreatKnife());
-			case "w" -> new Player("Tarnished", '@', 414, new Club());
-			default -> new Player("Tarnished", '@', 300, new Club());
-		};
+		while (player == null) {
+			System.out.println("Choose your class:\ns: Samurai\nb: Bandit\nw: Wretch");
+			String classes = scanner.next();
+			player = switch (classes) {
+				case "s" -> new Player("Tarnished", '@', 455, new Uchigatana());
+				case "b" -> new Player("Tarnished", '@', 414, new GreatKnife());
+				case "w" -> new Player("Tarnished", '@', 414, new Club());
+				default -> {
+					System.out.println("Enter a valid class");
+					yield null;
+				}
+			};
+		}
 
 		Merchant merchant = new Merchant("Merchant Kale", 'K', 100);
 
@@ -121,13 +127,11 @@ public class Application {
 		// Checks whether the environment is located east or west of the map to determine what type of enemy should spawn.
 		for (int y = 0; y <= yRange.max(); y++) {
 			for (int x = 0; x <= xRange.max(); x++) {
-				if (gameMap.at(x, y).getGround() instanceof Environment) {
-					if (x <= middleX){
-						gameMap.at(x, y).getGround().addCapability(Status.WEST);
-					}
-					else {
-						gameMap.at(x, y).getGround().addCapability(Status.EAST);
-					}
+				if (x <= middleX){
+					gameMap.at(x, y).getGround().addCapability(Status.WEST);
+				}
+				else {
+					gameMap.at(x, y).getGround().addCapability(Status.EAST);
 				}
 			}
 		}
