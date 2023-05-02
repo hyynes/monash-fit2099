@@ -122,13 +122,11 @@ public class Application {
 		// Checks whether the environment is located east or west of the map to determine what type of enemy should spawn.
 		for (int y = 0; y <= yRange.max(); y++) {
 			for (int x = 0; x <= xRange.max(); x++) {
-				if (gameMap.at(x, y).getGround() instanceof Environment) {
-					if (x <= middleX){
-						gameMap.at(x, y).getGround().addCapability(Status.WEST);
-					}
-					else {
-						gameMap.at(x, y).getGround().addCapability(Status.EAST);
-					}
+				if (x <= middleX){
+					gameMap.at(x, y).getGround().addCapability(Status.WEST);
+				}
+				else {
+					gameMap.at(x, y).getGround().addCapability(Status.EAST);
 				}
 			}
 		}
