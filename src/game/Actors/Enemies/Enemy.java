@@ -30,8 +30,14 @@ import java.util.Map;
 
 public abstract class Enemy extends Actor implements Resettable {
 
+    /**
+     * Map object that stores all behaviours.
+     */
     private final Map<Integer, Behaviour> behaviours = new HashMap<>();
 
+    /**
+     * Actor to follow.
+     */
     protected final Actor target;
 
 
@@ -41,6 +47,7 @@ public abstract class Enemy extends Actor implements Resettable {
      * @param name        the name of the Actor
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
+     * @param target      the Actor that the enemy will follow
      */
     public Enemy(String name, char displayChar, int hitPoints, Actor target) {
         super(name, displayChar, hitPoints);
@@ -75,14 +82,13 @@ public abstract class Enemy extends Actor implements Resettable {
 
 
     /**
-     * The lone wolf can be attacked by any actor that has the HOSTILE_TO_ENEMY capability
+     * The enemies can be attacked by any actor that has the HOSTILE_TO_ENEMY capability
      *
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
      * @return
      */
-
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
@@ -106,16 +112,32 @@ public abstract class Enemy extends Actor implements Resettable {
         return actions;
     }
 
+    /**
+     * Resets the enemies
+     *
+     * @param map - the map that the actors are in.
+     */
     @Override
     public void reset(GameMap map){
         map.removeActor(this);
     }
 
+    /**
+     *
+     * @return Actor that the enemy will follow
+     */
     public Actor getTarget() {
         return target;
     }
 
+    /**
+     * Maximum number of runes that can be obtained from an enemy
+     */
     public int runeMax;
+
+    /**
+     * Minimum number of runes that can be obtained from an enemy
+     */
     public int runeMin;
 
 }

@@ -8,24 +8,29 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.Actors.FriendlyActors.Player;
 import game.Utils.Status;
-
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * For when a skeleton dies.
+ * When a Skeleton dies, turns into a Pile of Bones
+ * Has 1 hp and will die instantly after being hit.
  * Created by:
  * @author Kenan Baydar
- * Modified by:
  *
  */
 public class PileOfBones extends Enemy{
 
+    /**
+     * Amount of turns after death of Skeleton.
+     */
     private int turnsAfterDeath = 0;
 
+    /**
+     * Constructor.
+     *
+     * @param targets Actor the Skeleton will follow after being revived.
+     * @param weapons A list of weapons that was carried by the Skeleton, which is transferred to the Pile of Bones.
+     */
     public PileOfBones(Actor targets, List<WeaponItem> weapons){
         super("Pile of Bones",'X',1,targets);
         this.addCapability(Status.FRIENDLY_TO_SKELETON);
@@ -36,6 +41,15 @@ public class PileOfBones extends Enemy{
         this.runeMax = 892;
     }
 
+    /**
+     * At each turn, select a valid action to perform.
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return DoNothingAction
+     */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         if (turnsAfterDeath >= 3) {

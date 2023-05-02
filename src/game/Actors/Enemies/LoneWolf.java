@@ -14,15 +14,13 @@ import game.Utils.Status;
  *
  */
 
-
-/**
- * MY MESSAGE:
- * CAN IMPLEMENT 'playTurn' AND 'allowableActions' METHODS IN THE 'Enemy' ABSTRACT CLASS.
- * THIS IS BECAUSE ALL ENEMIES WILL HAVE THESE SAME METHODS.
- *
- */
 public class LoneWolf extends Enemy {
 
+    /**
+     * Constructor.
+     *
+     * @param target Actor the Lone Wolf will follow.
+     */
     public LoneWolf(Actor target) {
         super("Lone Wolf", 'h', 102, target);
         this.addCapability(Status.FRIENDLY_TO_WOLF);
@@ -30,6 +28,10 @@ public class LoneWolf extends Enemy {
         this.runeMax = 1470;
     }
 
+    /**
+     *
+     * @return The Giant Crayfish's Intrinsic weapon
+     */
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(97, "bites", 95);

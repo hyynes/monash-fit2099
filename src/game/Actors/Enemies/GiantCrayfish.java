@@ -5,7 +5,8 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Utils.Status;
 
 /**
- * A giant crayfish.
+ * A Giant Crayfish with 4803 hp.
+ * Deals 527 damage with a 100% hit rate.
  * Created by:
  * @author Kenan Baydar
  * Modified by:
@@ -13,6 +14,12 @@ import game.Utils.Status;
  */
 
 public class GiantCrayfish extends Enemy{
+
+    /**
+     * Constructor.
+     *
+     * @param target Actor the Giant Crayfish will follow.
+     */
     public GiantCrayfish(Actor target) {
         super("Giant Crayfish", 'R', 4803, target);
         this.addCapability(Status.SLAM_ATTACK);
@@ -21,6 +28,10 @@ public class GiantCrayfish extends Enemy{
         this.runeMax = 2374;
     }
 
+    /**
+     *
+     * @return The Giant Crayfish's Intrinsic weapon
+     */
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(527, "uses its Giant Pincer to slam", 100);

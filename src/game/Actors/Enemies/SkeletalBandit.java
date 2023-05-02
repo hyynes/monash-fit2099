@@ -5,7 +5,8 @@ import game.Utils.Status;
 import game.Items.Weapons.Scimitar;
 
 /**
- * A skeletal bandit.
+ * A Skeletal Bandit with 184 hp.
+ * Carries around a Scimitar weapon.
  * Created by:
  * @author Kenan Baydar
  * Modified by:
@@ -14,6 +15,11 @@ import game.Items.Weapons.Scimitar;
 
 public class SkeletalBandit extends Enemy{
 
+    /**
+     * Constructor.
+     *
+     * @param target Actor the Skeletal Bandit will follow.
+     */
     public SkeletalBandit(Actor target) {
         super("Skeletal Bandit", 'b', 184, target);
         this.addCapability(Status.FRIENDLY_TO_SKELETON);
