@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.displays.Menu;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actions.*;
@@ -62,8 +63,12 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 			actions.add(new RestAction());
 		}
 
-		if (map.locationOf(this).getItems() instanceof Rune){
-			actions.add(new PickUpRunesAction((Rune) map.locationOf(this).getItems()));
+		if (!map.locationOf(this).getItems().isEmpty()){
+			for (int i = 0; i < map.locationOf(this).getItems().size(); i++){
+				if (map.locationOf(this).getItems().get(i) instanceof Rune) {
+					actions.add(new PickUpRunesAction((Rune) map.locationOf(this).getItems().get(i)));
+				}
+			}
 		}
 
 		// return/print the console menu
@@ -72,7 +77,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 
 	@Override
 	public void reset(GameMap map){
-		// as to avoid runtime errors
+		// as to avoid runtime errors*
 		if (map.locationOf(this) != PlayerSpawnPoint.getInstance().getSpawnLocation()) {
 			map.moveActor(this, PlayerSpawnPoint.getInstance().getSpawnLocation());
 		}

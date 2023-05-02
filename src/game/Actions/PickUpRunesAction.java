@@ -8,18 +8,24 @@ import game.Items.StackableItems.Rune;
 
 public class PickUpRunesAction extends Action {
 
-    Rune runes;
-    public PickUpRunesAction(Rune rune){
-        this.runes = rune;
+    Rune pickedUpRunes;
+    public PickUpRunesAction(Rune runes){
+        this.pickedUpRunes = runes;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
         String result;
+
         if (actor instanceof Player){
-            ((Player) actor).addRunes(runes.getNoOfStacks());
-            result = actor + " has picked up " + runes.getNoOfStacks() + " runes.";
-            map.locationOf(actor).removeItem(runes);
+            if (pickedUpRunes != null) {
+                ((Player) actor).addRunes(pickedUpRunes.getNoOfStacks());
+                result = actor + " has picked up " + pickedUpRunes.getNoOfStacks() + " runes.";
+                map.locationOf(actor).removeItem(pickedUpRunes);
+            }
+            else {
+                result = "Something went wrong.";
+            }
         }
         else {
             result = "Something went wrong.";
@@ -29,6 +35,6 @@ public class PickUpRunesAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " picks up " + runes.getNoOfStacks() + " runes.";
+        return actor + " picks up " + pickedUpRunes.getNoOfStacks() + " runes.";
     }
 }
