@@ -9,6 +9,7 @@ import game.Actors.FriendlyActors.Player;
 import game.Displays.FancyMessage;
 import game.Items.StackableItems.Rune;
 import game.Utils.ResetManager;
+import game.Utils.Status;
 
 public class PlayerDeathAction extends Action{
 
@@ -25,25 +26,30 @@ public class PlayerDeathAction extends Action{
     @Override
     public String execute(Actor target, GameMap map) {
         String result = "";
-        Rune rune = new Rune();
         Rune runesDropped = new Rune();
 
-        if (target instanceof Player) {
-            for (int i = 0; i < target.getItemInventory().size(); i++) {
-                if (target.getItemInventory().get(i) instanceof Rune) {
-                    runesDropped = (Rune) target.getItemInventory().get(i);
-                    result += System.lineSeparator() + target + " has dropped " + (runesDropped.getNoOfStacks()) + " runes.";
-                    ((Rune) target.getItemInventory().get(i)).setNoOfStacks(0);
+        NumberRange xRange = map.getXRange();
+        NumberRange yRange = map.getYRange();
+        for (int y = 0; y <= yRange.max(); y++) {
+            for (int x = 0; x <= xRange.max(); x++) {
+                for (int i = 0; i < map.at(x,y).getItems().size(); i++){
+                    if (map.at(x,y).getItems().get(i) instanceof Rune) {
+                       map.at(x,y).removeItem(map.at(x,y).getItems().get(i));
+                    }
                 }
             }
+        }
+        if (target instanceof Player) {
+            runesDropped.setNoOfStacks(((Player) target).runes.getNoOfStacks());
+            result += System.lineSeparator() + target + " has dropped " + (runesDropped.getNoOfStacks()) + " runes.";
 
             result += System.lineSeparator() + FancyMessage.YOU_DIED;
             if (runesDropped.getNoOfStacks() != 0) {
-                rune.setNoOfStacks(runesDropped.getNoOfStacks());
-                map.locationOf(target).addItem(rune);
+                map.locationOf(target).addItem(runesDropped);
             }
-            ResetManager.getInstance().run();
+            ((Player) target).runes.setNoOfStacks(0);
         }
+        ResetManager.getInstance().run();
         return result;
     }
 

@@ -65,7 +65,7 @@ public abstract class StackableItem extends Item {
      * @param stacks - the number of stacks to be set.
      */
     public void setNoOfStacks(int stacks) {
-        if (stacks > 0) {
+        if (stacks >= 0) {
             this.noOfStacks = stacks;
         }
     }
