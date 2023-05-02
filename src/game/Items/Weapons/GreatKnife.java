@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * Created by:
  * @author Danny Duong
  * Modified by:
- *
+ * @modifier Kenan Baydar
  */
 public class GreatKnife extends WeaponItem implements WeaponRunes{
 

@@ -11,7 +11,7 @@ import game.Utils.Status;
  * Created by:
  * @author Danny Duong
  * Modified by:
- *
+ * @modifier Kenan Baydar
  */
 
 public class Uchigatana extends WeaponItem implements WeaponRunes {

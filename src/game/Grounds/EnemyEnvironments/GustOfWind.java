@@ -5,6 +5,13 @@ import game.Utils.Status;
 import game.Actors.Enemies.GiantDog;
 import game.Actors.Enemies.LoneWolf;
 
+/**
+ * Environment that spawns giant dogs and lone wolves.
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ *
+ */
 public class GustOfWind extends Environment {
 
     public GustOfWind() {

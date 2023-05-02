@@ -5,7 +5,9 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import game.Actors.FriendlyActors.Player;
+import game.Displays.FancyMessage;
 import game.Items.StackableItems.Rune;
+import game.Utils.ResetManager;
 
 public class PlayerDeathAction extends Action{
 
@@ -17,6 +19,12 @@ public class PlayerDeathAction extends Action{
      * @param map The map the actor is on.
      * @return result of the action to be displayed on the UI
      */
+
+    Actor player;
+    public PlayerDeathAction(Actor actor) {
+        this.player = actor;
+    }
+
     @Override
     public String execute(Actor target, GameMap map) {
         String result = "";
@@ -32,17 +40,19 @@ public class PlayerDeathAction extends Action{
         }
 
         if (target instanceof Player) {
-            result += System.lineSeparator() + target + " has died.";
+            result += System.lineSeparator() + FancyMessage.YOU_DIED;
             if (((Player) target).runes.getNoOfStacks() != 0) {
                 rune.setNoOfStacks(((Player) target).runes.getNoOfStacks());
                 result += System.lineSeparator() + target + " has dropped " + ((Player) target).runes.getNoOfStacks() + " runes.";
                 ((Player) target).runes.setNoOfStacks(0);
                 map.locationOf(target).addItem(rune);
             }
+            ResetManager.getInstance().run();
         }
         return result;
     }
 
+    // this method is never used
     @Override
     public String menuDescription(Actor actor) {
         return actor + " is killed." + System.lineSeparator();

@@ -8,13 +8,11 @@ import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Actions.*;
+import game.Application;
 import game.Grounds.NeutralGrounds.SiteOfLostGrace;
 import game.Items.StackableItems.FlaskOfCrimsonTears;
 import game.Items.StackableItems.Rune;
-import game.Utils.PlayerSpawnPoint;
-import game.Utils.RandomNumberGenerator;
-import game.Utils.Resettable;
-import game.Utils.Status;
+import game.Utils.*;
 
 /**
  * Class representing the Player. It implements the Resettable interface.
@@ -56,13 +54,15 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		// Displays its health and runes, and updates it every turn.
 		System.out.println(displayStats());
 
-		actions.add(new HealAction());
+		if (flask.getNoOfStacks() > 0) {
+			actions.add(new HealAction());
+		}
 
 		if (SiteOfLostGrace.isPlayerInSite){
 			actions.add(new RestAction());
 		}
 
-		if (map.locationOf(this).getDisplayChar() == '$'){
+		if (map.locationOf(this).getItems() instanceof Rune){
 			actions.add(new PickUpRunesAction((Rune) map.locationOf(this).getItems()));
 		}
 
@@ -76,19 +76,10 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		if (map.locationOf(this) != PlayerSpawnPoint.getInstance().getSpawnLocation()) {
 			map.moveActor(this, PlayerSpawnPoint.getInstance().getSpawnLocation());
 		}
-		this.heal(maxHP);
+		this.resetMaxHp(maxHP);
 		flask.setNoOfStacks(2);
 	}
 
-	/**
-	 * Add Runes function.
-	 * Adds a number of runes to the player's inventory after defeating an enemy.
-	 *
-	 * @param enemy the enemy that drops the runes
-	 * @param min	the minimum number of runes that can be generated
-	 * @param max	the maximum number of runes that can be generated
-	 * @see DeathAction
-	 */
 	public String enemyDefeatedRunes(Actor enemy, int min, int max){
 		int generatedRunes = RandomNumberGenerator.getRandomInt(min, max);
 		if (runes.addStacks(generatedRunes)){
@@ -96,14 +87,6 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		}
 		return null;
 	}
-
-	/**
-	 * Removes a number of runes from the player's inventory.
-	 *
-	 * @param removeRunes the amount of runes to be removed.
-	 * @return true or false on whether the player will have a positive amount of runes after removing runes.
-	 * @see BuyAction
-	 */
 
 	@Override
 	public boolean removeRunes(int removeRunes){
@@ -114,6 +97,12 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	public boolean addRunes(int addRunes) {
 		return runes.addStacks(addRunes);
 	}
+
+	/**
+	 * Displays the player's stats to a digestible format.
+	 * @return the string to be displayed.
+	 * @see Application
+	 */
 
 	public String displayStats(){
 		String stats;

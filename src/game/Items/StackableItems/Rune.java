@@ -1,5 +1,12 @@
 package game.Items.StackableItems;
 
+/**
+ * MONEY
+ * Created by:
+ * @author Danny Duong
+ * Modified by:
+ *
+ */
 public class Rune extends StackableItem{
 
     public Rune(){
