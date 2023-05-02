@@ -20,17 +20,22 @@ public class AttackAction extends Action{
 	/**
 	 * The Actor that is to be attacked
 	 */
-	private Actor target;
+	private final Actor target;
+
+	/**
+	 * The Actor that is targeted by the target in followBehaviour.
+	 */
+	private final Actor targetsTarget;
 
 	/**
 	 * The direction of incoming attack.
 	 */
-	private String direction;
+	private final String direction;
 
 	/**
 	 * Random number generator
 	 */
-	private Random rand = new Random();
+	private final Random rand = new Random();
 
 	/**
 	 * Weapon used for the attack
@@ -43,8 +48,9 @@ public class AttackAction extends Action{
 	 * @param target the Actor to attack
 	 * @param direction the direction where the attack should be performed (only used for display purposes)
 	 */
-	public AttackAction(Actor target, String direction, Weapon weapon) {
+	public AttackAction(Actor target, Actor targetsTarget, String direction, Weapon weapon) {
 		this.target = target;
+		this.targetsTarget = targetsTarget;
 		this.direction = direction;
 		this.weapon = weapon;
 	}
@@ -55,8 +61,9 @@ public class AttackAction extends Action{
 	 * @param target the actor to attack
 	 * @param direction the direction where the attack should be performed (only used for display purposes)
 	 */
-	public AttackAction(Actor target, String direction) {
+	public AttackAction(Actor target, Actor targetsTarget, String direction) {
 		this.target = target;
+		this.targetsTarget = targetsTarget;
 		this.direction = direction;
 	}
 
@@ -89,7 +96,7 @@ public class AttackAction extends Action{
 				result += new PlayerDeathAction(actor).execute(target, map);
 			}
 			else{
-				result += new DeathAction(actor).execute(target, map);
+				result += new DeathAction(actor, targetsTarget).execute(target, map);
 			}
 		}
 		return result;

@@ -24,9 +24,15 @@ import java.util.List;
  */
 public class DeathAction extends Action {
     private final Actor attacker;
+    private Actor actorsTarget;
 
     public DeathAction(Actor actor) {
         this.attacker = actor;
+    }
+
+    public DeathAction(Actor actor, Actor actorsTarget){
+        this.attacker = actor;
+        this.actorsTarget = actorsTarget;
     }
 
     /**
@@ -53,7 +59,7 @@ public class DeathAction extends Action {
             // Transfer all weapons to the Pile of Bones
             List<WeaponItem> allWeapons = new ArrayList<>(target.getWeaponInventory());
 
-            map.addActor(new PileOfBones(null, allWeapons), location);
+            map.addActor(new PileOfBones(actorsTarget, allWeapons), location);
             return System.lineSeparator() + target + " has turned into a Pile of Bones!";
         }
 

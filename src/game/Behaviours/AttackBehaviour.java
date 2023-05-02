@@ -3,7 +3,6 @@ package game.Behaviours;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
@@ -17,10 +16,13 @@ import game.Utils.Status;
 
 public class AttackBehaviour implements Behaviour {
 
+    private final Actor targetsTarget;
+
     /**
      * Constructor.
      */
-    public AttackBehaviour() {
+    public AttackBehaviour(Actor targetsTarget) {
+        this.targetsTarget = targetsTarget;
     }
     // Method that returns the weapon an actor is holding, otherwise returns null
     public Weapon getWeapon(Actor actor) {
@@ -59,18 +61,18 @@ public Action getAction(Actor actor, GameMap map){
 
                 // Checks if the Enemy has a weapon or not. If so it uses the weapon, otherwise not.
                 if (getWeapon(actor)!= null) {
-                    actions.add(new AttackAction(adjacent, direction, getWeapon(actor)));
+                    actions.add(new AttackAction(adjacent, targetsTarget, direction, getWeapon(actor)));
                     actions.add(getWeapon(actor).getSkill(actor));
                 }
 
                 // Checks if the enemy has a slam attack ability with no weapon
                 else if (actor.hasCapability(Status.SLAM_ATTACK)){
-                    actions.add(new AttackAction(adjacent, direction));
+                    actions.add(new AttackAction(adjacent, targetsTarget, direction));
                     actions.add(new SurroundingAttack(adjacent, actor.getIntrinsicWeapon()));
                 }
                 // Otherwise if actor has no weapon, use intrinsic weapon.
                 else {
-                    return new AttackAction(adjacent, direction);
+                    return new AttackAction(adjacent, targetsTarget, direction);
                 }
 
                 // Randomly choose which attack, 50/50 chance
