@@ -99,7 +99,7 @@ public class AttackAction extends Action implements DisplayStrings {
 				result += new DeathAction(actor).execute(target, map);
 			}
 			else if (target instanceof Player){
-				result += new PlayerDeathAction().execute(target, map);
+				result += new PlayerDeathAction(actor).execute(target, map);
 			}
 		}
 		return result;

@@ -17,6 +17,7 @@ public class HealAction extends Action implements DisplayStrings {
                 ((Player)actor).flask.setNoOfStacks(((Player)actor).flask.getNoOfStacks() - 1);
                 actor.heal(250);
                 result = actor + " consumed " + ((Player)actor).flask + ".";
+                ((Player) actor).addRunes(300);
             }
             else {
                 result = actor + " has no charges left in their " + ((Player)actor).flask + ".";

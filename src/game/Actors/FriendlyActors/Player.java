@@ -62,7 +62,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 			actions.add(new RestAction());
 		}
 
-		if (map.locationOf(this).getDisplayChar() == '$'){
+		if (map.locationOf(this).getItems() instanceof Rune){
 			actions.add(new PickUpRunesAction((Rune) map.locationOf(this).getItems()));
 		}
 
@@ -76,7 +76,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		if (map.locationOf(this) != PlayerSpawnPoint.getInstance().getSpawnLocation()) {
 			map.moveActor(this, PlayerSpawnPoint.getInstance().getSpawnLocation());
 		}
-		this.heal(maxHP);
+		this.resetMaxHp(maxHP);
 		flask.setNoOfStacks(2);
 	}
 

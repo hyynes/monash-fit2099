@@ -6,6 +6,8 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.Actors.Enemies.Enemy;
+import game.Actors.FriendlyActors.Player;
 import game.Displays.DisplayStrings;
 import game.Utils.Status;
 import game.Actors.Enemies.Skeleton;
@@ -68,7 +70,12 @@ public class SurroundingAttack extends Action implements DisplayStrings {
                     targetActor.hurt(damage);
                 }
                 if (!targetActor.isConscious()){
-                    result.append(new DeathAction(actor).execute(targetActor, map));
+                    if (targetActor instanceof Enemy) {
+                        result.append(new DeathAction(actor).execute(targetActor, map));
+                    }
+                    else if (targetActor instanceof Player){
+                        result.append(new PlayerDeathAction(actor).execute(targetActor, map));
+                    }
                 }
             }
         }

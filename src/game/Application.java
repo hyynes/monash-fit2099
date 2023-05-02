@@ -24,6 +24,7 @@ import game.Items.Weapons.Club;
 import game.Items.Weapons.GreatKnife;
 import game.Items.Weapons.Grossmesser;
 import game.Items.Weapons.Uchigatana;
+import game.Utils.PlayerSpawnPoint;
 import game.Utils.ResetManager;
 import game.Utils.Status;
 
@@ -114,8 +115,7 @@ public class Application {
 		// initialise merchant and player locations
 		world.addPlayer(merchant, gameMap.at(40, 12));
 		world.addPlayer(player, gameMap.at(36, 10));
-
-		//PlayerSpawnPoint.getInstance().setSpawnLocation(gameMap.at(36, 10));
+		PlayerSpawnPoint.getInstance().setSpawnLocation(gameMap.at(36, 10));
 
 		NumberRange xRange = gameMap.getXRange();
 
