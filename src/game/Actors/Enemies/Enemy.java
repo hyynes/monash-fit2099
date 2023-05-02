@@ -30,11 +30,7 @@ import java.util.Map;
 
 public abstract class Enemy extends Actor implements Resettable {
 
-    private Map<Integer, Behaviour> behaviours = new HashMap<>();
-    protected int turnsAfterDeath = 0;
-    protected boolean initialCheck = true;
-    protected boolean isPileOfBones = false;
-    PileOfBones pileOfBones = new PileOfBones();
+    private final Map<Integer, Behaviour> behaviours = new HashMap<>();
 
     protected Actor target;
 
@@ -65,31 +61,6 @@ public abstract class Enemy extends Actor implements Resettable {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-
-        // Extra steps for Skeleton types with Pile of Bones ability
-        if (this instanceof Skeleton) {
-            // If Skeleton just turned into a Pile of Bones that turn, initialises all values.
-            if (pileOfBones.checkState(this, turnsAfterDeath, getPileOfBones()) && initialCheck) {
-                this.setDisplayChar('X');
-                // Set its health to 1
-                this.hitPoints = 1;
-                initialCheck = false;
-            }
-
-            // If Skeleton is in Pile of Bones state
-            if (pileOfBones.checkState(this, turnsAfterDeath, getPileOfBones())) {
-                ++turnsAfterDeath;
-                return new DoNothingAction();
-            } else {
-                if (!initialCheck) {
-                    // Set its display character back to that of Heavy Skeletal Swordsman
-                    this.setDisplayChar(((Skeleton) this).getOriginalDisplayChar());
-                    this.hitPoints = 153;
-                    setTurnsAfterDeath(0);
-                }
-                initialCheck = true;
-            }
-        }
 
         // General playTurn step for all enemies
         for (Behaviour behaviour : behaviours.values()) {
@@ -122,9 +93,7 @@ public abstract class Enemy extends Actor implements Resettable {
             if (!weapons.isEmpty()) {
                 // Use equipped weapon
                 for (WeaponItem weapon : weapons) {
-                    if (weapon.hasCapability(Status.SPECIAL_ATTACK)) {
-                        actions.add(weapon.getSkill(otherActor));
-                    }
+                    actions.add(weapon.getSkill(otherActor));
                     actions.add(new AttackAction(this, direction, weapon));
                 }
             } else {
@@ -140,18 +109,6 @@ public abstract class Enemy extends Actor implements Resettable {
     @Override
     public void reset(GameMap map){
         map.removeActor(this);
-    }
-
-    public boolean getPileOfBones() {
-        return isPileOfBones;
-    }
-
-    public void setPileOfBones(boolean pileOfBones) {
-        isPileOfBones = pileOfBones;
-    }
-
-    public void setTurnsAfterDeath(int turnsAfterDeath){
-        this.turnsAfterDeath = turnsAfterDeath;
     }
 
     public int runeMax;

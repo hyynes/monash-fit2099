@@ -9,6 +9,8 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
+import game.Actors.Enemies.HeavySkeletalSwordsman;
+import game.Actors.Enemies.LoneWolf;
 import game.Actors.FriendlyActors.Merchant;
 import game.Actors.FriendlyActors.Player;
 import game.Grounds.NeutralGrounds.SiteOfLostGrace;
@@ -115,7 +117,10 @@ public class Application {
 		// initialise merchant and player locations
 		world.addPlayer(merchant, gameMap.at(40, 12));
 		world.addPlayer(player, gameMap.at(36, 10));
-		PlayerSpawnPoint.getInstance().setSpawnLocation(gameMap.at(36, 10));
+
+		gameMap.at(30, 10).addActor(new HeavySkeletalSwordsman(player));
+
+		PlayerSpawnPoint.getInstance().setSpawnLocation(gameMap.at(38, 10));
 
 		NumberRange xRange = gameMap.getXRange();
 

@@ -6,10 +6,6 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
-import game.Actors.Enemies.Enemy;
-import game.Actors.FriendlyActors.Player;
-import game.Displays.DisplayStrings;
-import game.Actors.Enemies.Skeleton;
 import game.Utils.Status;
 
 /**
@@ -19,7 +15,7 @@ import game.Utils.Status;
  * Modified by:
  * @modifier Danny Duong
  */
-public class AttackAction extends Action implements DisplayStrings {
+public class AttackAction extends Action{
 
 	/**
 	 * The Actor that is to be attacked
@@ -81,20 +77,13 @@ public class AttackAction extends Action implements DisplayStrings {
 		}
 
 		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
-			if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()) {
-				return missPileOfBones(actor);
-			}
-			return missEnemy(actor, target);
+			return actor + " misses " + target + ".";
 		}
 
 		int damage = weapon.damage();
-		if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()){
-			result = hitPileOfBones(actor, weapon, damage);
-		}
-		else{
-			result = hitEnemy(actor, target, weapon, damage);
-		}
+		result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
+
 		if (!target.isConscious()) {
 			if (target.hasCapability(Status.HOSTILE_TO_ENEMY)) {
 				result += new PlayerDeathAction(actor).execute(target, map);
@@ -114,9 +103,6 @@ public class AttackAction extends Action implements DisplayStrings {
 	 */
 	@Override
 	public String menuDescription(Actor actor) {
-		if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()){
-			return actor + " attacks Pile of Bones at " + direction + " with " + (weapon != null ? weapon : "Intrinsic Weapon");
-		}
 		return actor + " attacks " + target + " at " + direction + " with " + (weapon != null ? weapon : "Intrinsic Weapon");
 	}
 }

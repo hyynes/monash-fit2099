@@ -12,9 +12,10 @@ public enum Status {
     FRIENDLY_TO_WOLF,
     FRIENDLY_TO_SKELETON,
     FRIENDLY_TO_SEA,
-    SPECIAL_ATTACK,
     SLAM_ATTACK,
     EAST,
     WEST,
-    TRADER
+    TRADER,
+    PILE_OF_BONES,
+    SECOND_LIFE
 }

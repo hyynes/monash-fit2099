@@ -18,7 +18,6 @@ import game.Utils.Status;
 public class Scimitar extends WeaponItem implements WeaponRunes{
     public Scimitar() {
         super("Scimitar", 's', 118, "Slashes", 88);
-        this.addCapability(Status.SPECIAL_ATTACK);
     }
 
     @Override

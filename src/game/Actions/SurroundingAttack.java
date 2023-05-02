@@ -6,11 +6,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
-import game.Actors.Enemies.Enemy;
-import game.Actors.FriendlyActors.Player;
-import game.Displays.DisplayStrings;
 import game.Utils.Status;
-import game.Actors.Enemies.Skeleton;
 
 import java.util.Random;
 
@@ -18,7 +14,7 @@ import java.util.Random;
  * Class that allows the actor to attack its surrounding with its weapon, including intrinsic weapon.
  *
  */
-public class SurroundingAttack extends Action implements DisplayStrings {
+public class SurroundingAttack extends Action{
     private final Weapon weapon;
     private Actor target;
 
@@ -53,28 +49,18 @@ public class SurroundingAttack extends Action implements DisplayStrings {
             if (destination.containsAnActor()) {
                 Actor targetActor = destination.getActor();
                 if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
-                    if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()) {
-                        return result + missPileOfBones(actor);
-                    }
-                    else {
-                        return result + missEnemy(actor, targetActor);
-                    }
+                    return result + System.lineSeparator() + actor + " misses " + target + ".";
                 }
-                else {
-                    if (target instanceof Skeleton && ((Skeleton) target).getPileOfBones()) {
-                        result.append(hitPileOfBones(actor, weapon, damage));
+
+                result.append(System.lineSeparator() + " " + weapon.verb() + " " + target + " for " + damage + " damage.");
+                targetActor.hurt(damage);
+
+                if (!targetActor.isConscious()){
+                    if (targetActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                        result.append(new PlayerDeathAction(actor).execute(targetActor, map));;
                     }
                     else{
-                        result.append(hitEnemy(actor, targetActor, weapon, damage));
-                    }
-                    targetActor.hurt(damage);
-                }
-                if (!targetActor.isConscious()){
-                    if (targetActor instanceof Enemy) {
                         result.append(new DeathAction(actor).execute(targetActor, map));
-                    }
-                    else if (targetActor instanceof Player){
-                        result.append(new PlayerDeathAction(actor).execute(targetActor, map));
                     }
                 }
             }

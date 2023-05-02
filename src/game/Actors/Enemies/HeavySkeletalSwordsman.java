@@ -12,20 +12,12 @@ import game.Items.Weapons.Grossmesser;
  * @modifier Danny Duong
  */
 
-
-public class HeavySkeletalSwordsman extends Enemy implements Skeleton{
+public class HeavySkeletalSwordsman extends Enemy{
 
     public HeavySkeletalSwordsman(Actor target) {
         super("Heavy Skeletal Swordsman", 'q', 153, target);
         this.addCapability(Status.FRIENDLY_TO_SKELETON);
+        this.addCapability(Status.SECOND_LIFE);
         this.addWeaponToInventory(new Grossmesser());
-        this.runeMin = 35;
-        this.runeMax = 892;
     }
-
-    @Override
-    public final char getOriginalDisplayChar() {
-        return 'q';
-    }
-
 }

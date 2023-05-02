@@ -19,7 +19,6 @@ public class Grossmesser extends WeaponItem implements WeaponRunes{
 
     public Grossmesser() {
         super("Grossmesser", '?', 115, "Slices", 85);
-        this.addCapability(Status.SPECIAL_ATTACK);
     }
 
     @Override

@@ -5,11 +5,19 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
+import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.Actors.Enemies.PileOfBones;
 import game.Actors.FriendlyActors.PlayableCharacter;
 import game.Utils.Status;
 import game.Actors.Enemies.Enemy;
 import game.Actors.Enemies.Skeleton;
+
+import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An action executed if an actor is killed.
@@ -37,14 +45,22 @@ public class DeathAction extends Action {
     public String execute(Actor target, GameMap map) {
         String result = "";
 
-        // Instead of dying, Skeleton types are turned into a Pile Of Bones
-        if (target instanceof Skeleton && !((Skeleton) target).getPileOfBones()){
-            ((Skeleton) target).setPileOfBones(true);
-            result += System.lineSeparator() + target + " has turned into a Pile of Bones!";
-            return result;
-        }
+        Location location = map.locationOf(target);
 
         ActionList dropActions = new ActionList();
+
+        // Instead of dying, Actors that have a second life will turn into a Pile of Bones.
+        if (target.hasCapability(Status.SECOND_LIFE)) {
+
+            map.removeActor(target);
+
+            // Transfer all weapons to the Pile of Bones
+            List<WeaponItem> allWeapons = new ArrayList<>(target.getWeaponInventory());
+
+            map.addActor(new PileOfBones(null, allWeapons), location);
+            return System.lineSeparator() + target + " has turned into a Pile of Bones!";
+        }
+
         // drop all items
         for (Item item : target.getItemInventory())
             dropActions.add(item.getDropAction(target));
@@ -53,12 +69,14 @@ public class DeathAction extends Action {
         for (Action drop : dropActions)
             drop.execute(target, map);
 
+        // remove actor
+        map.removeActor(target);
+
         // Player obtains runes from enemy, printed to the screen.
         if (attacker.hasCapability(Status.HOSTILE_TO_ENEMY)){
             result += System.lineSeparator() + ((PlayableCharacter) attacker).enemyDefeatedRunes(target,(((Enemy) target).runeMin), ((Enemy) target).runeMax);
         }
-        // remove actor
-        map.removeActor(target);
+
         result += System.lineSeparator() + menuDescription(target);
         return result;
     }

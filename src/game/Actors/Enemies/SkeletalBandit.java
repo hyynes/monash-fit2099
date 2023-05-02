@@ -12,18 +12,12 @@ import game.Items.Weapons.Scimitar;
  * @modifier Danny Duong
  */
 
-public class SkeletalBandit extends Enemy implements Skeleton{
+public class SkeletalBandit extends Enemy{
 
     public SkeletalBandit(Actor target) {
         super("Skeletal Bandit", 'b', 184, target);
         this.addCapability(Status.FRIENDLY_TO_SKELETON);
+        this.addCapability(Status.SECOND_LIFE);
         this.addWeaponToInventory(new Scimitar());
-        this.runeMin = 35;
-        this.runeMax = 892;
-    }
-
-    @Override
-    public final char getOriginalDisplayChar() {
-        return 'b';
     }
 }
