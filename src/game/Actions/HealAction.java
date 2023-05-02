@@ -3,9 +3,8 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Actors.FriendlyActors.Player;
-import game.Displays.DisplayStrings;
 
-public class HealAction extends Action implements DisplayStrings {
+public class HealAction extends Action {
 
     public HealAction(){}
 
@@ -14,10 +13,9 @@ public class HealAction extends Action implements DisplayStrings {
         String result;
         if (actor instanceof Player){
             if (((Player)actor).flask.removeStacks(1)) {
-                ((Player)actor).flask.setNoOfStacks(((Player)actor).flask.getNoOfStacks() - 1);
+                ((Player)actor).flask.removeStacks(1);
                 actor.heal(250);
                 result = actor + " consumed " + ((Player)actor).flask + ".";
-                ((Player) actor).addRunes(300);
             }
             else {
                 result = actor + " has no charges left in their " + ((Player)actor).flask + ".";

@@ -2,6 +2,7 @@ package game.Actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import game.Actors.FriendlyActors.Player;
@@ -11,6 +12,8 @@ import game.Utils.ResetManager;
 
 public class PlayerDeathAction extends Action{
 
+    public PlayerDeathAction(Actor actor) {}
+
     /**
      * When the target is killed, the items & weapons carried by target
      * will be dropped to the location in the game map where the target was
@@ -19,32 +22,24 @@ public class PlayerDeathAction extends Action{
      * @param map The map the actor is on.
      * @return result of the action to be displayed on the UI
      */
-
-    Actor player;
-    public PlayerDeathAction(Actor actor) {
-        this.player = actor;
-    }
-
     @Override
     public String execute(Actor target, GameMap map) {
         String result = "";
         Rune rune = new Rune();
-
-        NumberRange xRange = map.getXRange();
-        NumberRange yRange = map.getYRange();
-
-        for (int y = 0; y <= yRange.max(); y++) {
-            for (int x = 0; x <= xRange.max(); x++) {
-                map.at(x,y).removeItem(rune);
-            }
-        }
+        Rune runesDropped = new Rune();
 
         if (target instanceof Player) {
+            for (int i = 0; i < target.getItemInventory().size(); i++) {
+                if (target.getItemInventory().get(i) instanceof Rune) {
+                    runesDropped = (Rune) target.getItemInventory().get(i);
+                    result += System.lineSeparator() + target + " has dropped " + (runesDropped.getNoOfStacks()) + " runes.";
+                    ((Rune) target.getItemInventory().get(i)).setNoOfStacks(0);
+                }
+            }
+
             result += System.lineSeparator() + FancyMessage.YOU_DIED;
-            if (((Player) target).runes.getNoOfStacks() != 0) {
-                rune.setNoOfStacks(((Player) target).runes.getNoOfStacks());
-                result += System.lineSeparator() + target + " has dropped " + ((Player) target).runes.getNoOfStacks() + " runes.";
-                ((Player) target).runes.setNoOfStacks(0);
+            if (runesDropped.getNoOfStacks() != 0) {
+                rune.setNoOfStacks(runesDropped.getNoOfStacks());
                 map.locationOf(target).addItem(rune);
             }
             ResetManager.getInstance().run();
