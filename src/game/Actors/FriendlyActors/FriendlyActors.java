@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import game.Utils.Status;
 
 /**
+ * To denote friendly actors.
  * Created by:
  * @author Kenan Baydar
  * Modified by:

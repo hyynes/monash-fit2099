@@ -4,6 +4,14 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Utils.Status;
 
+/**
+ * A giant crayfish.
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ * @modifier Danny Duong
+ */
+
 public class GiantCrayfish extends Enemy{
     public GiantCrayfish(Actor target) {
         super("Giant Crayfish", 'R', 4803, target);

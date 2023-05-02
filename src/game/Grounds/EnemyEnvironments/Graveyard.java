@@ -5,6 +5,13 @@ import game.Utils.Status;
 import game.Actors.Enemies.HeavySkeletalSwordsman;
 import game.Actors.Enemies.SkeletalBandit;
 
+/**
+ * Environment that spawns skeletal bandits and swordsmen.
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ *
+ */
 public class Graveyard extends Environment {
 
     public Graveyard() {

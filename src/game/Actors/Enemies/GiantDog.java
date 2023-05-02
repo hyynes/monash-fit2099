@@ -4,6 +4,14 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Utils.Status;
 
+/**
+ * A giant dog.
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ * @modifier Danny Duong
+ */
+
 public class GiantDog extends Enemy{
     public GiantDog(Actor target) {
         super("Giant Dog", 'G', 693, target);

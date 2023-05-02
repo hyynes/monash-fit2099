@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
- *
+ * @modifier Kenan Baydar
  */
 public class Club extends WeaponItem implements WeaponRunes{
 

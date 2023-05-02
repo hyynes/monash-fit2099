@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import game.Actors.FriendlyActors.Player;
+import game.Displays.FancyMessage;
 import game.Items.StackableItems.Rune;
 
 public class PlayerDeathAction extends Action{
@@ -32,7 +33,7 @@ public class PlayerDeathAction extends Action{
         }
 
         if (target instanceof Player) {
-            result += System.lineSeparator() + target + " has died.";
+            result += FancyMessage.YOU_DIED;
             if (((Player) target).runes.getNoOfStacks() != 0) {
                 rune.setNoOfStacks(((Player) target).runes.getNoOfStacks());
                 result += System.lineSeparator() + target + " has dropped " + ((Player) target).runes.getNoOfStacks() + " runes.";

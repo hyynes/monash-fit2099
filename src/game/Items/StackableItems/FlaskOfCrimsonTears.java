@@ -1,5 +1,13 @@
 package game.Items.StackableItems;
 
+/**
+ * A healing potion for when you can't dodge attacks.
+ * Created by:
+ * @author Danny Duong
+ * Modified by:
+ *
+ */
+
 public class FlaskOfCrimsonTears extends StackableItem{
     // Constructor
     public FlaskOfCrimsonTears(){

@@ -3,6 +3,7 @@ package game.Utils;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
+import game.Application;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
- *
+ * @modifier Danny Duong
  */
 public class ResetManager{
     private List<Resettable> resettables;
@@ -23,6 +24,10 @@ public class ResetManager{
     }
     private static ResetManager instance = null;
 
+    /**
+     * Instance setter.
+     * @return the singleton instance of ResetManager.
+     */
     public static ResetManager getInstance(){
         if (instance == null){
             instance = new ResetManager();
@@ -30,6 +35,10 @@ public class ResetManager{
         return instance;
     }
 
+
+    /**
+     * Loops through all resettable actors and calls the reset function.
+     */
     public void run() {
 
         NumberRange xRange = map.getXRange();
@@ -52,14 +61,27 @@ public class ResetManager{
         }
     }
 
+    /**
+     * Adds a resettable to the resettables arraylist.
+     * @param resettable - the resettable to be added.
+     */
     public void registerResettable(Resettable resettable) {
         resettables.add(resettable);
     }
 
+    /**
+     * Removes a resettable to the resettables arraylist.
+     * @param resettable - the resettable to be removed.
+     */
     public void removeResettable(Resettable resettable) {
         resettables.remove(resettable);
     }
 
+    /**
+     * Sets the map to be resetted.
+     * @param currentMap - the map to be set.
+     * @see Application
+     */
     public void setMap(GameMap currentMap){
         this.map = currentMap;
     }

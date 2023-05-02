@@ -5,6 +5,14 @@ import game.Utils.Status;
 import game.Actors.Enemies.GiantCrab;
 import game.Actors.Enemies.GiantCrayfish;
 
+/**
+ * Water that spawns giant crabs and crayfish.
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ *
+ */
+
 public class PuddleOfWater extends Environment {
 
     public PuddleOfWater() {
