@@ -7,27 +7,27 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.Utils.Status;
-
+import game.Behaviours.AttackBehaviour;
 import java.util.Random;
 
 /**
- * Class that allows the actor to attack its surrounding with its weapon, including intrinsic weapon.
- *
+ * An Action for an Actor to attacks its surroundings.
+ * Created by:
+ * @author Kenan Baydar
+ * Modified by:
+ * @modifier Danny Duong
  */
 public class SurroundingAttack extends Action{
+
+    /**
+     * Weapon used to attack its surroundings
+     */
     private final Weapon weapon;
-    private Actor target;
 
     /**
      * Random number generator
      */
     private final Random rand = new Random();
-
-
-    public SurroundingAttack(Actor target, Weapon weapon) {
-        this.target = target;
-        this.weapon = weapon;
-    }
 
     /**
      * Doesn't necessarily have a target, so only parameter needed is the weapon used.
@@ -36,21 +36,33 @@ public class SurroundingAttack extends Action{
         this.weapon = weapon;
     }
 
+    /**
+     * When executed, the actor checks its surroundings, and if there is an enemy in its surroundings, it will
+     * loop through all exits and attacks all its exits.
+     *
+     * @param actor The actor performing the attack action.
+     * @param map The map the actor is on.
+     * @return the result of the attack, whether the target is hit or not, since actor may miss.
+     * @see AttackBehaviour
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
 
-        // Actor performs a spin attack
         StringBuilder result = new StringBuilder(menuDescription(actor));
 
         // Damage dealt by weapon
         int damage = weapon.damage();
+
+        // Checks if there is an enemy in surroundings, if so, loop through and attack all exits.
         for (Exit exit : map.locationOf(actor).getExits()) {
             Location destination = exit.getDestination();
             if (destination.containsAnActor()) {
                 Actor targetActor = destination.getActor();
+
                 if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
                     return result + System.lineSeparator() + actor + " misses " + targetActor + ".";
                 }
+
                 result.append(System.lineSeparator() + actor + " " + weapon.verb() + " " + targetActor + " for " + damage + " damage.");
                 targetActor.hurt(damage);
 
@@ -67,6 +79,12 @@ public class SurroundingAttack extends Action{
         return result.toString();
     }
 
+    /**
+     * Describes which actor attacks its surroundings
+     *
+     * @param actor The actor performing the action.
+     * @return a description used for the menu UI
+     */
     @Override
     public String menuDescription(Actor actor) {
         if (actor.hasCapability(Status.SLAM_ATTACK)){

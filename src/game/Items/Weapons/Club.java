@@ -19,10 +19,18 @@ public class Club extends WeaponItem implements WeaponRunes{
         super("Club", '!', 103, "bonks", 80);
     }
 
+    /**
+     *
+     * @return The price at which the Club can be purchased from the Merchant.
+     */
     public int buyPrice(){
         return 600;
     }
 
+    /**
+     *
+     * @return The price at which the Club can be sold to the Merchant
+     */
     public int sellPrice(){
         return 100;
     }

@@ -16,6 +16,5 @@ public enum Status {
     EAST,
     WEST,
     TRADER,
-    PILE_OF_BONES,
     SECOND_LIFE
 }

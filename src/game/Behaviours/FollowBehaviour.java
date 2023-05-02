@@ -15,11 +15,18 @@ import edu.monash.fit2099.engine.actions.MoveActorAction;
  * Created by:
  * @author Riordan D. Alfredo
  * Modified by:
- *
+ * @modifier Kenan Baydar
  */
 public class FollowBehaviour implements Behaviour {
 
+	/**
+	 * The target that the Actor will follow
+	 */
 	private final Actor target;
+
+	/**
+	 * The distance from which the Actor will start following the target
+	 */
 	private static final int MAX_DISTANCE = 2;
 
 	/**
@@ -31,6 +38,13 @@ public class FollowBehaviour implements Behaviour {
 		this.target = subject;
 	}
 
+	/**
+	 * Returns a MoveAction to follow the target if target is within range
+	 *
+	 * @param actor the Actor enacting the behaviour
+	 * @param map the map that actor is currently on
+	 * @return an Action, or null if no MoveAction is possible
+	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		if(!map.contains(target) || !map.contains(actor))

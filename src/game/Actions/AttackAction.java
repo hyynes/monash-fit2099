@@ -13,7 +13,7 @@ import game.Utils.Status;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
- * @modifier Danny Duong
+ * @modifier Danny Duong, Kenan Baydar
  */
 public class AttackAction extends Action{
 
@@ -46,7 +46,9 @@ public class AttackAction extends Action{
 	 * Constructor.
 	 * 
 	 * @param target the Actor to attack
+	 * @param targetsTarget the Actor that is targeted by the target.
 	 * @param direction the direction where the attack should be performed (only used for display purposes)
+	 * @param weapon the weapon use by the Actor that is attacking
 	 */
 	public AttackAction(Actor target, Actor targetsTarget, String direction, Weapon weapon) {
 		this.target = target;
@@ -59,6 +61,7 @@ public class AttackAction extends Action{
 	 * Constructor with intrinsic weapon as default
 	 *
 	 * @param target the actor to attack
+	 * @param targetsTarget the Actor that is targeted by the target.
 	 * @param direction the direction where the attack should be performed (only used for display purposes)
 	 */
 	public AttackAction(Actor target, Actor targetsTarget, String direction) {

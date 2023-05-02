@@ -9,10 +9,11 @@ import game.Actors.FriendlyActors.PlayableCharacter;
 import game.Utils.Status;
 import game.Items.Weapons.WeaponRunes;
 
-// Buy action allows Actor that is nearby to purchase from the merchant. merchant class will use this class.
-// Can check the merchants surrounding, if there is an actor nearby that has the status HOSTILE_TO_ENEMY,
-// allow buyAction.
-// In the merchant class can use the allowableActions method on itself.
+/**Buy action allows Actor that is nearby to purchase from the merchant. merchant class will use this class.
+ * Can check the merchants surrounding, if there is an actor nearby that has the status HOSTILE_TO_ENEMY,
+ * allow buyAction.
+ * In the merchant class can use the allowableActions method on itself.
+ */
 public class BuyAction extends Action implements Trade{
 
     private final WeaponItem weapon;

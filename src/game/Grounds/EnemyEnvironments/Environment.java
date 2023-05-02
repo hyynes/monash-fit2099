@@ -8,13 +8,17 @@ import game.Utils.RandomNumberGenerator;
 /**
  * Abstract class to denote enemy environments.
  * Created by:
- * @author Danny Duong
+ * @author Kenan Baydar
  * Modified by:
- *
+ * @modifier Danny Duong
  */
 public abstract class Environment extends Ground{
 
+    /**
+     * The actor that will be targeted by the enemies that spawn from the environment.
+     */
     protected static Actor target;
+
     /**
      * Constructor.
      *
@@ -25,10 +29,10 @@ public abstract class Environment extends Ground{
     }
 
     /**
-     * Tick function to see if the location can spawn an enemy.
+     * Tick function to see if the location spawns an enemy depending on spawn chance.
+     *
      * @param location The location of the environment
      */
-
     @Override
     public void tick(Location location)
     {
@@ -44,17 +48,18 @@ public abstract class Environment extends Ground{
      * Gets spawn chance of enemy.
      * @return spawn chance of enemy
      */
-
     public abstract int getSpawnChance();
 
     /**
-     * Function to spawn the enemy.
+     * Function to spawn a certain type of enemy depending on type of Environment
+     *
      * @return Enemy to be spawned.
      */
     public abstract Actor spawningEnemy();
 
     /**
-     * Initializes the environment.
+     * Sets the target for the enemies that spawn from the environment
+     *
      * @param actor the player to be targeted.
      * @see Application
      */

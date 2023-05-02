@@ -22,11 +22,19 @@ public class GreatKnife extends WeaponItem implements WeaponRunes{
     public void tick(Location currentLocation, Actor actor) {}
 
 
+    /**
+     *
+     * @return The price at which the GreatKnife can be purchased from the Merchant.
+     */
     @Override
     public int buyPrice() {
         return 3500;
     }
 
+    /**
+     *
+     * @return The price at which the GreatKnife can be sold to the Merchant
+     */
     @Override
     public int sellPrice() {
         return 350;

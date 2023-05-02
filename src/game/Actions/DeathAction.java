@@ -20,6 +20,7 @@ import java.util.List;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
+ * @modifier Kenan Baydar
  *
  */
 public class DeathAction extends Action {
@@ -30,6 +31,12 @@ public class DeathAction extends Action {
         this.attacker = actor;
     }
 
+    /**
+     * Constructor.
+     *
+     * @param actor the actor that is attacking.
+     * @param actorsTarget the targeted enemy of the actor that is being attacked.
+     */
     public DeathAction(Actor actor, Actor actorsTarget){
         this.attacker = actor;
         this.actorsTarget = actorsTarget;
@@ -54,13 +61,15 @@ public class DeathAction extends Action {
         // Instead of dying, Actors that have a second life will turn into a Pile of Bones.
         if (target.hasCapability(Status.SECOND_LIFE)) {
 
+            // remove actor
             map.removeActor(target);
 
             // Transfer all weapons to the Pile of Bones
             List<WeaponItem> allWeapons = new ArrayList<>(target.getWeaponInventory());
 
+            // Replace position with new Pile of Bones Actor
             map.addActor(new PileOfBones(actorsTarget, allWeapons), location);
-            return System.lineSeparator() + target + " has turned into a Pile of Bones!";
+            return System.lineSeparator() + target + " has turned into into a Pile of Bones!";
         }
 
         // drop all items
@@ -83,6 +92,12 @@ public class DeathAction extends Action {
         return result;
     }
 
+    /**
+     * Describes which actor is killed.
+     *
+     * @param actor The actor that dies
+     * @return a description used for the menu UI
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " is killed." + System.lineSeparator();

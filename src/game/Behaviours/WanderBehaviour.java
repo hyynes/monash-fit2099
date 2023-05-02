@@ -9,16 +9,18 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Actions.DespawnAction;
-import game.Utils.Status;
 
 /**
  * Created by:
  * @author Riordan D. Alfredo
  * Modified by:
- *
+ * @modifier Kenan Baydar
  */
 public class WanderBehaviour implements Behaviour {
-	
+
+	/**
+	 * Random number generator
+	 */
 	private final Random random = new Random();
 
 	/**

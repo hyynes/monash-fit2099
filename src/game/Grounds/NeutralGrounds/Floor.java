@@ -9,13 +9,22 @@ import game.Utils.Status;
  * Created by:
  * @author Riordan D. Alfredo
  * Modified by:
- *
+ * @modifier Kenan Baydar
  */
 public class Floor extends Ground {
+
+	/**
+	 * Constructor.
+	 */
 	public Floor() {
 		super('_');
 	}
 
+	/**
+	 * Constructor.
+	 *
+	 * @param actor	The actor that can or cannot enter the floor
+	 */
 	@Override
 	public boolean canActorEnter(Actor actor) {
 		return actor.hasCapability(Status.HOSTILE_TO_ENEMY);
