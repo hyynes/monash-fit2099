@@ -37,12 +37,12 @@ public class PileOfBones extends Enemy{
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        if (turnsAfterDeath > 3) {
+        if (turnsAfterDeath >= 3) {
             Location location = map.locationOf(this);
             map.removeActor(this);
             map.addActor(new HeavySkeletalSwordsman(target), location);
         } else {
-            turnsAfterDeath++;
+            ++turnsAfterDeath;
         }
         return new DoNothingAction();
     }
