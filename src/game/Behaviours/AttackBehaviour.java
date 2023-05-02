@@ -24,10 +24,8 @@ public class AttackBehaviour implements Behaviour {
     }
     // Method that returns the weapon an actor is holding, otherwise returns null
     public Weapon getWeapon(Actor actor) {
-        for (Item weaponItem : actor.getWeaponInventory()) {
-            if (weaponItem instanceof WeaponItem) {
-                return (Weapon) weaponItem;
-            }
+        for (WeaponItem weaponItem : actor.getWeaponInventory()) {
+            return weaponItem;
         }
         return null;
     }

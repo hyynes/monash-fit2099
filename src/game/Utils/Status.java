@@ -7,7 +7,6 @@ package game.Utils;
  */
 public enum Status {
     HOSTILE_TO_ENEMY,
-    TRADER,
     RESPAWNABLE,
     RESTING,
     FRIENDLY_TO_WOLF,
@@ -16,5 +15,6 @@ public enum Status {
     SPECIAL_ATTACK,
     SLAM_ATTACK,
     EAST,
-    WEST
+    WEST,
+    TRADER
 }
