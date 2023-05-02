@@ -10,6 +10,7 @@ import game.Actors.Enemies.Enemy;
 import game.Actors.FriendlyActors.Player;
 import game.Displays.DisplayStrings;
 import game.Actors.Enemies.Skeleton;
+import game.Utils.Status;
 
 /**
  * An Action to attack another Actor.
@@ -95,11 +96,11 @@ public class AttackAction extends Action implements DisplayStrings {
 		}
 		target.hurt(damage);
 		if (!target.isConscious()) {
-			if (target instanceof Enemy) {
-				result += new DeathAction(actor).execute(target, map);
-			}
-			else if (target instanceof Player){
+			if (target.hasCapability(Status.HOSTILE_TO_ENEMY)) {
 				result += new PlayerDeathAction().execute(target, map);
+			}
+			else{
+				result += new DeathAction(actor).execute(target, map);
 			}
 		}
 		return result;

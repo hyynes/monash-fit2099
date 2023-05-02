@@ -13,7 +13,7 @@ import game.Items.Weapons.WeaponRunes;
 // Can check the merchants surrounding, if there is an actor nearby that has the status HOSTILE_TO_ENEMY,
 // allow buyAction.
 // In the merchant class can use the allowableActions method on itself.
-public class BuyAction extends Action{
+public class BuyAction extends Action implements Trade{
 
     private final WeaponItem weapon;
 
@@ -35,7 +35,7 @@ public class BuyAction extends Action{
             if (destination.containsAnActor()){
                 Actor merchantActor = destination.getActor();
                 if (merchantActor.hasCapability(Status.TRADER)) {
-                    if (actor instanceof PlayableCharacter) {
+                    if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
                         if (((PlayableCharacter) actor).removeRunes(((WeaponRunes) weapon).buyPrice())){
                             actor.addWeaponToInventory(weapon);
                             return actor + " purchased " + weapon + " for " + ((WeaponRunes) weapon).buyPrice() + " runes.";
