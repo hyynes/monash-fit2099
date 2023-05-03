@@ -24,6 +24,13 @@ import java.util.List;
 
 public class Merchant extends Actor{
 
+    /**
+     * Constructor. This constructor also adds 4 weapons to the merchant's inventory: a club, a scimitar, a great knife and an uchigatana.
+     * @param name - name of Merchant
+     * @param displayChar - displayCharacter
+     * @param hitPoints - irrelevant; just called from super class
+     *
+     */
     public Merchant(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         this.addCapability(Status.TRADER);
@@ -38,7 +45,13 @@ public class Merchant extends Actor{
         return new DoNothingAction();
     }
 
-    // iterate through all the Merchants inventory.
+    /**
+     * To check if a player is in the merchant's surroundings. If so, allow SellAction and BuyAction.
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return all SellActions and BuyActions
+     */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
 

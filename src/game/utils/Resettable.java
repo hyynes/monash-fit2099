@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
  * Modified by:
  * @modifier Danny Duong
  */
+
 public interface Resettable {
 
     /**
