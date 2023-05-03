@@ -98,7 +98,7 @@ public abstract class Enemy extends Actor implements Resettable {
             if (!weapons.isEmpty()) {
                 // Use equipped weapon
                 for (WeaponItem weapon : weapons) {
-                    actions.add(weapon.getSkill(this));
+                    actions.add(weapon.getSkill(otherActor));
                     actions.add(new AttackAction(this, this.getTarget(), direction, weapon));
                 }
             } else {
