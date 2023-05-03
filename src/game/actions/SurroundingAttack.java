@@ -62,9 +62,6 @@ public class SurroundingAttack extends Action{
 
         StringBuilder result = new StringBuilder(menuDescription(actor));
 
-        // Damage dealt by weapon
-        int damage = weapon.damage();
-
         // Checks if there is an enemy in surroundings, if so, loop through and attack all exits.
         for (Exit exit : map.locationOf(actor).getExits()) {
             Location destination = exit.getDestination();
@@ -74,6 +71,9 @@ public class SurroundingAttack extends Action{
                 if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
                     return result + System.lineSeparator() + actor + " misses " + targetActor + ".";
                 }
+
+                // Damage dealt by weapon
+                int damage = weapon.damage();
 
                 result.append(System.lineSeparator() + actor + " " + weapon.verb() + " " + targetActor + " for " + damage + " damage.");
                 targetActor.hurt(damage);
