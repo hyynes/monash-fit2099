@@ -47,7 +47,7 @@ public class Merchant extends Actor{
 
     /**
      * To check if a player is in the merchant's surroundings. If so, allow SellAction and BuyAction.
-     * @param otherActor the Actor that might be performing attack
+     * @param otherActor the other Actor
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
      * @return all SellActions and BuyActions

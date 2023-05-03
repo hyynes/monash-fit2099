@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.friendly.Player;
 import game.utils.PlayerSpawnPoint;
 import game.utils.ResetManager;
+import game.utils.Status;
 
 /**
  * An action executed for when a player chooses to rest at a Site of Lost Grace.
@@ -26,7 +27,7 @@ public class RestAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         String result;
-        if (actor instanceof Player){
+        if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)){
             PlayerSpawnPoint.getInstance().setSpawnLocation(map.locationOf(actor));
             ResetManager.getInstance().run();
             result = actor + " has rested.";
