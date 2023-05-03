@@ -119,12 +119,11 @@ public class Application {
 
 		PlayerSpawnPoint.getInstance().setSpawnLocation(gameMap.at(38, 10));
 
+		NumberRange yRange = gameMap.getYRange();
 		NumberRange xRange = gameMap.getXRange();
 
 		int xRangeSize = xRange.max() - xRange.min() + 1;
 		int middleX = xRange.min() + xRangeSize / 2;
-
-		NumberRange yRange = gameMap.getYRange();
 
 		// Checks whether the environment is located east or west of the map to determine what type of enemy should spawn.
 		for (int y = 0; y <= yRange.max(); y++) {
