@@ -5,14 +5,17 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.actors.friendly.Merchant;
 import game.actors.friendly.PlayableCharacter;
 import game.utils.Status;
 import game.items.weapons.WeaponRunes;
 
-/**Buy action allows Actor that is nearby to purchase from the merchant. merchant class will use this class.
- * Can check the merchants surrounding, if there is an actor nearby that has the status HOSTILE_TO_ENEMY,
- * allow buyAction.
- * In the merchant class can use the allowableActions method on itself.
+/**
+ * For buying stuff.
+ * Author:
+ * @author Danny Duong
+ * Modifiers:
+ * @modifier Kenan Baydar
  */
 public class BuyAction extends Action implements Trade{
 
@@ -23,10 +26,13 @@ public class BuyAction extends Action implements Trade{
     }
 
     /**
-     *
+     * Buy action allows Actor that is nearby to purchase from the merchant. merchant class will use this class.
+     * Can check the merchants surrounding, if there is an actor nearby that has the status HOSTILE_TO_ENEMY,
+     * allow buyAction.
      * @param actor The actor performing the purchase action.
      * @param map The map the actor is on.
-     * @return
+     * @see Merchant
+     * @return a message whether the weapon is bought or not, or if the player doesn't have enough runes.
      */
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -52,9 +58,9 @@ public class BuyAction extends Action implements Trade{
     }
 
     /**
-     *
+     * Menu description.
      * @param actor The actor performing the purchase action.
-     * @return
+     * @return a menu option describing the weapon being bought and its price.
      */
     @Override
     public String menuDescription(Actor actor) {

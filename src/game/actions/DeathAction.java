@@ -20,8 +20,8 @@ import java.util.List;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
+ * @modifier Danny Duong
  * @modifier Kenan Baydar
- *
  */
 public class DeathAction extends Action {
     private final Actor attacker;

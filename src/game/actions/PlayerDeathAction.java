@@ -9,18 +9,25 @@ import game.displays.FancyMessage;
 import game.items.stackable.Rune;
 import game.utils.ResetManager;
 
+/**
+ * An action executed for when the player death (not to be confused with DeathAction)
+ * Created by:
+ * @author Danny Duong
+ * Modified by:
+ *
+ */
 public class PlayerDeathAction extends Action{
 
     public PlayerDeathAction(Actor actor) {}
 
     /**
-     * When the target is killed, the items & weapons carried by target
-     * will be dropped to the location in the game map where the target was
-     *
+     * Checks if there are any runes on the map existing. If so, remove them.
+     * Sets the player's runes to 0 and puts them on the map.
      * @param target The actor performing the action.
      * @param map The map the actor is on.
      * @return result of the action to be displayed on the UI
      */
+
     @Override
     public String execute(Actor target, GameMap map)
     {
