@@ -17,7 +17,7 @@ import game.items.weapons.WeaponRunes;
  * Modifiers:
  * @modifier Kenan Baydar
  */
-public class BuyAction extends Action implements Trade{
+public class BuyAction extends Action {
 
     private final WeaponItem weapon;
 

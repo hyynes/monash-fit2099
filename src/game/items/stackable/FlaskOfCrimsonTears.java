@@ -9,7 +9,11 @@ package game.items.stackable;
  */
 
 public class FlaskOfCrimsonTears extends StackableItem{
-    // Constructor
+
+    /**
+     * Constructor.
+     *
+     */
     public FlaskOfCrimsonTears(){
         super("Flask of Crimson Tears", '.', false, 2);
     }

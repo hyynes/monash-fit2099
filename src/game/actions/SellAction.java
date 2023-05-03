@@ -19,9 +19,6 @@ import game.items.weapons.WeaponRunes;
  * @modifier Danny Duong
  */
 
-/* Sell action allows Actor that is nearby a merchant to sell their items. In this case the player.
- Could possibly make another class that the player extends called 'PlayableCharacter', where all those players
-have the capability to sell to the merchant, not just the player, to make it easier to extend the assignment. */
 public class SellAction extends Action {
     private final WeaponItem weapon;
 
