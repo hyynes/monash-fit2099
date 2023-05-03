@@ -76,7 +76,6 @@ public abstract class Enemy extends Actor implements Resettable {
                 return action;
             }
         }
-
         return new DoNothingAction();
     }
 
@@ -87,7 +86,7 @@ public abstract class Enemy extends Actor implements Resettable {
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
-     * @return
+     * @return A new action
      */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {

@@ -35,7 +35,7 @@ public class SellAction extends Action {
             if (destination.containsAnActor()){
                 Actor merchantActor = destination.getActor();
                 if (merchantActor.hasCapability(Status.TRADER)) {
-                    if (actor instanceof PlayableCharacter) {
+                    if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
                         if (((PlayableCharacter) actor).addRunes(((WeaponRunes) weapon).sellPrice())){
                             actor.removeWeaponFromInventory(weapon);
                             return actor + " sold " + weapon + " for " + ((WeaponRunes) weapon).sellPrice() + " runes.";

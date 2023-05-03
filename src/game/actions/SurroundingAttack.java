@@ -30,7 +30,9 @@ public class SurroundingAttack extends Action{
     private final Random rand = new Random();
 
     /**
-     * Doesn't necessarily have a target, so only parameter needed is the weapon used.
+     * Constructor.
+     *
+     * @param weapon Weapon used to execute the surrounding attack
      */
     public SurroundingAttack(Weapon weapon) {
         this.weapon = weapon;
