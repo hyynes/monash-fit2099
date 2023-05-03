@@ -24,6 +24,6 @@ public class SkeletalBandit extends Enemy{
         super("Skeletal Bandit", 'b', 184, target);
         this.addCapability(Status.FRIENDLY_TO_SKELETON);
         this.addCapability(Status.SECOND_LIFE);
-        this.addWeaponToInventory(new Scimitar());
+        this.addWeaponToInventory(new Scimitar(target));
     }
 }

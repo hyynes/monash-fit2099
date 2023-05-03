@@ -30,10 +30,20 @@ public class SurroundingAttack extends Action{
     private final Random rand = new Random();
 
     /**
+     * The Actor that is targeted by the target in followBehaviour.
+     */
+    private Actor targetsTarget;
+
+    /**
      * Constructor.
      *
      * @param weapon Weapon used to execute the surrounding attack
      */
+    public SurroundingAttack(Actor targetsTarget,Weapon weapon) {
+        this.targetsTarget = targetsTarget;
+        this.weapon = weapon;
+    }
+
     public SurroundingAttack(Weapon weapon) {
         this.weapon = weapon;
     }
@@ -73,7 +83,7 @@ public class SurroundingAttack extends Action{
                         result.append(new PlayerDeathAction(actor).execute(targetActor, map));;
                     }
                     else{
-                        result.append(new DeathAction(actor).execute(targetActor, map));
+                        result.append(new DeathAction(actor,targetsTarget).execute(targetActor, map));
                     }
                 }
             }

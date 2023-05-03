@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.SurroundingAttack;
+import game.utils.Status;
 
 /**
  * The knife that goes spin.
@@ -16,10 +17,19 @@ import game.actions.SurroundingAttack;
 public class Grossmesser extends WeaponItem implements WeaponRunes{
 
     /**
-     * Constructor.
+     * If carried by an enemy, stores its target actor to follow.
      */
-    public Grossmesser() {
+    private Actor target;
+
+    /**
+     * Constructor.
+     *
+     * @param target The Actor that the enemy is targeting in followBehaviour.
+     */
+    public Grossmesser(Actor target) {
         super("Grossmesser", '?', 115, "Slices", 85);
+        this.target = target;
+        this.addCapability(Status.GROSSMESSER);
     }
 
 
@@ -31,12 +41,16 @@ public class Grossmesser extends WeaponItem implements WeaponRunes{
      */
     @Override
     public Action getSkill(Actor holder){
+        if (target!= null){
+            return new SurroundingAttack(target,this);
+        }
         return new SurroundingAttack(this);
     }
 
     /**
      *
      * @return The price at which the Grossmesser can be purchased from the Merchant
+     * In this case, not available for purchase from Merchant.
      */
     @Override
     public int buyPrice() {

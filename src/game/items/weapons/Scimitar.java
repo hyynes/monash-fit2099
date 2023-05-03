@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.SurroundingAttack;
+import game.utils.Status;
 
 /**
  * The knife that goes spin v2.
@@ -14,6 +15,22 @@ import game.actions.SurroundingAttack;
  */
 
 public class Scimitar extends WeaponItem implements WeaponRunes{
+
+    /**
+     * If carried by an enemy, stores its target actor to follow.
+     */
+    private Actor target;
+
+    /**
+     * Constructor.
+     *
+     * @param target The Actor that the enemy is targeting in followBehaviour.
+     */
+    public Scimitar(Actor target) {
+        super("Scimitar", 's', 118, "Slashes", 88);
+        this.target = target;
+        this.addCapability(Status.SCIMITAR);
+    }
 
     /**
      * Constructor
@@ -30,6 +47,9 @@ public class Scimitar extends WeaponItem implements WeaponRunes{
      */
     @Override
     public Action getSkill(Actor holder){
+        if (target!= null){
+            return new SurroundingAttack(target,this);
+        }
         return new SurroundingAttack(this);
     }
 

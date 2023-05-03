@@ -6,11 +6,11 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.actions.MoveActorAction;
+import game.actors.enemies.Enemy;
 
 /**
  * A class that figures out a MoveAction that will move the actor one step 
  * closer to a target Actor.
- * @see edu.monash.fit2099.demo.mars.Application
  *
  * Created by:
  * @author Riordan D. Alfredo
@@ -33,6 +33,7 @@ public class FollowBehaviour implements Behaviour {
 	 * Constructor.
 	 * 
 	 * @param subject the Actor to follow
+	 * @see Enemy
 	 */
 	public FollowBehaviour(Actor subject) {
 		this.target = subject;

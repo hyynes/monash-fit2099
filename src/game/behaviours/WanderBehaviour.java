@@ -9,12 +9,14 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.DespawnAction;
+import game.actors.enemies.Enemy;
 
 /**
  * Created by:
  * @author Riordan D. Alfredo
  * Modified by:
  * @modifier Kenan Baydar
+ * @see Enemy
  */
 public class WanderBehaviour implements Behaviour {
 

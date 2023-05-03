@@ -12,7 +12,15 @@ import game.actions.SurroundingAttack;
 import game.actors.friendly.FriendlyActors;
 import game.utils.RandomNumberGenerator;
 import game.utils.Status;
+import game.actors.enemies.Enemy;
 
+/**
+ * A class that allows the Actor to attack an enemy if nearby
+ *
+ * Created by:
+ * @author Kenan Baydar
+ * @see Enemy
+ */
 public class AttackBehaviour implements Behaviour {
 
     private final Actor targetsTarget;
@@ -83,7 +91,7 @@ public class AttackBehaviour implements Behaviour {
                     // Checks if the enemy has a slam attack ability with no weapon
                     else if (actor.hasCapability(Status.SLAM_ATTACK)){
                         actions.add(new AttackAction(adjacent, targetsTarget, direction));
-                        actions.add(new SurroundingAttack(actor.getIntrinsicWeapon()));
+                        actions.add(new SurroundingAttack(targetsTarget,actor.getIntrinsicWeapon()));
                     }
                     // Otherwise if actor has no weapon, use intrinsic weapon.
                     else {

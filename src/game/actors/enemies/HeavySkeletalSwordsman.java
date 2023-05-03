@@ -24,6 +24,6 @@ public class HeavySkeletalSwordsman extends Enemy{
         super("Heavy Skeletal Swordsman", 'q', 153, target);
         this.addCapability(Status.FRIENDLY_TO_SKELETON);
         this.addCapability(Status.SECOND_LIFE);
-        this.addWeaponToInventory(new Grossmesser());
+        this.addWeaponToInventory(new Grossmesser(target));
     }
 }

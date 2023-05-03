@@ -36,6 +36,7 @@ public class PileOfBones extends Enemy{
         this.addCapability(Status.FRIENDLY_TO_SKELETON);
         for (WeaponItem weapon : weapons){
             this.addWeaponToInventory(weapon);
+            this.addCapability(weapon.capabilitiesList().get(0));
         }
         this.runeMin = 35;
         this.runeMax = 892;
@@ -55,7 +56,12 @@ public class PileOfBones extends Enemy{
         if (turnsAfterDeath >= 3) {
             Location location = map.locationOf(this);
             map.removeActor(this);
-            map.addActor(new HeavySkeletalSwordsman(target), location);
+            if (this.hasCapability(Status.GROSSMESSER)){
+                map.addActor(new HeavySkeletalSwordsman(target), location);
+            }
+            else if (this.hasCapability(Status.SCIMITAR)){
+                map.addActor(new SkeletalBandit(target), location);
+            }
         } else {
             ++turnsAfterDeath;
         }

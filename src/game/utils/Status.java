@@ -16,5 +16,7 @@ public enum Status {
     EAST,
     WEST,
     TRADER,
-    SECOND_LIFE
+    SECOND_LIFE,
+    GROSSMESSER,
+    SCIMITAR
 }
