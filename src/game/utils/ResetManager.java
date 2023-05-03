@@ -15,6 +15,7 @@ import java.util.List;
  * Modified by:
  * @modifier Danny Duong
  */
+
 public class ResetManager{
     private List<Resettable> resettables;
     private GameMap map;

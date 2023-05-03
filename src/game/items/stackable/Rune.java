@@ -9,6 +9,9 @@ package game.items.stackable;
  */
 public class Rune extends StackableItem{
 
+    /**
+     * Constructor.
+     */
     public Rune(){
         super("Rune",'$',false, 0);
     }

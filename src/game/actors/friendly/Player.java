@@ -54,14 +54,17 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		// displays its health and runes, and updates it every turn.
 		System.out.println(displayStats());
 
+		// if flask has more than one stack, allow HealAction
 		if (flask.getNoOfStacks() > 0) {
 			actions.add(new HealAction());
 		}
 
+		// if player is on site of lost grace, allow rest action
 		if (SiteOfLostGrace.isPlayerInSite){
 			actions.add(new RestAction());
 		}
 
+		// if player is standing on top of rune, allow pick up runes action
 		if (!map.locationOf(this).getItems().isEmpty()){
 			for (int i = 0; i < map.locationOf(this).getItems().size(); i++){
 				if (map.locationOf(this).getItems().get(i) instanceof Rune) {
@@ -76,13 +79,21 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 
 	@Override
 	public void reset(GameMap map){
-		// as to avoid runtime errors*
+		// as to avoid runtime errors
 		if (map.locationOf(this) != PlayerSpawnPoint.getInstance().getSpawnLocation()) {
 			map.moveActor(this, PlayerSpawnPoint.getInstance().getSpawnLocation());
 		}
 		this.resetMaxHp(maxHP);
 		flask.setNoOfStacks(2);
 	}
+
+	/**
+	 * Method to add runes when player defeats enemies.
+	 * @param enemy the enemy that drops the runes
+	 * @param min	the minimum number of runes that can be generated
+	 * @param max	the maximum number of runes that can be generated
+	 * @return a message displaying how many runes the player picked up.
+	 */
 
 	public String enemyDefeatedRunes(Actor enemy, int min, int max){
 		int generatedRunes = RandomNumberGenerator.getRandomInt(min, max);
@@ -103,7 +114,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	}
 
 	/**
-	 * displays the player's stats to a digestible format.
+	 * Displays the player's stats to a digestible format.
 	 * @return the string to be displayed.
 	 * @see Application
 	 */
