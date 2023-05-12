@@ -101,9 +101,6 @@ public abstract class Enemy extends Actor implements Resettable {
                     actions.add(weapon.getSkill(otherActor));
                     actions.add(new AttackAction(this, this.getTarget(), direction, weapon));
                 }
-            } else {
-                // Use intrinsic weapon
-                actions.add(new AttackAction(this, this.getTarget(), direction));
             }
             // If player has no weapon in its inventory, it may only choose to use its intrinsic weapon.
             actions.add(new AttackAction(this, this.getTarget(), direction));

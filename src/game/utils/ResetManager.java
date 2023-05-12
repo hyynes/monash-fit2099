@@ -50,7 +50,7 @@ public class ResetManager{
             for (int y = 0; y <= yRange.max(); y++) {
                 for (int x = 0; x <= xRange.max(); x++) {
                     Actor actor = map.at(x, y).getActor();
-                    if (actor != null && actor instanceof Resettable) {
+                    if (actor instanceof Resettable) {
                         registerResettable((Resettable) actor);
                     }
                 }

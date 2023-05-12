@@ -55,9 +55,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		System.out.println(displayStats());
 
 		// if flask has more than one stack, allow HealAction
-		if (flask.getNoOfStacks() > 0) {
-			actions.add(new HealAction());
-		}
+		actions.add(new HealAction());
 
 		// if player is on site of lost grace, allow rest action
 		if (SiteOfLostGrace.isPlayerInSite){
@@ -123,7 +121,6 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		String stats;
 		stats = name + " (" + this.hitPoints + "/" + this.getMaxHp() + ")";
 		stats += System.lineSeparator() + runes.displayToString();
-		stats += System.lineSeparator() + flask.displayToString();
 		return stats;
 	}
 }

@@ -52,9 +52,8 @@ public class PlayerDeathAction extends Action{
             result += System.lineSeparator() + target + " has dropped " + (runesDropped.getNoOfStacks()) + " runes.";
 
             result += System.lineSeparator() + FancyMessage.YOU_DIED;
-            if (runesDropped.getNoOfStacks() != 0) {
-                map.locationOf(target).addItem(runesDropped);
-            }
+            map.locationOf(target).addItem(runesDropped);
+
             ((Player) target).runes.setNoOfStacks(0);
         }
         ResetManager.getInstance().run();

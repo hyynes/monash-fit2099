@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.enemies.HeavySkeletalSwordsman;
+import game.actors.enemies.LoneWolf;
 import game.actors.friendly.Merchant;
 import game.actors.friendly.Player;
 import game.grounds.neutral.SiteOfLostGrace;
@@ -115,8 +116,6 @@ public class Application {
 		world.addPlayer(merchant, gameMap.at(40, 12));
 		world.addPlayer(player, gameMap.at(36, 10));
 
-		gameMap.at(30, 10).addActor(new HeavySkeletalSwordsman(player));
-
 		PlayerSpawnPoint.getInstance().setSpawnLocation(gameMap.at(38, 10));
 
 		NumberRange yRange = gameMap.getYRange();
@@ -136,6 +135,9 @@ public class Application {
 				}
 			}
 		}
+
+		gameMap.at(30, 9).addActor(new LoneWolf(player));
+		gameMap.at(30, 10).addActor(new HeavySkeletalSwordsman(player));
 
 		world.run();
 	}
