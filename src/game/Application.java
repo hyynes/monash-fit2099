@@ -23,6 +23,7 @@ import game.grounds.environments.GustOfWind;
 import game.grounds.environments.PuddleOfWater;
 import game.items.weapons.Club;
 import game.items.weapons.GreatKnife;
+import game.items.weapons.Grossmesser;
 import game.items.weapons.Uchigatana;
 import game.utils.PlayerSpawnPoint;
 import game.utils.ResetManager;
@@ -90,12 +91,13 @@ public class Application {
 		// Optional req 4 implementation
 		Scanner scanner = new Scanner(System.in);
 		while (player == null) {
-			System.out.println("Choose your class:\ns: Samurai\nb: Bandit\nw: Wretch");
+			System.out.println("Choose your class:\ns: Samurai\nb: Bandit\nw: Wretch\nT: Testing");
 			String classes = scanner.next();
 			player = switch (classes) {
 				case "s" -> new Player("Tarnished", '@', 455, new Uchigatana());
 				case "b" -> new Player("Tarnished", '@', 414, new GreatKnife());
 				case "w" -> new Player("Tarnished", '@', 414, new Club());
+				case "T" -> new Player("Tarnished", '@', 100000, new Grossmesser());
 				default -> {
 					System.out.println("Enter a valid class");
 					yield null;

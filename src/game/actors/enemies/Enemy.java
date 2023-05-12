@@ -8,10 +8,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.AttackAction;
-import game.behaviours.AttackBehaviour;
-import game.behaviours.Behaviour;
-import game.behaviours.FollowBehaviour;
-import game.behaviours.WanderBehaviour;
+import game.behaviours.*;
 import game.utils.Resettable;
 import game.utils.Status;
 
@@ -52,7 +49,8 @@ public abstract class Enemy extends Actor implements Resettable {
     public Enemy(String name, char displayChar, int hitPoints, Actor target) {
         super(name, displayChar, hitPoints);
         this.target = target;
-        this.behaviours.put(998, new WanderBehaviour());
+        this.behaviours.put(999, new WanderBehaviour());
+        this.behaviours.put(998, new DespawnBehaviour());
         this.behaviours.put(997, new AttackBehaviour(getTarget()));
         this.behaviours.put(996, new FollowBehaviour(target));
     }

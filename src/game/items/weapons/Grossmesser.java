@@ -32,6 +32,10 @@ public class Grossmesser extends WeaponItem implements WeaponRunes{
         this.addCapability(Status.GROSSMESSER);
     }
 
+    public Grossmesser() {
+        super("Grossmesser", '?', 115, "Slices", 85);
+    }
+
 
     /**
      * Special Spin Attack Skill

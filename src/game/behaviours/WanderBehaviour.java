@@ -8,7 +8,6 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
-import game.actions.DespawnAction;
 import game.actors.enemies.Enemy;
 
 /**
@@ -36,12 +35,6 @@ public class WanderBehaviour implements Behaviour {
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		ArrayList<Action> actions = new ArrayList<>();
-
-		// 10% Chance of being removed from the game before performing WanderBehaviour
-
-		if (random.nextInt(10) == 0) {
-			return new DespawnAction();
-		}
 
 		for (Exit exit : map.locationOf(actor).getExits()) {
 			Location destination = exit.getDestination();

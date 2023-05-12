@@ -3,10 +3,10 @@ package game.actions;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.behaviours.WanderBehaviour;
+import game.behaviours.DespawnBehaviour;
 
 /**
- * An Action to despawn an Actor by chance.
+ * An Action called when an enemy despawns by chance.
  * Created by:
  * @author Kenan Baydar
  *
@@ -19,7 +19,7 @@ public class DespawnAction extends Action{
      * @param actor The actor being removed from the game
      * @param map The map the actor is on.
      * @return description of the actor being removed for the menu UI
-     * @see WanderBehaviour
+     * @see DespawnBehaviour
      */
     @Override
     public String execute(Actor actor, GameMap map) {

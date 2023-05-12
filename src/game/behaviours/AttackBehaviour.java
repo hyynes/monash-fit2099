@@ -14,6 +14,8 @@ import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 import game.actors.enemies.Enemy;
 
+import java.util.Random;
+
 /**
  * A class that allows the Actor to attack an enemy if nearby
  *
@@ -23,6 +25,14 @@ import game.actors.enemies.Enemy;
  */
 public class AttackBehaviour implements Behaviour {
 
+    /**
+     * Random number generator
+     */
+    private final Random random = new Random();
+
+    /**
+     * The actor's target
+     */
     private final Actor targetsTarget;
 
     /**
@@ -98,12 +108,8 @@ public class AttackBehaviour implements Behaviour {
                         return new AttackAction(adjacent, targetsTarget, direction);
                     }
 
-                    // Randomly choose which attack, 50/50 chance
-                    int randomNumber = RandomNumberGenerator.getRandomInt(100);
-                    if (randomNumber < 50){
-                        return actions.get(0);
-                    }
-                    return actions.get(1);
+                    // Randomly choose which attack
+                    return actions.get(random.nextInt(actions.size()));
                 }
             }
         }
