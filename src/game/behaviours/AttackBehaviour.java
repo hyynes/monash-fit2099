@@ -10,7 +10,6 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.AttackAction;
 import game.actions.SurroundingAttack;
 import game.actors.friendly.FriendlyActors;
-import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 import game.actors.enemies.Enemy;
 
