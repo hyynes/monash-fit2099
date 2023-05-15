@@ -50,6 +50,9 @@ public class FriendlyActors {
         else if (actor.hasCapability(Status.FRIENDLY_TO_SEA) && otherActor.hasCapability(Status.FRIENDLY_TO_SEA)){
             return true;
         }
+        else if (actor.hasCapability(Status.FRIENDLY_TO_CASTLE) && otherActor.hasCapability(Status.FRIENDLY_TO_CASTLE)){
+            return true;
+        }
         else{
             return false;
         }

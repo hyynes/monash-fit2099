@@ -28,12 +28,7 @@ public class SiteOfLostGrace extends Ground {
     public void tick(Location location) {
         if (location.containsAnActor()){
             Actor actor = location.getActor();
-            if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)){
-                isPlayerInSite = true;
-            }
-            else {
-                isPlayerInSite = false;
-            }
+            isPlayerInSite = actor.hasCapability(Status.HOSTILE_TO_ENEMY);
         }
         else {
             isPlayerInSite = false;

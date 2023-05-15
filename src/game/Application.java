@@ -13,14 +13,12 @@ import game.actors.enemies.HeavySkeletalSwordsman;
 import game.actors.enemies.LoneWolf;
 import game.actors.friendly.Merchant;
 import game.actors.friendly.Player;
+import game.grounds.environments.*;
 import game.grounds.neutral.SiteOfLostGrace;
 import game.displays.FancyMessage;
 import game.grounds.neutral.Dirt;
 import game.grounds.neutral.Floor;
 import game.grounds.neutral.Wall;
-import game.grounds.environments.Graveyard;
-import game.grounds.environments.GustOfWind;
-import game.grounds.environments.PuddleOfWater;
 import game.items.weapons.Club;
 import game.items.weapons.GreatKnife;
 import game.items.weapons.Grossmesser;
@@ -46,7 +44,7 @@ public class Application {
 		World world = new World(new Display());
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
-				new Graveyard(), new GustOfWind(), new PuddleOfWater(), new SiteOfLostGrace());
+				new Graveyard(), new GustOfWind(), new PuddleOfWater(), new Cage(), new Barrack(), new SiteOfLostGrace());
 
 		List<String> map = Arrays.asList(
 				"...........................................................................",
@@ -64,8 +62,8 @@ public class Application {
 				"..................................#_______#................................",
 				"...&&.............................###___###........................&&......",
 				"....................................#___#..................................",
-				"...........................................................................",
-				"...........................................................................",
+				"..<<.......................................................................",
+				"....BB.....................................................................",
 				"...........................................................................",
 				"..####__##....................................................######..##...",
 				"..#.....__....................................................#....____....",

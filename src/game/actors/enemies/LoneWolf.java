@@ -30,7 +30,7 @@ public class LoneWolf extends Enemy {
 
     /**
      *
-     * @return The Giant Crayfish's Intrinsic weapon
+     * @return The Lone Wolf's Intrinsic weapon
      */
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
