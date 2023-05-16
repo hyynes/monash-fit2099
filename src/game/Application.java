@@ -9,8 +9,7 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
-import game.actors.enemies.HeavySkeletalSwordsman;
-import game.actors.enemies.LoneWolf;
+import game.actors.enemies.*;
 import game.actors.friendly.Merchant;
 import game.actors.friendly.Player;
 import game.grounds.environments.*;
@@ -136,8 +135,8 @@ public class Application {
 			}
 		}
 
-		gameMap.at(30, 9).addActor(new LoneWolf(player));
-		gameMap.at(30, 10).addActor(new HeavySkeletalSwordsman(player));
+		gameMap.at(30, 9).addActor(new GiantCrab(player));
+		gameMap.at(30, 10).addActor(new GiantCrayfish(player));
 
 		world.run();
 	}

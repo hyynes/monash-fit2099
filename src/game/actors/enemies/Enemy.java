@@ -51,8 +51,8 @@ public abstract class Enemy extends Actor implements Resettable {
         this.target = target;
         this.behaviours.put(999, new WanderBehaviour());
         this.behaviours.put(998, new DespawnBehaviour());
-        this.behaviours.put(997, new AttackBehaviour(getTarget()));
-        this.behaviours.put(996, new FollowBehaviour(target));
+        this.behaviours.put(997, new FollowBehaviour(target));
+        this.behaviours.put(996, new AttackBehaviour(target));
     }
 
     /**
@@ -97,11 +97,11 @@ public abstract class Enemy extends Actor implements Resettable {
                 // Use equipped weapon
                 for (WeaponItem weapon : weapons) {
                     actions.add(weapon.getSkill(otherActor));
-                    actions.add(new AttackAction(this, this.getTarget(), direction, weapon));
+                    actions.add(new AttackAction(this, this.target, direction, weapon));
                 }
             }
             // If player has no weapon in its inventory, it may only choose to use its intrinsic weapon.
-            actions.add(new AttackAction(this, this.getTarget(), direction));
+            actions.add(new AttackAction(this, this.target, direction));
         }
         return actions;
     }
@@ -114,14 +114,6 @@ public abstract class Enemy extends Actor implements Resettable {
     @Override
     public void reset(GameMap map){
         map.removeActor(this);
-    }
-
-    /**
-     *
-     * @return Actor that the enemy will follow
-     */
-    public Actor getTarget() {
-        return target;
     }
 
     /**

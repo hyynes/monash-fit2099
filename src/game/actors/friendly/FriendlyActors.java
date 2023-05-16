@@ -4,6 +4,8 @@ import edu.monash.fit2099.engine.actors.Actor;
 import game.utils.Status;
 import game.behaviours.AttackBehaviour;
 
+import java.util.List;
+
 /**
  * To denote friendly actors.
  * Created by:
@@ -41,20 +43,17 @@ public class FriendlyActors {
      * @see AttackBehaviour
      */
     public boolean statusCheck(){
-        if (actor.hasCapability(Status.FRIENDLY_TO_WOLF) && otherActor.hasCapability(Status.FRIENDLY_TO_WOLF)){
-            return true;
+        List<Status> actorCapabilities = actor.findCapabilitiesByType(Status.class);
+        List<Status> otherActorCapabilities = otherActor.findCapabilitiesByType(Status.class);
+
+        // Loops through all the actors capabilities and checks whether the other actor has the same capability
+        for (Status capabilities : actorCapabilities) {
+            if (capabilities != Status.SLAM_ATTACK) {
+                if (otherActorCapabilities.contains(capabilities)) {
+                    return true;
+                }
+            }
         }
-        else if (actor.hasCapability(Status.FRIENDLY_TO_SKELETON) && otherActor.hasCapability(Status.FRIENDLY_TO_SKELETON)){
-            return true;
-        }
-        else if (actor.hasCapability(Status.FRIENDLY_TO_SEA) && otherActor.hasCapability(Status.FRIENDLY_TO_SEA)){
-            return true;
-        }
-        else if (actor.hasCapability(Status.FRIENDLY_TO_CASTLE) && otherActor.hasCapability(Status.FRIENDLY_TO_CASTLE)){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return false;
     }
 }
