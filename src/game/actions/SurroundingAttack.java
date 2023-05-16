@@ -60,7 +60,7 @@ public class SurroundingAttack extends Action{
     @Override
     public String execute(Actor actor, GameMap map) {
 
-        StringBuilder result = new StringBuilder(menuDescription(actor));
+        String result = menuDescription(actor);
 
         // Checks if there is an enemy in surroundings, if so, loop through and attack all exits.
         for (Exit exit : map.locationOf(actor).getExits()) {
@@ -68,27 +68,10 @@ public class SurroundingAttack extends Action{
             if (destination.containsAnActor()) {
                 Actor targetActor = destination.getActor();
 
-                if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
-                    return result + System.lineSeparator() + actor + " misses " + targetActor + ".";
-                }
-
-                // Damage dealt by weapon
-                int damage = weapon.damage();
-
-                result.append(System.lineSeparator() + actor + " " + weapon.verb() + " " + targetActor + " for " + damage + " damage.");
-                targetActor.hurt(damage);
-
-                if (!targetActor.isConscious()){
-                    if (targetActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                        result.append(new PlayerDeathAction(actor).execute(targetActor, map));;
-                    }
-                    else{
-                        result.append(new DeathAction(actor,targetsTarget).execute(targetActor, map));
-                    }
-                }
+                result += System.lineSeparator() + new AttackAction(targetActor, targetsTarget, exit.getName(), weapon).execute(actor,map);
             }
         }
-        return result.toString();
+        return result;
     }
 
     /**
