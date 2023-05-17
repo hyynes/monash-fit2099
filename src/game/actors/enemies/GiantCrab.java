@@ -25,8 +25,6 @@ public class GiantCrab extends Enemy{
         super("Giant Crab", 'C', 407, target);
         this.addCapability(Status.SLAM_ATTACK);
         this.addCapability(Status.FRIENDLY_TO_SEA);
-        this.runeMin = 318;
-        this.runeMax = 4961;
     }
 
 
@@ -37,5 +35,15 @@ public class GiantCrab extends Enemy{
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(208, "slams", 90);
+    }
+
+    @Override
+    public int getRuneMin() {
+        return 318;
+    }
+
+    @Override
+    public int getRuneMax() {
+        return 4961;
     }
 }

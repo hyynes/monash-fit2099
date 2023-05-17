@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import game.actions.BuyAction;
 import game.actions.DeathAction;
 import game.actions.SellAction;
+import game.items.stackable.EnemyRunes;
 
 /**
  * An interface to signify the player.
@@ -22,11 +23,10 @@ public interface PlayableCharacter {
      * Adds a number of runes to the player's inventory after defeating an enemy.
      *
      * @param enemy the enemy that drops the runes
-     * @param min	the minimum number of runes that can be generated
-     * @param max	the maximum number of runes that can be generated
+     * @param enemyRunes the amount of runes that is dropped by the enemy
      * @see DeathAction
      */
-    String enemyDefeatedRunes(Actor enemy, int min, int max);
+    String enemyDefeatedRunes(Actor enemy, EnemyRunes enemyRunes);
 
     /**
      * Removes a number of runes from the player's inventory.

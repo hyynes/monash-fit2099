@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.AttackAction;
 import game.behaviours.*;
+import game.items.stackable.EnemyRunes;
 import game.utils.Resettable;
 import game.utils.Status;
 
@@ -25,7 +26,7 @@ import java.util.Map;
  * @modifier Danny Duong
  */
 
-public abstract class Enemy extends Actor implements Resettable {
+public abstract class Enemy extends Actor implements Resettable, EnemyRunes {
 
     /**
      * Map object that stores all behaviours.

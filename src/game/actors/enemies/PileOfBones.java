@@ -38,8 +38,6 @@ public class PileOfBones extends Enemy{
             this.addWeaponToInventory(weapon);
             this.addCapability(weapon.capabilitiesList().get(0));
         }
-        this.runeMin = 35;
-        this.runeMax = 892;
     }
 
     /**
@@ -66,5 +64,15 @@ public class PileOfBones extends Enemy{
             ++turnsAfterDeath;
         }
         return new DoNothingAction();
+    }
+
+    @Override
+    public int getRuneMin() {
+        return 35;
+    }
+
+    @Override
+    public int getRuneMax() {
+        return 892;
     }
 }

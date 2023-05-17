@@ -14,8 +14,6 @@ public class Dog extends Enemy{
     public Dog(Actor target) {
         super("Dog", 'a', 104, target);
         this.addCapability(Status.FRIENDLY_TO_CASTLE);
-        this.runeMin = 52;
-        this.runeMax = 1390;
     }
 
     /**
@@ -25,5 +23,15 @@ public class Dog extends Enemy{
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(101, "bites", 93);
+    }
+
+    @Override
+    public int getRuneMin() {
+        return 52;
+    }
+
+    @Override
+    public int getRuneMax() {
+        return 1390;
     }
 }

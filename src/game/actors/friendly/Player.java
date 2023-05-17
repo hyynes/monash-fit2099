@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.*;
 import game.Application;
 import game.grounds.neutral.SiteOfLostGrace;
+import game.items.stackable.EnemyRunes;
 import game.items.stackable.FlaskOfCrimsonTears;
 import game.items.stackable.Rune;
 import game.utils.*;
@@ -93,8 +94,8 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	 * @return a message displaying how many runes the player picked up.
 	 */
 
-	public String enemyDefeatedRunes(Actor enemy, int min, int max){
-		int generatedRunes = RandomNumberGenerator.getRandomInt(min, max);
+	public String enemyDefeatedRunes(Actor enemy, EnemyRunes enemyRunes){
+		int generatedRunes = RandomNumberGenerator.getRandomInt(enemyRunes.getRuneMin(), enemyRunes.getRuneMax());
 		if (runes.addStacks(generatedRunes)){
 			return enemy + " drops " + generatedRunes + " runes";
 		}

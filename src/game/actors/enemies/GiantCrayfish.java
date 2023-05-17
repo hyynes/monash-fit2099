@@ -24,8 +24,6 @@ public class GiantCrayfish extends Enemy{
         super("Giant Crayfish", 'R', 4803, target);
         this.addCapability(Status.SLAM_ATTACK);
         this.addCapability(Status.FRIENDLY_TO_SEA);
-        this.runeMin = 500;
-        this.runeMax = 2374;
     }
 
     /**
@@ -35,5 +33,15 @@ public class GiantCrayfish extends Enemy{
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(527, "uses its Giant Pincer to slam", 100);
+    }
+
+    @Override
+    public int getRuneMin() {
+        return 500;
+    }
+
+    @Override
+    public int getRuneMax() {
+        return 2374;
     }
 }

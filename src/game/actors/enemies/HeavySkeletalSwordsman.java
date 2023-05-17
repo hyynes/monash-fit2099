@@ -26,4 +26,14 @@ public class HeavySkeletalSwordsman extends Enemy{
         this.addCapability(Status.SECOND_LIFE);
         this.addWeaponToInventory(new Grossmesser(target));
     }
+
+    @Override
+    public int getRuneMin() {
+        return 35;
+    }
+
+    @Override
+    public int getRuneMax() {
+        return 892;
+    }
 }

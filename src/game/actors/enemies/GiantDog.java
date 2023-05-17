@@ -24,8 +24,6 @@ public class GiantDog extends Enemy{
         super("Giant Dog", 'G', 693, target);
         this.addCapability(Status.SLAM_ATTACK);
         this.addCapability(Status.FRIENDLY_TO_WOLF);
-        this.runeMin = 313;
-        this.runeMax = 1808;
     }
 
     /**
@@ -35,5 +33,15 @@ public class GiantDog extends Enemy{
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(314, "head slams", 90);
+    }
+
+    @Override
+    public int getRuneMin() {
+        return 313;
+    }
+
+    @Override
+    public int getRuneMax() {
+        return 1808;
     }
 }

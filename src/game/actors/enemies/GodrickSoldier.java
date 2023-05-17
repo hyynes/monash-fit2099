@@ -15,8 +15,15 @@ public class GodrickSoldier extends Enemy {
         super("Godrick Soldier", 'p', 198, target);
         this.addCapability(Status.FRIENDLY_TO_CASTLE);
         this.addWeaponToInventory(new Uchigatana());
-        this.runeMin = 38;
-        this.runeMax = 70;
     }
 
+    @Override
+    public int getRuneMin() {
+        return 38;
+    }
+
+    @Override
+    public int getRuneMax() {
+        return 70;
+    }
 }

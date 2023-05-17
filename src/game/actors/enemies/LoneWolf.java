@@ -24,8 +24,6 @@ public class LoneWolf extends Enemy {
     public LoneWolf(Actor target) {
         super("Lone Wolf", 'h', 102, target);
         this.addCapability(Status.FRIENDLY_TO_WOLF);
-        this.runeMin = 55;
-        this.runeMax = 1470;
     }
 
     /**
@@ -37,4 +35,13 @@ public class LoneWolf extends Enemy {
         return new IntrinsicWeapon(97, "bites", 95);
     }
 
+    @Override
+    public int getRuneMin() {
+        return 55;
+    }
+
+    @Override
+    public int getRuneMax() {
+        return 1470;
+    }
 }

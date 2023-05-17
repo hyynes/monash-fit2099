@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actors.enemies.PileOfBones;
 import game.actors.friendly.PlayableCharacter;
+import game.items.stackable.EnemyRunes;
 import game.utils.Status;
 import game.actors.enemies.Enemy;
 
@@ -85,7 +86,8 @@ public class DeathAction extends Action {
 
         // Player obtains runes from enemy, printed to the screen.
         if (attacker.hasCapability(Status.HOSTILE_TO_ENEMY)){
-            result += System.lineSeparator() + ((PlayableCharacter) attacker).enemyDefeatedRunes(target,(((Enemy) target).runeMin), ((Enemy) target).runeMax);
+            EnemyRunes enemyRunes = (EnemyRunes) target;
+            result += System.lineSeparator() + ((PlayableCharacter) attacker).enemyDefeatedRunes(target, enemyRunes);
         }
 
         result += System.lineSeparator() + menuDescription(target);
