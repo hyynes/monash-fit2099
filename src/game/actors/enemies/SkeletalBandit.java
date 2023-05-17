@@ -27,11 +27,19 @@ public class SkeletalBandit extends Enemy{
         this.addWeaponToInventory(new Scimitar(target));
     }
 
+    /**
+     *
+     * @return minimum number of runes the Skeletal Bandit can generate after being killed.
+     */
     @Override
     public int getRuneMin() {
         return 35;
     }
 
+    /**
+     *
+     * @return maximum number of runes the Skeletal Bandit can generate after being killed.
+     */
     @Override
     public int getRuneMax() {
         return 892;

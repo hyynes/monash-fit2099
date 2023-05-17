@@ -27,7 +27,6 @@ public class GiantCrab extends Enemy{
         this.addCapability(Status.FRIENDLY_TO_SEA);
     }
 
-
     /**
      *
      * @return The Giant Crab's Intrinsic weapon
@@ -37,11 +36,19 @@ public class GiantCrab extends Enemy{
         return new IntrinsicWeapon(208, "slams", 90);
     }
 
+    /**
+     *
+     * @return minimum number of runes the Giant Crab can generate after being killed.
+     */
     @Override
     public int getRuneMin() {
         return 318;
     }
 
+    /**
+     *
+     * @return maximum number of runes the Giant Crab can generate after being killed.
+     */
     @Override
     public int getRuneMax() {
         return 4961;

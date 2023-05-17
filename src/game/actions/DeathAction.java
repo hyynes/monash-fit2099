@@ -11,7 +11,6 @@ import game.actors.enemies.PileOfBones;
 import game.actors.friendly.PlayableCharacter;
 import game.items.stackable.EnemyRunes;
 import game.utils.Status;
-import game.actors.enemies.Enemy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +25,7 @@ import java.util.List;
  */
 public class DeathAction extends Action {
     private final Actor attacker;
-    private Actor actorsTarget;
-
-    public DeathAction(Actor actor) {
-        this.attacker = actor;
-    }
+    private final Actor actorsTarget;
 
     /**
      * Constructor.

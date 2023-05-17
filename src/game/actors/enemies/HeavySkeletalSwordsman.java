@@ -27,11 +27,19 @@ public class HeavySkeletalSwordsman extends Enemy{
         this.addWeaponToInventory(new Grossmesser(target));
     }
 
+    /**
+     *
+     * @return minimum number of runes the Heavy Skeletal Swordsman can generate after being killed.
+     */
     @Override
     public int getRuneMin() {
         return 35;
     }
 
+    /**
+     *
+     * @return maximum number of runes the Heavy Skeletal Swordsman can generate after being killed.
+     */
     @Override
     public int getRuneMax() {
         return 892;

@@ -35,11 +35,19 @@ public class GiantDog extends Enemy{
         return new IntrinsicWeapon(314, "head slams", 90);
     }
 
+    /**
+     *
+     * @return minimum number of runes the Giant Dog can generate after being killed.
+     */
     @Override
     public int getRuneMin() {
         return 313;
     }
 
+    /**
+     *
+     * @return maximum number of runes the Giant Dog can generate after being killed.
+     */
     @Override
     public int getRuneMax() {
         return 1808;

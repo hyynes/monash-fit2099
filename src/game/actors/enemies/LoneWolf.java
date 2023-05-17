@@ -35,11 +35,19 @@ public class LoneWolf extends Enemy {
         return new IntrinsicWeapon(97, "bites", 95);
     }
 
+    /**
+     *
+     * @return minimum number of runes the Lone Wolf can generate after being killed.
+     */
     @Override
     public int getRuneMin() {
         return 55;
     }
 
+    /**
+     *
+     * @return maximum number of runes the Lone Wolf can generate after being killed.
+     */
     @Override
     public int getRuneMax() {
         return 1470;

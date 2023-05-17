@@ -17,11 +17,19 @@ public class GodrickSoldier extends Enemy {
         this.addWeaponToInventory(new Uchigatana());
     }
 
+    /**
+     *
+     * @return minimum number of runes the Godrick Soldier can generate after being killed.
+     */
     @Override
     public int getRuneMin() {
         return 38;
     }
 
+    /**
+     *
+     * @return maximum number of runes the Godrick Soldier can generate after being killed.
+     */
     @Override
     public int getRuneMax() {
         return 70;

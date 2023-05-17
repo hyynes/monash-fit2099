@@ -35,11 +35,19 @@ public class GiantCrayfish extends Enemy{
         return new IntrinsicWeapon(527, "uses its Giant Pincer to slam", 100);
     }
 
+    /**
+     *
+     * @return minimum number of runes the Giant Crayfish can generate after being killed.
+     */
     @Override
     public int getRuneMin() {
         return 500;
     }
 
+    /**
+     *
+     * @return maximum number of runes the Giant Crayfish can generate after being killed.
+     */
     @Override
     public int getRuneMax() {
         return 2374;

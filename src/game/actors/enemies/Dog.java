@@ -25,11 +25,19 @@ public class Dog extends Enemy{
         return new IntrinsicWeapon(101, "bites", 93);
     }
 
+    /**
+     *
+     * @return minimum number of runes the Dog can generate after being killed.
+     */
     @Override
     public int getRuneMin() {
         return 52;
     }
 
+    /**
+     *
+     * @return maximum number of runes the Dog can generate after being killed.
+     */
     @Override
     public int getRuneMax() {
         return 1390;
