@@ -12,12 +12,13 @@ import game.actors.friendly.Merchant;
 import game.actors.friendly.Player;
 import game.grounds.environments.*;
 import game.displays.FancyMessage;
+import game.grounds.neutral.GoldenFogDoor;
 import game.items.weapons.Club;
 import game.items.weapons.GreatKnife;
 import game.items.weapons.Grossmesser;
 import game.items.weapons.Uchigatana;
 import game.actors.friendly.PlayerSpawnPoint;
-import game.utils.DifferentMaps;
+import game.maps.*;
 import game.utils.ResetManager;
 import game.utils.Status;
 
@@ -33,17 +34,16 @@ public class Application {
 
 	public static void main(String[] args) {
 
-		DifferentMaps differentMaps = new DifferentMaps();
-
 		Player player = null;
 
 		World world = new World(new Display());
 
 		// Initialise all gameMaps that will be added into the game.
-		GameMap limgrave = differentMaps.Limgrave();
-		GameMap stormveilCastle = differentMaps.StormveilCastle();
-		GameMap bossRoom = differentMaps.BossRoom();
-		GameMap roundTableHold = differentMaps.RoundTableHold();
+
+		GameMap limgrave = new Limgrave().map();
+		GameMap stormveilCastle = new StormveilCastle().map();
+		GameMap bossRoom = new BossRoom().map();
+		GameMap roundTableHold = new RoundTableHold().map();
 
 		// Add all gameMaps into an arrayList.
 		ArrayList<GameMap> gameMaps = new ArrayList<>();
@@ -75,6 +75,16 @@ public class Application {
 				}
 			}
 		}
+
+		limgrave.at(22,19).setGround(new GoldenFogDoor(roundTableHold, RoundTableHold.displayToString()));
+		limgrave.at(4,7).setGround(new GoldenFogDoor(stormveilCastle,  StormveilCastle.displayToString()));
+
+		stormveilCastle.at(2,6).setGround(new GoldenFogDoor(limgrave, Limgrave.displayToString()));
+		stormveilCastle.at(21,12).setGround(new GoldenFogDoor(bossRoom, BossRoom.displayToString()));
+
+		roundTableHold.at(5,5).setGround(new GoldenFogDoor(limgrave, Limgrave.displayToString()));
+
+
 
 		// BEHOLD, ELDEN RING
 		for (String line : FancyMessage.ELDEN_RING.split("\n")) {
@@ -119,14 +129,14 @@ public class Application {
 		world.addPlayer(merchant, limgrave.at(40, 12));
 		world.addPlayer(player, limgrave.at(36, 10));
 
-		PlayerSpawnPoint.getInstance().setSpawnLocation(limgrave.at(36, 10));
-
+		PlayerSpawnPoint.getInstance().setSpawnLocation(stormveilCastle.at(36, 10));
 
 		limgrave.at(30, 9).addActor(new GiantCrab(player));
 		limgrave.at(30, 10).addActor(new GiantCrayfish(player));
 
 		world.run();
 	}
+
 }
 
 
