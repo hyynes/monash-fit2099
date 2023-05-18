@@ -96,7 +96,7 @@ public class AttackAction extends Action{
 
 		if (!target.isConscious()) {
 			if (target.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-				result += new PlayerDeathAction(actor).execute(target, map);
+				result += new PlayerDeathAction().execute(target, map);
 			}
 			else{
 				result += new DeathAction(actor, targetsTarget).execute(target, map);

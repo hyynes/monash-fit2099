@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.*;
 import game.Application;
@@ -29,6 +30,8 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	private final Menu menu = new Menu();
 	public Rune runes = new Rune();
 	public FlaskOfCrimsonTears flask = new FlaskOfCrimsonTears();
+
+	private Location lastLocation;
 
 	/**
 	 * Constructor.
@@ -72,6 +75,8 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 			}
 		}
 
+		lastLocation = map.locationOf(this);
+
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
 	}
@@ -89,8 +94,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	/**
 	 * Method to add runes when player defeats enemies.
 	 * @param enemy the enemy that drops the runes
-	 * @param min	the minimum number of runes that can be generated
-	 * @param max	the maximum number of runes that can be generated
+	 * @param enemyRunes the amount of runes the enemy can drop
 	 * @return a message displaying how many runes the player picked up.
 	 */
 
@@ -123,5 +127,9 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		stats = name + " (" + this.hitPoints + "/" + this.getMaxHp() + ")";
 		stats += System.lineSeparator() + runes.displayToString();
 		return stats;
+	}
+
+	public Location getLastLocation(){
+		return lastLocation;
 	}
 }
