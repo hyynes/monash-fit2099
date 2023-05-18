@@ -116,15 +116,4 @@ public abstract class Enemy extends Actor implements Resettable, EnemyRunes {
     public void reset(GameMap map){
         map.removeActor(this);
     }
-
-    /**
-     * Maximum number of runes that can be obtained from an enemy
-     */
-    public int runeMax;
-
-    /**
-     * Minimum number of runes that can be obtained from an enemy
-     */
-    public int runeMin;
-
 }

@@ -13,11 +13,8 @@ import game.actors.enemies.*;
 import game.actors.friendly.Merchant;
 import game.actors.friendly.Player;
 import game.grounds.environments.*;
-import game.grounds.neutral.SiteOfLostGrace;
+import game.grounds.neutral.*;
 import game.displays.FancyMessage;
-import game.grounds.neutral.Dirt;
-import game.grounds.neutral.Floor;
-import game.grounds.neutral.Wall;
 import game.items.weapons.Club;
 import game.items.weapons.GreatKnife;
 import game.items.weapons.Grossmesser;
@@ -43,7 +40,8 @@ public class Application {
 		World world = new World(new Display());
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
-				new Graveyard(), new GustOfWind(), new PuddleOfWater(), new Cage(), new Barrack(), new SiteOfLostGrace());
+				new Graveyard(), new GustOfWind(), new PuddleOfWater(), new Cage(), new Barrack(), new SiteOfLostGrace(),
+				new Cliff());
 
 		List<String> map = Arrays.asList(
 				"...........................................................................",
@@ -58,9 +56,9 @@ public class Application {
 				"..................................###___###................................",
 				"..................................______U_#................................",
 				"..................................#________................................",
-				"..................................#_______#................................",
-				"...&&.............................###___###........................&&......",
-				"....................................#___#..................................",
+				".............................+....#_______#................................",
+				"...&&........................+....###___###........................&&......",
+				".............................+......#___#..................................",
 				"..<<.......................................................................",
 				"....BB.....................................................................",
 				"...........................................................................",
@@ -108,14 +106,14 @@ public class Application {
 		Graveyard.setTarget(player);
 		GustOfWind.setTarget(player);
 		PuddleOfWater.setTarget(player);
-
-		// HINT: what does it mean to prefer composition to inheritance?
+		Cage.setTarget(player);
+		Barrack.setTarget(player);
 
 		// initialise merchant and player locations
 		world.addPlayer(merchant, gameMap.at(40, 12));
 		world.addPlayer(player, gameMap.at(36, 10));
 
-		PlayerSpawnPoint.getInstance().setSpawnLocation(gameMap.at(38, 10));
+		PlayerSpawnPoint.getInstance().setSpawnLocation(gameMap.at(36, 10));
 
 		NumberRange yRange = gameMap.getYRange();
 		NumberRange xRange = gameMap.getXRange();

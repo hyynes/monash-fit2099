@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 public class ResetManager{
-    private List<Resettable> resettables;
+    private final List<Resettable> resettables;
     private GameMap map;
 
     private ResetManager() {
@@ -27,7 +27,7 @@ public class ResetManager{
 
     /**
      * Instance setter.
-     * @return the singleton instance of ResetManager.
+     * @return the singleton instance of ResetManger.
      */
 
     public static ResetManager getInstance(){
@@ -43,28 +43,29 @@ public class ResetManager{
      */
     public void run() {
 
-        if (map != null) {
-            NumberRange xRange = map.getXRange();
-            NumberRange yRange = map.getYRange();
+        NumberRange xRange = map.getXRange();
+        NumberRange yRange = map.getYRange();
 
-            for (int y = 0; y <= yRange.max(); y++) {
-                for (int x = 0; x <= xRange.max(); x++) {
-                    Actor actor = map.at(x, y).getActor();
-                    if (actor instanceof Resettable) {
-                        registerResettable((Resettable) actor);
-                    }
+        List<Resettable> resettablesToRemove = new ArrayList<>();
+
+        for (int y = 0; y <= yRange.max(); y++) {
+            for (int x = 0; x <= xRange.max(); x++) {
+                Actor actor = map.at(x, y).getActor();
+                if (actor instanceof Resettable) {
+                    registerResettable((Resettable) actor);
                 }
             }
-
-            for (int i = 0; i < resettables.size(); i++) {
-                resettables.get(i).reset(map);
-                removeResettable(resettables.get(i));
-            }
-
         }
-        else {
-            System.out.println("Something went wrong!");
+
+        for (Resettable resettable : resettables) {
+            resettable.reset(map);
+            resettablesToRemove.add(resettable);
         }
+
+        for (Resettable resettable : resettablesToRemove){
+            removeResettable(resettable);
+        }
+
     }
 
     /**
