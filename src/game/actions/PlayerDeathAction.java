@@ -62,7 +62,7 @@ public class PlayerDeathAction extends Action{
         // Back to 0 runes
         player.getRunes().setNoOfStacks(0);
 
-        ResetManager.getInstance().run();
+        ResetManager.getInstance(map).run();
 
         return result;
     }

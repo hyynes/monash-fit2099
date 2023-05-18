@@ -28,10 +28,11 @@ public class ResetManager{
      * Instance setter.
      * @return the singleton instance of ResetManger.
      */
-    public static ResetManager getInstance(){
+    public static ResetManager getInstance(GameMap map){
         if (instance == null){
             instance = new ResetManager();
         }
+        instance.map = map;
         return instance;
     }
 

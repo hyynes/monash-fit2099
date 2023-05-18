@@ -1,11 +1,9 @@
 package game;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
@@ -13,13 +11,13 @@ import game.actors.enemies.*;
 import game.actors.friendly.Merchant;
 import game.actors.friendly.Player;
 import game.grounds.environments.*;
-import game.grounds.neutral.*;
 import game.displays.FancyMessage;
 import game.items.weapons.Club;
 import game.items.weapons.GreatKnife;
 import game.items.weapons.Grossmesser;
 import game.items.weapons.Uchigatana;
 import game.actors.friendly.PlayerSpawnPoint;
+import game.utils.DifferentMaps;
 import game.utils.ResetManager;
 import game.utils.Status;
 
@@ -35,43 +33,48 @@ public class Application {
 
 	public static void main(String[] args) {
 
+		DifferentMaps differentMaps = new DifferentMaps();
+
 		Player player = null;
 
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
-				new Graveyard(), new GustOfWind(), new PuddleOfWater(), new Cage(), new Barrack(), new SiteOfLostGrace(),
-				new Cliff());
+		// Initialise all gameMaps that will be added into the game.
+		GameMap limgrave = differentMaps.Limgrave();
+		GameMap stormveilCastle = differentMaps.StormveilCastle();
+		GameMap bossRoom = differentMaps.BossRoom();
+		GameMap roundTableHold = differentMaps.RoundTableHold();
 
-		List<String> map = Arrays.asList(
-				"...........................................................................",
-				"......................#####....######......................................",
-				"......................#..___....____#......................................",
-				"......~~~.........................__#...........................~~~........",
-				"......~~~.............._____........#...........................~~~........",
-				"......................#............_#......................................",
-				"......................#...........###......................................",
-				"...........................................................................",
-				"...........................................................................",
-				"..................................###___###................................",
-				"..................................______U_#................................",
-				"..................................#________................................",
-				".............................+....#_______#................................",
-				"...&&........................+....###___###........................&&......",
-				".............................+......#___#..................................",
-				"..<<.......................................................................",
-				"....BB.....................................................................",
-				"...........................................................................",
-				"..####__##....................................................######..##...",
-				"..#.....__....................................................#....____....",
-				"..#___..........................................................__.....#...",
-				"..####__###..................................................._.....__.#...",
-				"...........nn.......................................nn........###..__###...",
-				"...........................................................................");
-		GameMap gameMap = new GameMap(groundFactory, map);
+		// Add all gameMaps into an arrayList.
+		ArrayList<GameMap> gameMaps = new ArrayList<>();
+		gameMaps.add(limgrave);
+		gameMaps.add(stormveilCastle);
+		gameMaps.add(bossRoom);
+		gameMaps.add(roundTableHold);
 
-		world.addGameMap(gameMap);
-		ResetManager.getInstance().setMap(gameMap);
+		// Loop through all gameMaps in the arrayList and add them into the world.
+		for (GameMap gameMap : gameMaps) {
+			world.addGameMap(gameMap);
+			ResetManager.getInstance(gameMap).setMap(gameMap);
+
+			NumberRange yRange = gameMap.getYRange();
+			NumberRange xRange = gameMap.getXRange();
+
+			int xRangeSize = xRange.max() - xRange.min() + 1;
+			int middleX = xRange.min() + xRangeSize / 2;
+
+			// Checks whether the environment is located east or west of the map to determine what type of enemy should spawn.
+			for (int y = 0; y <= yRange.max(); y++) {
+				for (int x = 0; x <= xRange.max(); x++) {
+					if (x <= middleX){
+						gameMap.at(x, y).getGround().addCapability(Status.WEST);
+					}
+					else {
+						gameMap.at(x, y).getGround().addCapability(Status.EAST);
+					}
+				}
+			}
+		}
 
 		// BEHOLD, ELDEN RING
 		for (String line : FancyMessage.ELDEN_RING.split("\n")) {
@@ -100,6 +103,8 @@ public class Application {
 			};
 		}
 
+		//gameMap.at(23,25).setGround(GoldenFogDoor(Limgrave));
+
 		Merchant merchant = new Merchant("Merchant Kale", 'K', 100);
 
 		// Setting the target for the enemies spawned from the environments to Tarnished.
@@ -109,32 +114,16 @@ public class Application {
 		Cage.setTarget(player);
 		Barrack.setTarget(player);
 
+
 		// initialise merchant and player locations
-		world.addPlayer(merchant, gameMap.at(40, 12));
-		world.addPlayer(player, gameMap.at(36, 10));
+		world.addPlayer(merchant, limgrave.at(40, 12));
+		world.addPlayer(player, limgrave.at(36, 10));
 
-		PlayerSpawnPoint.getInstance().setSpawnLocation(gameMap.at(36, 10));
+		PlayerSpawnPoint.getInstance().setSpawnLocation(limgrave.at(36, 10));
 
-		NumberRange yRange = gameMap.getYRange();
-		NumberRange xRange = gameMap.getXRange();
 
-		int xRangeSize = xRange.max() - xRange.min() + 1;
-		int middleX = xRange.min() + xRangeSize / 2;
-
-		// Checks whether the environment is located east or west of the map to determine what type of enemy should spawn.
-		for (int y = 0; y <= yRange.max(); y++) {
-			for (int x = 0; x <= xRange.max(); x++) {
-				if (x <= middleX){
-					gameMap.at(x, y).getGround().addCapability(Status.WEST);
-				}
-				else {
-					gameMap.at(x, y).getGround().addCapability(Status.EAST);
-				}
-			}
-		}
-
-		gameMap.at(30, 9).addActor(new GiantCrab(player));
-		gameMap.at(30, 10).addActor(new GiantCrayfish(player));
+		limgrave.at(30, 9).addActor(new GiantCrab(player));
+		limgrave.at(30, 10).addActor(new GiantCrayfish(player));
 
 		world.run();
 	}
