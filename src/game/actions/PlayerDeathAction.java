@@ -10,7 +10,7 @@ import game.items.stackable.Rune;
 import game.utils.ResetManager;
 
 /**
- * An action executed for when the player death (not to be confused with DeathAction)
+ * An action executed for when the player dies (not to be confused with DeathAction)
  * Created by:
  * @author Danny Duong
  * Modified by:
@@ -18,7 +18,7 @@ import game.utils.ResetManager;
  */
 public class PlayerDeathAction extends Action{
 
-    Rune runesDropped = new Rune();
+    private final Rune runesDropped = new Rune();
 
     public PlayerDeathAction() {}
 

@@ -68,7 +68,7 @@ public class SurroundingAttack extends Action{
             if (destination.containsAnActor()) {
                 Actor targetActor = destination.getActor();
 
-                result += System.lineSeparator() + new AttackAction(targetActor, targetsTarget, exit.getName(), weapon).execute(actor,map);
+                result += System.lineSeparator() + new AttackAction(targetActor, targetsTarget, exit.getName(), weapon).execute(actor, map);
             }
         }
         return result;

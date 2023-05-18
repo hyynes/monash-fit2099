@@ -123,8 +123,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 
 	public String displayStats(){
 		String stats;
-		stats = name + " (" + this.hitPoints + "/" + this.getMaxHp() + ")";
-		stats += System.lineSeparator() + runes.displayToString();
+		stats = name + " " + printHp() + ", " + runes.displayToString();
 		return stats;
 	}
 

@@ -19,7 +19,6 @@ import java.util.List;
 public class ResetManager{
     private final List<Resettable> resettables;
     private GameMap map;
-
     private ResetManager() {
         this.resettables = new ArrayList<>();
     }
@@ -29,14 +28,12 @@ public class ResetManager{
      * Instance setter.
      * @return the singleton instance of ResetManger.
      */
-
     public static ResetManager getInstance(){
         if (instance == null){
             instance = new ResetManager();
         }
         return instance;
     }
-
 
     /**
      * Loops through all resettable actors and calls the reset function.
@@ -57,6 +54,7 @@ public class ResetManager{
             }
         }
 
+        // removes all enemies from the game map
         for (Resettable resettable : resettables) {
             resettable.reset(map);
             resettablesToRemove.add(resettable);

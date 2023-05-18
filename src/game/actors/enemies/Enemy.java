@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.AttackAction;
+import game.actions.DespawnAction;
 import game.behaviours.*;
 import game.items.stackable.EnemyRunes;
 import game.utils.Resettable;
@@ -114,6 +115,6 @@ public abstract class Enemy extends Actor implements Resettable, EnemyRunes {
      */
     @Override
     public void reset(GameMap map){
-        map.removeActor(this);
+        new DespawnAction().execute(this, map);
     }
 }
