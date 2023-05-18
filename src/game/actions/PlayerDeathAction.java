@@ -8,16 +8,17 @@ import game.actors.friendly.Player;
 import game.displays.FancyMessage;
 import game.items.stackable.Rune;
 import game.utils.ResetManager;
-import game.utils.Status;
 
 /**
  * An action executed for when the player death (not to be confused with DeathAction)
  * Created by:
  * @author Danny Duong
  * Modified by:
- *
+ * @modifier Kenan Baydar
  */
 public class PlayerDeathAction extends Action{
+
+    Rune runesDropped = new Rune();
 
     public PlayerDeathAction() {}
 
@@ -33,7 +34,6 @@ public class PlayerDeathAction extends Action{
     public String execute(Actor target, GameMap map)
     {
         String result = "";
-        Rune runesDropped = new Rune();
         Player player = (Player) target;
 
         NumberRange xRange = map.getXRange();
@@ -43,7 +43,7 @@ public class PlayerDeathAction extends Action{
         for (int y = 0; y <= yRange.max(); y++) {
             for (int x = 0; x <= xRange.max(); x++) {
                 for (int i = 0; i < map.at(x,y).getItems().size(); i++){
-                    if (map.at(x,y).getItems().get(i) instanceof Rune) {
+                    if (map.at(x,y).getItems().get(i).getDisplayChar() == '$') {
                        map.at(x,y).removeItem(map.at(x,y).getItems().get(i));
                     }
                 }
@@ -51,8 +51,8 @@ public class PlayerDeathAction extends Action{
         }
 
         // calculates how many runes the player has to drop
-        runesDropped.setNoOfStacks(player.runes.getNoOfStacks());
-        result += System.lineSeparator() + target + " has dropped " + runesDropped.getNoOfStacks() + " runes.";
+        runesDropped.setNoOfStacks(player.getRunes().getNoOfStacks());
+        result += System.lineSeparator() + menuDescription(player);
 
         result += System.lineSeparator() + FancyMessage.YOU_DIED;
 
@@ -60,16 +60,21 @@ public class PlayerDeathAction extends Action{
         player.getLastLocation().addItem(runesDropped);
 
         // Back to 0 runes
-        player.runes.setNoOfStacks(0);
+        player.getRunes().setNoOfStacks(0);
 
         ResetManager.getInstance().run();
         player.reset(map);
         return result;
     }
 
-    // this method is never used
+    /**
+     * Describes how many runes the actor drops
+     *
+     * @param actor The actor that dies
+     * @return a description used for the menu UI
+     */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " is killed." + System.lineSeparator();
+        return actor + " has dropped " + runesDropped.getNoOfStacks() + " runes.";
     }
 }

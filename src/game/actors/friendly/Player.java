@@ -26,11 +26,10 @@ import game.utils.*;
  */
 public class Player extends Actor implements Resettable, PlayableCharacter {
 
-	private int maxHP;
+	private final int maxHP;
 	private final Menu menu = new Menu();
-	public Rune runes = new Rune();
+	private final Rune runes = new Rune();
 	public FlaskOfCrimsonTears flask = new FlaskOfCrimsonTears();
-
 	private Location lastLocation;
 
 	/**
@@ -131,5 +130,9 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 
 	public Location getLastLocation(){
 		return lastLocation;
+	}
+
+	public Rune getRunes(){
+		return runes;
 	}
 }

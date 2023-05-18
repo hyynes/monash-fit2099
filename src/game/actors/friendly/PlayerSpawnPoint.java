@@ -1,4 +1,4 @@
-package game.utils;
+package game.actors.friendly;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Application;
 

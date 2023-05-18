@@ -22,7 +22,7 @@ import game.items.weapons.Club;
 import game.items.weapons.GreatKnife;
 import game.items.weapons.Grossmesser;
 import game.items.weapons.Uchigatana;
-import game.utils.PlayerSpawnPoint;
+import game.actors.friendly.PlayerSpawnPoint;
 import game.utils.ResetManager;
 import game.utils.Status;
 
