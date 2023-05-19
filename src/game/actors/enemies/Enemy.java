@@ -57,6 +57,28 @@ public abstract class Enemy extends Actor implements Resettable, EnemyRunes {
         this.behaviours.put(996, new AttackBehaviour(target));
     }
 
+    /**
+     * At each turn, select a valid action to perform.
+     *
+     * @param actions    collection of possible actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the valid action that can be performed in that iteration or null if no valid action is found
+     */
+    @Override
+    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+
+        // General playTurn step for all regular enemies
+        for (Behaviour behaviour : behaviours.values()) {
+            Action action = behaviour.getAction(this, map);
+            if (action != null) {
+                return action;
+            }
+        }
+        return new DoNothingAction();
+    }
+
 
     /**
      * The enemies can be attacked by any actor that has the HOSTILE_TO_ENEMY capability

@@ -1,16 +1,14 @@
 package game.actors.enemies.boss;
-import edu.monash.fit2099.engine.actions.Action;
-import edu.monash.fit2099.engine.actions.ActionList;
-import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.enemies.Enemy;
-import game.behaviours.Behaviour;
 
 public abstract class BossEnemy extends Enemy {
 
+    /**
+     * Original location of the boss.
+     */
     private Location originalLocation;
 
     /**
@@ -26,21 +24,8 @@ public abstract class BossEnemy extends Enemy {
         this.behaviours.remove(998);
     }
 
-    @Override
-    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-
-        // General playTurn step for all enemies
-        for (Behaviour behaviour : behaviours.values()) {
-            Action action = behaviour.getAction(this, map);
-            if (action != null) {
-                return action;
-            }
-        }
-        return new DoNothingAction();
-    }
-
     /**
-     * Resets the enemies
+     * Moves the enemy boss back to its original position after reset
      *
      * @param map - the map that the actors are in.
      */
@@ -49,6 +34,9 @@ public abstract class BossEnemy extends Enemy {
         map.moveActor(this, originalLocation);
     }
 
+    /**
+     * Setter for the original position of the boss.
+     */
     public void setOriginalLocation(Location originalLocation){
         this.originalLocation = originalLocation;
     }

@@ -13,17 +13,18 @@ import game.items.weapons.GraftedDragon;
 public class GodrickTheGrafted extends BossEnemy {
 
     /**
-     *
      * Axe of Godrick weapon used by Godrick the Grafted during his first phase.
      */
     WeaponItem axeOfGodrick = new AxeOfGodrick();
 
     /**
-     *
      * Grafted Dragon weapon used by Godrick the Grafted during his second phase.
      */
     WeaponItem graftedDragon = new GraftedDragon();
 
+    /**
+     * Toggle for second phase of the boss.
+     */
     private boolean toggle = true;
 
     /**
@@ -37,6 +38,16 @@ public class GodrickTheGrafted extends BossEnemy {
         this.addWeaponToInventory(axeOfGodrick);
     }
 
+    /**
+     * At each turn, select a valid action to perform.
+     * Enters a new phase after losing 50% health.
+     *
+     * @param actions    collection of possible actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the valid action that can be performed in that iteration or null if no valid action is found
+     */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
@@ -55,7 +66,6 @@ public class GodrickTheGrafted extends BossEnemy {
                 return action;
             }
         }
-
         return new DoNothingAction();
     }
 
