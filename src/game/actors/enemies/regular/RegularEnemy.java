@@ -36,7 +36,7 @@ public abstract class RegularEnemy extends Enemy {
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
-        // General playTurn step for all enemies
+        // General playTurn step for all regular enemies
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
             if (action != null) {

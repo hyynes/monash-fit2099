@@ -39,7 +39,7 @@ public class SurroundingAttack extends Action{
      *
      * @param weapon Weapon used to execute the surrounding attack
      */
-    public SurroundingAttack(Actor targetsTarget,Weapon weapon) {
+    public SurroundingAttack(Actor targetsTarget, Weapon weapon) {
         this.targetsTarget = targetsTarget;
         this.weapon = weapon;
     }

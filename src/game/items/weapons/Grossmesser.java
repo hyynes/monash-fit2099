@@ -13,7 +13,6 @@ import game.utils.Status;
  * @author Kenan Baydar
  *
  */
-
 public class Grossmesser extends WeaponItem implements WeaponRunes{
 
     /**

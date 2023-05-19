@@ -18,10 +18,6 @@ public class GreatKnife extends WeaponItem implements WeaponRunes{
         super("Great Knife", '/', 75, "stabs", 70);
     }
 
-    @Override
-    public void tick(Location currentLocation, Actor actor) {}
-
-
     /**
      *
      * @return The price at which the GreatKnife can be purchased from the Merchant.

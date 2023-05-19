@@ -1,38 +1,67 @@
 package game.actors.enemies.boss;
-
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.behaviours.Behaviour;
+import game.items.weapons.AxeOfGodrick;
+import game.items.weapons.GraftedDragon;
 
 public class GodrickTheGrafted extends BossEnemy {
 
     /**
+     *
+     * Axe of Godrick weapon used by Godrick the Grafted during his first phase.
+     */
+    WeaponItem axeOfGodrick = new AxeOfGodrick();
+
+    /**
+     *
+     * Grafted Dragon weapon used by Godrick the Grafted during his second phase.
+     */
+    WeaponItem graftedDragon = new GraftedDragon();
+
+    private boolean toggle = true;
+
+    /**
      * Constructor.
      *
-     * @param target Actor the Giant Dog will follow.
+     * @param target Actor Godrick the Grafted will follow.
      */
     public GodrickTheGrafted(Actor target) {
         super("Godrick The Grafted", 'Y', 6080, target);
+        axeOfGodrick.togglePortability();
+        this.addWeaponToInventory(axeOfGodrick);
     }
 
-    /**
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        if (this.hitPoints <= maxHitPoints/2){
-            //removeWeaponFromInventory();
-            //addWeaponToInventory();
-            return null;
-        }
-        return null;
 
+        // Enters second phase after having less than 50% health
+        if (this.hitPoints <= maxHitPoints/2 && toggle){
+            removeWeaponFromInventory(axeOfGodrick);
+            graftedDragon.togglePortability();
+            addWeaponToInventory(graftedDragon);
+            toggle = false;
+        }
+
+        // General behaviours for enemies excluding the chance to despawn.
+        for (Behaviour behaviour : behaviours.values()) {
+            Action action = behaviour.getAction(this, map);
+            if (action != null) {
+                return action;
+            }
+        }
+
+        return new DoNothingAction();
     }
-    */
 
     /**
      *
-     * @return minimum number of runes Godrick The Grafted can generate after being killed.
+     * @return minimum number of runes Godrick the Grafted will generate after being killed.
      */
     @Override
     public int getRuneMin() {
@@ -41,7 +70,7 @@ public class GodrickTheGrafted extends BossEnemy {
 
     /**
      *
-     * @return maximum number of runes the Godrick The Grafted can generate after being killed.
+     * @return maximum number of runes Godrick the Grafted will generate after being killed.
      */
     @Override
     public int getRuneMax() {

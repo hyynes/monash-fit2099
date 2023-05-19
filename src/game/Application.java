@@ -14,10 +14,7 @@ import game.actors.friendly.Player;
 import game.grounds.environments.*;
 import game.displays.FancyMessage;
 import game.grounds.neutral.GoldenFogDoor;
-import game.items.weapons.Club;
-import game.items.weapons.GreatKnife;
-import game.items.weapons.Grossmesser;
-import game.items.weapons.Uchigatana;
+import game.items.weapons.*;
 import game.actors.friendly.PlayerSpawnPoint;
 import game.maps.*;
 import game.utils.ResetManager;
@@ -34,8 +31,6 @@ import game.utils.Status;
 public class Application {
 
 	public static void main(String[] args) {
-
-		Player player = null;
 
 		World world = new World(new Display());
 
@@ -77,14 +72,11 @@ public class Application {
 			}
 		}
 
-		//GoldenFogDoor limgraveDoor1 = new GoldenFogDoor(stormveilCastle,StormveilCastle.displayToString(),38,23);
-
+		// Add Golden Fog Doors to certain areas in different gameMaps.
 		limgrave.at(30,0).setGround(new GoldenFogDoor(stormveilCastle, StormveilCastle.displayToString(),38,23));
 		limgrave.at(5,23).setGround(new GoldenFogDoor(roundTableHold, RoundTableHold.displayToString(),9,10));
-
 		stormveilCastle.at(38,23).setGround(new GoldenFogDoor(limgrave, Limgrave.displayToString(),30,0));
 		stormveilCastle.at(5,0).setGround(new GoldenFogDoor(bossRoom, BossRoom.displayToString(),0,4));
-
 		roundTableHold.at(9,10).setGround(new GoldenFogDoor(limgrave, Limgrave.displayToString(),5,23));
 
 
@@ -99,6 +91,7 @@ public class Application {
 		}
 
 		// Optional req 4 implementation
+		Player player = null;
 		Scanner scanner = new Scanner(System.in);
 		while (player == null) {
 			System.out.println("Choose your class:\ns: Samurai\nb: Bandit\nw: Wretch\nT: Testing");
@@ -107,14 +100,13 @@ public class Application {
 				case "s" -> new Player("Tarnished", '@', 455, new Uchigatana());
 				case "b" -> new Player("Tarnished", '@', 414, new GreatKnife());
 				case "w" -> new Player("Tarnished", '@', 414, new Club());
-				case "T" -> new Player("Tarnished", '@', 100000, new Grossmesser());
+				case "T" -> new Player("Tarnished", '@', 100000, new Eraser());
 				default -> {
 					System.out.println("Enter a valid class");
 					yield null;
 				}
 			};
 		}
-
 
 		Merchant merchant = new Merchant("Merchant Kale", 'K', 100);
 
@@ -127,18 +119,16 @@ public class Application {
 
 		// initialise merchant and player locations
 		world.addPlayer(merchant, limgrave.at(40, 12));
-		world.addPlayer(player, bossRoom.at(6, 6));
+		world.addPlayer(player, limgrave.at(36, 10));
+		PlayerSpawnPoint.getInstance().setSpawnLocation(limgrave.at(36, 10));
 
-		// Spawn the boss Godrick the Grafted.
+		// Spawn the Godrick the Grafted boss.
 		GodrickTheGrafted godrickTheGrafted = new GodrickTheGrafted(player);
 		bossRoom.at(5,6).addActor(godrickTheGrafted);
 		godrickTheGrafted.setOriginalLocation(bossRoom.locationOf(godrickTheGrafted));
 
-		PlayerSpawnPoint.getInstance().setSpawnLocation(bossRoom.at(6, 6));
-
 		world.run();
 	}
-
 }
 
 
