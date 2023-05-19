@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.grounds.environments.*;
 import game.grounds.neutral.*;
-
 import java.util.Arrays;
 import java.util.List;
 

@@ -27,7 +27,7 @@ public class RestAction extends Action {
         String result;
 
         PlayerSpawnPoint.getInstance().setSpawnLocation(map.locationOf(actor));
-        ResetManager.getInstance(map).run();
+        ResetManager.getInstance().run();
         result = actor + " has rested.";
 
         return result;

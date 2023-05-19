@@ -9,6 +9,9 @@ import game.displays.FancyMessage;
 import game.items.stackable.Rune;
 import game.utils.ResetManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * An action executed for when the player dies (not to be confused with DeathAction)
  * Created by:
@@ -19,6 +22,8 @@ import game.utils.ResetManager;
 public class PlayerDeathAction extends Action{
 
     private final Rune runesDropped = new Rune();
+
+    private static final List<GameMap> gameMaps = new ArrayList<>();
 
     public PlayerDeathAction() {}
 
@@ -36,15 +41,17 @@ public class PlayerDeathAction extends Action{
         String result = "";
         Player player = (Player) target;
 
-        NumberRange xRange = map.getXRange();
-        NumberRange yRange = map.getYRange();
+        for (GameMap maps : gameMaps) {
+            NumberRange xRange = maps.getXRange();
+            NumberRange yRange = maps.getYRange();
 
-        // Removes runes that may have been in the game previously
-        for (int y = 0; y <= yRange.max(); y++) {
-            for (int x = 0; x <= xRange.max(); x++) {
-                for (int i = 0; i < map.at(x,y).getItems().size(); i++){
-                    if (map.at(x,y).getItems().get(i).getDisplayChar() == '$') {
-                       map.at(x,y).removeItem(map.at(x,y).getItems().get(i));
+            // Removes runes that may have been in the game previously
+            for (int y = 0; y <= yRange.max(); y++) {
+                for (int x = 0; x <= xRange.max(); x++) {
+                    for (int i = 0; i < maps.at(x, y).getItems().size(); i++) {
+                        if (maps.at(x, y).getItems().get(i).getDisplayChar() == '$') {
+                            maps.at(x, y).removeItem(maps.at(x, y).getItems().get(i));
+                        }
                     }
                 }
             }
@@ -62,7 +69,7 @@ public class PlayerDeathAction extends Action{
         // Back to 0 runes
         player.getRunes().setNoOfStacks(0);
 
-        ResetManager.getInstance(map).run();
+        ResetManager.getInstance().run();
 
         return result;
     }
@@ -76,5 +83,9 @@ public class PlayerDeathAction extends Action{
     @Override
     public String menuDescription(Actor actor) {
         return actor + " has dropped " + runesDropped.getNoOfStacks() + " runes.";
+    }
+
+    public static void addMaps(GameMap map){
+        gameMaps.add(map);
     }
 }

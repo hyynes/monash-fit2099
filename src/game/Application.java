@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
-import game.actors.enemies.*;
+import game.actions.PlayerDeathAction;
 import game.actors.friendly.Merchant;
 import game.actors.friendly.Player;
 import game.grounds.environments.*;
@@ -39,7 +39,6 @@ public class Application {
 		World world = new World(new Display());
 
 		// Initialise all gameMaps that will be added into the game.
-
 		GameMap limgrave = new Limgrave().map();
 		GameMap stormveilCastle = new StormveilCastle().map();
 		GameMap bossRoom = new BossRoom().map();
@@ -53,9 +52,10 @@ public class Application {
 		gameMaps.add(roundTableHold);
 
 		// Loop through all gameMaps in the arrayList and add them into the world.
-		for (GameMap gameMap : gameMaps) {
+		for (GameMap gameMap: gameMaps) {
 			world.addGameMap(gameMap);
-			ResetManager.getInstance(gameMap).setMap(gameMap);
+			ResetManager.getInstance().addMaps(gameMap);
+			PlayerDeathAction.addMaps(gameMap);
 
 			NumberRange yRange = gameMap.getYRange();
 			NumberRange xRange = gameMap.getXRange();
@@ -112,7 +112,6 @@ public class Application {
 			};
 		}
 
-		//gameMap.at(23,25).setGround(GoldenFogDoor(Limgrave));
 
 		Merchant merchant = new Merchant("Merchant Kale", 'K', 100);
 
@@ -123,15 +122,11 @@ public class Application {
 		Cage.setTarget(player);
 		Barrack.setTarget(player);
 
-
 		// initialise merchant and player locations
 		world.addPlayer(merchant, limgrave.at(40, 12));
 		world.addPlayer(player, limgrave.at(36, 10));
 
 		PlayerSpawnPoint.getInstance().setSpawnLocation(limgrave.at(36, 10));
-
-		limgrave.at(30, 9).addActor(new GiantCrab(player));
-		limgrave.at(30, 10).addActor(new GiantCrayfish(player));
 
 		world.run();
 	}

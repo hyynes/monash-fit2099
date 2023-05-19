@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ResetManager{
     private final List<Resettable> resettables;
-    private GameMap map;
+    private final List<GameMap> gameMaps = new ArrayList<>();
     private ResetManager() {
         this.resettables = new ArrayList<>();
     }
@@ -28,41 +28,42 @@ public class ResetManager{
      * Instance setter.
      * @return the singleton instance of ResetManger.
      */
-    public static ResetManager getInstance(GameMap map){
+    public static ResetManager getInstance(){
         if (instance == null){
             instance = new ResetManager();
         }
-        instance.map = map;
         return instance;
     }
 
     /**
-     * Loops through all resettable actors and calls the reset function.
+     * Loops through all resettable actors in all maps and calls the reset function.
      */
     public void run() {
 
-        NumberRange xRange = map.getXRange();
-        NumberRange yRange = map.getYRange();
+        for (GameMap map : gameMaps) {
+            NumberRange xRange = map.getXRange();
+            NumberRange yRange = map.getYRange();
 
-        List<Resettable> resettablesToRemove = new ArrayList<>();
+            List<Resettable> resettablesToRemove = new ArrayList<>();
 
-        for (int y = 0; y <= yRange.max(); y++) {
-            for (int x = 0; x <= xRange.max(); x++) {
-                Actor actor = map.at(x, y).getActor();
-                if (actor instanceof Resettable) {
-                    registerResettable((Resettable) actor);
+            for (int y = 0; y <= yRange.max(); y++) {
+                for (int x = 0; x <= xRange.max(); x++) {
+                    Actor actor = map.at(x, y).getActor();
+                    if (actor instanceof Resettable) {
+                        registerResettable((Resettable) actor);
+                    }
                 }
             }
-        }
 
-        // removes all enemies from the game map
-        for (Resettable resettable : resettables) {
-            resettable.reset(map);
-            resettablesToRemove.add(resettable);
-        }
+            // removes all enemies from the game map
+            for (Resettable resettable : resettables) {
+                resettable.reset(map);
+                resettablesToRemove.add(resettable);
+            }
 
-        for (Resettable resettable : resettablesToRemove){
-            removeResettable(resettable);
+            for (Resettable resettable : resettablesToRemove) {
+                removeResettable(resettable);
+            }
         }
 
     }
@@ -85,10 +86,10 @@ public class ResetManager{
 
     /**
      * Sets the map to be resetted.
-     * @param currentMap - the map to be set.
+     * @param map - the map added into the game
      * @see Application
      */
-    public void setMap(GameMap currentMap){
-        this.map = currentMap;
+    public void addMaps(GameMap map){
+        gameMaps.add(map);
     }
 }
