@@ -50,6 +50,10 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+
+		if (this.hitPoints <= 0){
+			return new PlayerDeathAction();
+		}
 		// Handle multi-turn actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
@@ -63,6 +67,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		// if player is on site of lost grace, allow rest action
 		if (SiteOfLostGrace.isPlayerInSite){
 			actions.add(new RestAction());
+			//actions.add(new MapTravelling)
 		}
 
 		// if player is standing on top of rune, allow pick up runes action
@@ -73,7 +78,6 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 				}
 			}
 		}
-
 		lastLocation = map.locationOf(this);
 
 		// return/print the console menu

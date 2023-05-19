@@ -2,10 +2,12 @@ package game.grounds.neutral;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
+import edu.monash.fit2099.engine.positions.Location;
 import game.utils.Status;
 
 public class Cliff extends Ground {
 
+    private final int MAX_VALUE = 1000000;
 
     /**
      * Constructor.
@@ -24,11 +26,9 @@ public class Cliff extends Ground {
         return actor.hasCapability(Status.HOSTILE_TO_ENEMY);
     }
 
-/**
-    public ActionList allowableActions(Actor actor, Location location, String direction){
-        new PlayerDeathAction().execute(actor, location.map());
-        return null;
+    public void tick(Location location) {
+        if (location.containsAnActor()) {
+            location.getActor().hurt(MAX_VALUE);
+        }
     }
-
-*/
 }

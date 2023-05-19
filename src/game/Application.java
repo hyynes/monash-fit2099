@@ -80,7 +80,7 @@ public class Application {
 		limgrave.at(5,23).setGround(new GoldenFogDoor(roundTableHold, RoundTableHold.displayToString(),9,10));
 
 		stormveilCastle.at(38,23).setGround(new GoldenFogDoor(limgrave, Limgrave.displayToString(),30,0));
-		stormveilCastle.at(21,12).setGround(new GoldenFogDoor(bossRoom, BossRoom.displayToString(),6,1));
+		stormveilCastle.at(5,0).setGround(new GoldenFogDoor(bossRoom, BossRoom.displayToString(),0,4));
 
 		roundTableHold.at(9,10).setGround(new GoldenFogDoor(limgrave, Limgrave.displayToString(),5,23));
 
