@@ -76,14 +76,13 @@ public class Application {
 			}
 		}
 
-		limgrave.at(22,19).setGround(new GoldenFogDoor(roundTableHold, RoundTableHold.displayToString()));
-		limgrave.at(4,7).setGround(new GoldenFogDoor(stormveilCastle,  StormveilCastle.displayToString()));
+		limgrave.at(30,0).setGround(new GoldenFogDoor(stormveilCastle, StormveilCastle.displayToString(),38,23));
+		limgrave.at(5,23).setGround(new GoldenFogDoor(roundTableHold, RoundTableHold.displayToString(),9,10));
 
-		stormveilCastle.at(2,6).setGround(new GoldenFogDoor(limgrave, Limgrave.displayToString()));
-		stormveilCastle.at(21,12).setGround(new GoldenFogDoor(bossRoom, BossRoom.displayToString()));
+		stormveilCastle.at(38,23).setGround(new GoldenFogDoor(limgrave, Limgrave.displayToString(),30,0));
+		stormveilCastle.at(21,12).setGround(new GoldenFogDoor(bossRoom, BossRoom.displayToString(),6,1));
 
-		roundTableHold.at(5,5).setGround(new GoldenFogDoor(limgrave, Limgrave.displayToString()));
-
+		roundTableHold.at(9,10).setGround(new GoldenFogDoor(limgrave, Limgrave.displayToString(),5,23));
 
 
 		// BEHOLD, ELDEN RING
@@ -129,7 +128,7 @@ public class Application {
 		world.addPlayer(merchant, limgrave.at(40, 12));
 		world.addPlayer(player, limgrave.at(36, 10));
 
-		PlayerSpawnPoint.getInstance().setSpawnLocation(stormveilCastle.at(36, 10));
+		PlayerSpawnPoint.getInstance().setSpawnLocation(limgrave.at(36, 10));
 
 		limgrave.at(30, 9).addActor(new GiantCrab(player));
 		limgrave.at(30, 10).addActor(new GiantCrayfish(player));

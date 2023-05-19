@@ -6,18 +6,21 @@ import edu.monash.fit2099.engine.positions.GameMap;
 
 public class MapTravelling extends Action {
 
-    private GameMap travelMap;
+    private final GameMap travelMap;
+    private final String displayString;
+    private final int x;
+    private final int y;
 
-    private String displayString;
-
-    public MapTravelling(GameMap travelMap, String displayString){
+    public MapTravelling(GameMap travelMap, String displayString, int x, int y){
         this.travelMap = travelMap;
         this.displayString = displayString;
+        this.x = x;
+        this.y = y;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        map.moveActor(actor,travelMap.at(3,5));
+        map.moveActor(actor,travelMap.at(x,y));
         return menuDescription(actor);
     }
 

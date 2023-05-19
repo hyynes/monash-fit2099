@@ -9,19 +9,21 @@ import game.actions.MapTravelling;
 import game.utils.Status;
 
 public class GoldenFogDoor extends Ground {
-
     private final GameMap travel;
-
-    private String displayString;
+    private final String displayString;
+    private int x;
+    private int y;
 
     /**
      * Constructor.
      *
      */
-    public GoldenFogDoor(GameMap travel, String displayString) {
+    public GoldenFogDoor(GameMap travel, String displayString, int x, int y) {
         super('D');
         this.travel = travel;
         this.displayString = displayString;
+        this.x = x;
+        this.y = y;
     }
 
     @Override
@@ -29,7 +31,7 @@ public class GoldenFogDoor extends Ground {
 
         ActionList actions = new ActionList();
         if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)){
-            actions.add(new MapTravelling(travel, displayString));
+            actions.add(new MapTravelling(travel, displayString, x, y));
             //location.map().moveActor(actor,travel.locationOf(actor));
         }
         return actions;
