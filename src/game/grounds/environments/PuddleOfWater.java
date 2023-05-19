@@ -2,8 +2,8 @@ package game.grounds.environments;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import game.utils.Status;
-import game.actors.enemies.GiantCrab;
-import game.actors.enemies.GiantCrayfish;
+import game.actors.enemies.regular.GiantCrab;
+import game.actors.enemies.regular.GiantCrayfish;
 
 /**
  * Water that spawns giant crabs and crayfish.

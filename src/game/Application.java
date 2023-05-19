@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
 import game.actions.PlayerDeathAction;
+import game.actors.enemies.boss.GodrickTheGrafted;
 import game.actors.friendly.Merchant;
 import game.actors.friendly.Player;
 import game.grounds.environments.*;
@@ -76,6 +77,8 @@ public class Application {
 			}
 		}
 
+		//GoldenFogDoor limgraveDoor1 = new GoldenFogDoor(stormveilCastle,StormveilCastle.displayToString(),38,23);
+
 		limgrave.at(30,0).setGround(new GoldenFogDoor(stormveilCastle, StormveilCastle.displayToString(),38,23));
 		limgrave.at(5,23).setGround(new GoldenFogDoor(roundTableHold, RoundTableHold.displayToString(),9,10));
 
@@ -124,9 +127,14 @@ public class Application {
 
 		// initialise merchant and player locations
 		world.addPlayer(merchant, limgrave.at(40, 12));
-		world.addPlayer(player, limgrave.at(36, 10));
+		world.addPlayer(player, bossRoom.at(6, 6));
 
-		PlayerSpawnPoint.getInstance().setSpawnLocation(limgrave.at(36, 10));
+		// Spawn the boss Godrick the Grafted.
+		GodrickTheGrafted godrickTheGrafted = new GodrickTheGrafted(player);
+		bossRoom.at(5,6).addActor(godrickTheGrafted);
+		godrickTheGrafted.setOriginalLocation(bossRoom.locationOf(godrickTheGrafted));
+
+		PlayerSpawnPoint.getInstance().setSpawnLocation(bossRoom.at(6, 6));
 
 		world.run();
 	}

@@ -2,8 +2,8 @@ package game.grounds.environments;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import game.utils.Status;
-import game.actors.enemies.GiantDog;
-import game.actors.enemies.LoneWolf;
+import game.actors.enemies.regular.GiantDog;
+import game.actors.enemies.regular.LoneWolf;
 
 /**
  * Environment that spawns giant dogs and lone wolves.

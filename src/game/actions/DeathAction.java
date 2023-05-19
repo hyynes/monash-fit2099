@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.actors.enemies.PileOfBones;
+import game.actors.enemies.regular.PileOfBones;
 import game.actors.friendly.PlayableCharacter;
 import game.items.stackable.EnemyRunes;
 import game.utils.Status;

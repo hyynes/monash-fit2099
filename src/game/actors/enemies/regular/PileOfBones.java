@@ -1,4 +1,4 @@
-package game.actors.enemies;
+package game.actors.enemies.regular;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.actors.enemies.Enemy;
 import game.utils.Status;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
  * @author Kenan Baydar
  *
  */
-public class PileOfBones extends Enemy{
+public class PileOfBones extends RegularEnemy {
 
     /**
      * Amount of turns after death of Skeleton.

@@ -1,6 +1,7 @@
-package game.actors.enemies;
+package game.actors.enemies.regular;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import game.actors.enemies.Enemy;
 import game.utils.Status;
 import game.items.weapons.Grossmesser;
 
@@ -13,7 +14,7 @@ import game.items.weapons.Grossmesser;
  * @modifier Danny Duong
  */
 
-public class HeavySkeletalSwordsman extends Enemy{
+public class HeavySkeletalSwordsman extends RegularEnemy {
 
     /**
      * Constructor.

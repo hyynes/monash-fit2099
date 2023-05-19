@@ -1,7 +1,7 @@
 package game.grounds.environments;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import game.actors.enemies.Dog;
+import game.actors.enemies.regular.Dog;
 
 public class Cage extends Environment{
 

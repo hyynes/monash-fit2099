@@ -1,7 +1,7 @@
 package game.grounds.environments;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import game.actors.enemies.GodrickSoldier;
+import game.actors.enemies.regular.GodrickSoldier;
 
 public class Barrack extends Environment{
 

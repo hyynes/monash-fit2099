@@ -2,8 +2,8 @@ package game.grounds.environments;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import game.utils.Status;
-import game.actors.enemies.HeavySkeletalSwordsman;
-import game.actors.enemies.SkeletalBandit;
+import game.actors.enemies.regular.HeavySkeletalSwordsman;
+import game.actors.enemies.regular.SkeletalBandit;
 
 /**
  * Environment that spawns skeletal bandits and swordsmen.
