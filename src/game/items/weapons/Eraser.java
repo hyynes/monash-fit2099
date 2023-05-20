@@ -12,7 +12,7 @@ import game.actions.SurroundingAttack;
  * Created by:
  * @author Kenan Baydar
  */
-public class Eraser extends WeaponItem {
+public class Eraser extends WeaponItem implements WeaponRunes{
 
     public Eraser() {
         super("Eraser", 'E', 4000, "erases", 100);
@@ -21,5 +21,15 @@ public class Eraser extends WeaponItem {
     @Override
     public Action getSkill(Actor holder) {
         return new SurroundingAttack(this);
+    }
+
+    @Override
+    public int buyPrice() {
+        return 0;
+    }
+
+    @Override
+    public int sellPrice() {
+        return 0;
     }
 }

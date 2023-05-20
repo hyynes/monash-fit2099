@@ -1,8 +1,12 @@
 package game.grounds.neutral;
 
+import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.actions.DiscoverAction;
+import game.actions.MapTravelling;
+import game.actions.RestAction;
 import game.utils.Status;
 
 /**
@@ -10,7 +14,7 @@ import game.utils.Status;
  * Created by:
  * @author Danny Duong
  * Modified by:
- *
+ * @modifier Kenan Baydar
  */
 public class SiteOfLostGrace extends Ground {
 
@@ -18,20 +22,27 @@ public class SiteOfLostGrace extends Ground {
     public SiteOfLostGrace() {
         super('U');
     }
-    public static boolean isPlayerInSite;
+    private final DiscoverAction discoverAction = new DiscoverAction();
 
     /**
-     * Checks if player is in the Site of Lost Grace. If so, tick isPlayerInSite to true. If not, false.
-     * @param location The location of the Ground
+     *
+     * @param actor the Actor acting
+     * @param location the current Location
+     * @param direction the direction of the Ground from the Actor
+     * @return Actionlist
      */
+
     @Override
-    public void tick(Location location) {
-        if (location.containsAnActor()){
-            Actor actor = location.getActor();
-            isPlayerInSite = actor.hasCapability(Status.HOSTILE_TO_ENEMY);
+    public ActionList allowableActions(Actor actor, Location location, String direction) {
+        ActionList actions = new ActionList();
+        if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+            if (!discoverAction.isDiscovered()) {
+                actions.add(discoverAction);
+            } else {
+                actions.add(new RestAction());
+                // Optional Implementation: actions.add(new MapTravelling());
+            }
         }
-        else {
-            isPlayerInSite = false;
-        }
+        return actions;
     }
 }

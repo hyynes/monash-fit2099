@@ -64,12 +64,6 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		// if flask has more than one stack, allow HealAction
 		actions.add(new HealAction());
 
-		// if player is on site of lost grace, allow rest action
-		if (SiteOfLostGrace.isPlayerInSite){
-			actions.add(new RestAction());
-			//actions.add(new MapTravelling)
-		}
-
 		// if player is standing on top of rune, allow pick up runes action
 		if (!map.locationOf(this).getItems().isEmpty()){
 			for (int i = 0; i < map.locationOf(this).getItems().size(); i++){
