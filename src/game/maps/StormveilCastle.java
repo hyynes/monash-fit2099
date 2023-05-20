@@ -49,9 +49,12 @@ public class StormveilCastle implements DifferentMaps{
         maps.at(6,6).addItem(new GoldenRunes(actor));
         maps.at(12,10).addItem(new GoldenRunes(actor));
         maps.at(23,2).addItem(new GoldenRunes(actor));
-        maps.at(10,21).addItem(new GoldenRunes(actor));
-        maps.at(2,23).addItem(new GoldenRunes(actor));
-        maps.at(19,23).addItem(new GoldenRunes(actor));
+        maps.at(2,18).addItem(new GoldenRunes(actor));
+        maps.at(36,12).addItem(new GoldenRunes(actor));
+        maps.at(34,7).addItem(new GoldenRunes(actor));
+        maps.at(64,11).addItem(new GoldenRunes(actor));
+        maps.at(54,16).addItem(new GoldenRunes(actor));
+        maps.at(40,17).addItem(new GoldenRunes(actor));
     }
 
     public static String displayString(){

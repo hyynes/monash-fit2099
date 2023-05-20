@@ -51,7 +51,11 @@ public class Limgrave implements DifferentMaps{
         maps.at(6,6).addItem(new GoldenRunes(actor));
         maps.at(22,10).addItem(new GoldenRunes(actor));
         maps.at(23,2).addItem(new GoldenRunes(actor));
-        maps.at(14,20).addItem(new GoldenRunes(actor));
+        maps.at(15,15).addItem(new GoldenRunes(actor));
+        maps.at(41,4).addItem(new GoldenRunes(actor));
+        maps.at(37,16).addItem(new GoldenRunes(actor));
+        maps.at(61,13).addItem(new GoldenRunes(actor));
+        maps.at(56,9).addItem(new GoldenRunes(actor));
     }
 
     public static String displayString(){
