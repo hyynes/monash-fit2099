@@ -1,7 +1,6 @@
 package game.actors.enemies.regular;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.actions.DespawnAction;
 import game.actors.enemies.Enemy;
 
 public abstract class RegularEnemy extends Enemy {
@@ -25,6 +24,6 @@ public abstract class RegularEnemy extends Enemy {
      */
     @Override
     public void reset(GameMap map){
-        new DespawnAction().execute(this, map);
+        callReset = true;
     }
 }

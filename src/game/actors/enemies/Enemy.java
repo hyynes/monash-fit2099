@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.AttackAction;
+import game.actions.DespawnAction;
 import game.behaviours.*;
 import game.items.stackable.EnemyRunes;
 import game.utils.Resettable;
@@ -38,6 +39,11 @@ public abstract class Enemy extends Actor implements Resettable, EnemyRunes {
      */
     protected final Actor target;
 
+    /**
+     * When reset is called, so it can display enemy despawns on screen.
+     */
+    protected boolean callReset = false;
+
 
     /**
      * Constructor.
@@ -67,7 +73,11 @@ public abstract class Enemy extends Actor implements Resettable, EnemyRunes {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-
+        // If reset is called despawn all enemies and print to screen.
+        if (callReset){
+            callReset = false;
+            return new DespawnAction();
+        }
         // General playTurn step for all regular enemies
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
