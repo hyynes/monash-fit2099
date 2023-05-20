@@ -30,7 +30,7 @@ public class RoundTableHold implements DifferentMaps{
         return new GameMap(groundFactory, map);
     }
 
-    public static String displayToString(){
+    public static String displayString(){
         return "Roundtable Hold";
     }
 }

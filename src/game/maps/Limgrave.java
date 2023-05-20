@@ -44,7 +44,7 @@ public class Limgrave implements DifferentMaps{
         return new GameMap(groundFactory, map);
     }
 
-    public static String displayToString(){
+    public static String displayString(){
         return "Limgrave";
     }
 

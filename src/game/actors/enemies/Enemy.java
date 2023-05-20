@@ -8,7 +8,6 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.AttackAction;
-import game.actions.DespawnAction;
 import game.behaviours.*;
 import game.items.stackable.EnemyRunes;
 import game.utils.Resettable;

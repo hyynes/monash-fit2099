@@ -42,7 +42,7 @@ public class StormveilCastle implements DifferentMaps{
         return new GameMap(groundFactory, map);
     }
 
-    public static String displayToString(){
+    public static String displayString(){
         return "Stormveil Castle";
     }
 }

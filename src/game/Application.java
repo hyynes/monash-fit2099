@@ -73,11 +73,11 @@ public class Application {
 		}
 
 		// Add Golden Fog Doors to certain areas in different gameMaps.
-		limgrave.at(30,0).setGround(new GoldenFogDoor(stormveilCastle, StormveilCastle.displayToString(),38,23));
-		limgrave.at(5,23).setGround(new GoldenFogDoor(roundTableHold, RoundTableHold.displayToString(),9,10));
-		stormveilCastle.at(38,23).setGround(new GoldenFogDoor(limgrave, Limgrave.displayToString(),30,0));
-		stormveilCastle.at(5,0).setGround(new GoldenFogDoor(bossRoom, BossRoom.displayToString(),0,4));
-		roundTableHold.at(9,10).setGround(new GoldenFogDoor(limgrave, Limgrave.displayToString(),5,23));
+		limgrave.at(30,0).setGround(new GoldenFogDoor(stormveilCastle, StormveilCastle.displayString(),38,23));
+		limgrave.at(5,23).setGround(new GoldenFogDoor(roundTableHold, RoundTableHold.displayString(),9,10));
+		stormveilCastle.at(38,23).setGround(new GoldenFogDoor(limgrave, Limgrave.displayString(),30,0));
+		stormveilCastle.at(5,0).setGround(new GoldenFogDoor(bossRoom, BossRoom.displayString(),0,4));
+		roundTableHold.at(9,10).setGround(new GoldenFogDoor(limgrave, Limgrave.displayString(),5,23));
 
 
 		// BEHOLD, ELDEN RING
@@ -124,7 +124,7 @@ public class Application {
 
 		// Spawn the Godrick the Grafted boss.
 		GodrickTheGrafted godrickTheGrafted = new GodrickTheGrafted(player);
-		bossRoom.at(5,6).addActor(godrickTheGrafted);
+		bossRoom.at(12,4).addActor(godrickTheGrafted);
 		godrickTheGrafted.setOriginalLocation(bossRoom.locationOf(godrickTheGrafted));
 
 		world.run();
