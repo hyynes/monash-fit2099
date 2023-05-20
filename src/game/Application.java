@@ -35,10 +35,15 @@ public class Application {
 		World world = new World(new Display());
 
 		// Initialise all gameMaps that will be added into the game.
-		GameMap limgrave = new Limgrave().map();
-		GameMap stormveilCastle = new StormveilCastle().map();
-		GameMap bossRoom = new BossRoom().map();
-		GameMap roundTableHold = new RoundTableHold().map();
+		Limgrave limgraveBase = new Limgrave();
+		StormveilCastle stormveilCastleBase = new StormveilCastle();
+		BossRoom bossRoomBase = new BossRoom();
+		RoundTableHold roundTableHoldBase = new RoundTableHold();
+
+		GameMap limgrave = limgraveBase.map();
+		GameMap stormveilCastle = stormveilCastleBase.map();
+		GameMap bossRoom = bossRoomBase.map();
+		GameMap roundTableHold = roundTableHoldBase.map();
 
 		// Add all gameMaps into an arrayList.
 		ArrayList<GameMap> gameMaps = new ArrayList<>();
@@ -78,7 +83,6 @@ public class Application {
 		stormveilCastle.at(38,23).setGround(new GoldenFogDoor(limgrave, Limgrave.displayString(),30,0));
 		stormveilCastle.at(5,0).setGround(new GoldenFogDoor(bossRoom, BossRoom.displayString(),0,4));
 		roundTableHold.at(9,10).setGround(new GoldenFogDoor(limgrave, Limgrave.displayString(),5,23));
-
 
 		// BEHOLD, ELDEN RING
 		for (String line : FancyMessage.ELDEN_RING.split("\n")) {
@@ -121,6 +125,10 @@ public class Application {
 		world.addPlayer(merchant, limgrave.at(40, 12));
 		world.addPlayer(player, limgrave.at(36, 10));
 		PlayerSpawnPoint.getInstance().setSpawnLocation(limgrave.at(36, 10));
+
+		// Adding golden runes into the game.
+		limgraveBase.addGoldenRunes(limgrave, player);
+		stormveilCastleBase.addGoldenRunes(stormveilCastle, player);
 
 		// Spawn the Godrick the Grafted boss.
 		GodrickTheGrafted godrickTheGrafted = new GodrickTheGrafted(player);

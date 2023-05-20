@@ -18,10 +18,16 @@ import game.utils.Status;
  */
 public class SiteOfLostGrace extends Ground {
 
-    // constructor
+    /**
+     * Constructor.
+     */
     public SiteOfLostGrace() {
         super('U');
     }
+
+    /**
+     * Instance of discover action when player first touches Site of Lost Grace.
+     */
     private final DiscoverAction discoverAction = new DiscoverAction();
 
     /**

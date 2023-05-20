@@ -3,6 +3,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.enemies.Enemy;
+import game.utils.Status;
 
 public abstract class BossEnemy extends Enemy {
 
@@ -22,6 +23,7 @@ public abstract class BossEnemy extends Enemy {
     public BossEnemy(String name, char displayChar, int hitPoints, Actor target) {
         super(name, displayChar, hitPoints, target);
         this.behaviours.remove(998);
+        this.addCapability(Status.BOSS);
     }
 
     /**

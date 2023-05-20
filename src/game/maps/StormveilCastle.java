@@ -2,8 +2,11 @@ package game.maps;
 
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actors.friendly.Player;
 import game.grounds.environments.*;
 import game.grounds.neutral.*;
+import game.items.GoldenRunes;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,6 +43,15 @@ public class StormveilCastle implements DifferentMaps{
                 "+++++++++++++++++++++++++++#....................+++++++++++++++++++++++++++",
                 "+++++++++++++++++++++++++++#...................#+++++++++++++++++++++++++++");
         return new GameMap(groundFactory, map);
+    }
+
+    public void addGoldenRunes(GameMap maps, Player actor) {
+        maps.at(6,6).addItem(new GoldenRunes(actor));
+        maps.at(12,10).addItem(new GoldenRunes(actor));
+        maps.at(23,2).addItem(new GoldenRunes(actor));
+        maps.at(10,21).addItem(new GoldenRunes(actor));
+        maps.at(2,23).addItem(new GoldenRunes(actor));
+        maps.at(19,23).addItem(new GoldenRunes(actor));
     }
 
     public static String displayString(){

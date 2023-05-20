@@ -19,5 +19,6 @@ public enum Status {
     TRADER,
     SECOND_LIFE,
     GROSSMESSER,
-    SCIMITAR
+    SCIMITAR,
+    BOSS
 }

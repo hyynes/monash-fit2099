@@ -39,12 +39,8 @@ public abstract class StackableItem extends Item {
      * @param stacks - the number of stacks to be added
      * @return true if the method was valid or not (if stacks was positive)
      */
-    public boolean addStacks(int stacks) {
-        if (stacks > 0){
-            noOfStacks += stacks;
-            return true;
-        }
-        return false;
+    public void addStacks(int stacks) {
+        noOfStacks += stacks;
     }
 
     /**

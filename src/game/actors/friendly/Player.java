@@ -10,7 +10,6 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.*;
 import game.Application;
-import game.grounds.neutral.SiteOfLostGrace;
 import game.items.stackable.EnemyRunes;
 import game.items.stackable.FlaskOfCrimsonTears;
 import game.items.stackable.Rune;
@@ -61,7 +60,6 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		// displays its health and runes, and updates it every turn.
 		System.out.println(displayStats());
 
-		// if flask has more than one stack, allow HealAction
 		actions.add(new HealAction());
 
 		// if player is standing on top of rune, allow pick up runes action
@@ -97,10 +95,8 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 
 	public String enemyDefeatedRunes(Actor enemy, EnemyRunes enemyRunes){
 		int generatedRunes = RandomNumberGenerator.getRandomInt(enemyRunes.getRuneMin(), enemyRunes.getRuneMax());
-		if (runes.addStacks(generatedRunes)){
-			return enemy + " drops " + generatedRunes + " runes";
-		}
-		return null;
+		runes.addStacks(generatedRunes);
+		return enemy + " drops " + generatedRunes + " runes";
 	}
 
 	@Override
@@ -109,8 +105,8 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	}
 
 	@Override
-	public boolean addRunes(int addRunes) {
-		return runes.addStacks(addRunes);
+	public void addRunes(int addRunes) {
+		runes.addStacks(addRunes);
 	}
 
 	/**

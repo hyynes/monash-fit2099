@@ -44,5 +44,5 @@ public interface PlayableCharacter {
      * @return true or false on whether the player will have a positive amount of runes after adding runes.
      * @see SellAction
      */
-    boolean addRunes(int addRunes);
+    void addRunes(int addRunes);
 }

@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actors.enemies.regular.PileOfBones;
 import game.actors.friendly.PlayableCharacter;
+import game.grounds.neutral.SiteOfLostGrace;
 import game.items.stackable.EnemyRunes;
 import game.utils.Status;
 
@@ -75,6 +76,10 @@ public class DeathAction extends Action {
             dropActions.add(weapon.getDropAction(target));
         for (Action drop : dropActions)
             drop.execute(target, map);
+
+        if (target.hasCapability(Status.BOSS)){
+            map.locationOf(target).setGround(new SiteOfLostGrace());
+        }
 
         // remove actor
         map.removeActor(target);
