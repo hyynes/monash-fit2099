@@ -2,7 +2,6 @@ package game.items.weapons;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.SurroundingAttack;
 
 /**
@@ -12,7 +11,7 @@ import game.actions.SurroundingAttack;
  * @author Kenan Baydar
  *
  */
-public class AxeOfGodrick extends WeaponItem implements WeaponRunes {
+public class AxeOfGodrick extends SellableWeapon {
 
     /**
      * Constructor.
@@ -35,16 +34,7 @@ public class AxeOfGodrick extends WeaponItem implements WeaponRunes {
 
     /**
      *
-     * @return Cannot be purchased from the Merchant.
-     */
-    @Override
-    public int buyPrice() {
-        return 0;
-    }
-
-    /**
-     *
-     * @return The price at which the Axe of Godrick can be sold to the Merchant.
+     * @return The price at which the Axe of Godrick can be sold to the trader.
      */
     @Override
     public int sellPrice() {

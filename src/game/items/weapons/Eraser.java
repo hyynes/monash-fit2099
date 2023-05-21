@@ -5,8 +5,6 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.SurroundingAttack;
 
-import java.util.List;
-
 /**
  * A weapon that will instantly kill any enemy.
  * Used for testing.
@@ -14,10 +12,10 @@ import java.util.List;
  * Created by:
  * @author Kenan Baydar
  */
-public class Eraser extends WeaponItem implements WeaponRunes{
+public class Eraser extends WeaponItem {
 
     public Eraser() {
-        super("Eraser", 'E', 4000, "erases", 100);
+        super("Eraser", 'E', 4000000, "erases", 100);
     }
 
     @Override
@@ -25,18 +23,4 @@ public class Eraser extends WeaponItem implements WeaponRunes{
         return new SurroundingAttack(this);
     }
 
-    @Override
-    public List<Action> getAllowableActions() {
-        return super.getAllowableActions();
-    }
-
-    @Override
-    public int buyPrice() {
-        return 0;
-    }
-
-    @Override
-    public int sellPrice() {
-        return 0;
-    }
 }

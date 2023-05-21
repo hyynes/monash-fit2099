@@ -13,7 +13,6 @@ import game.items.weapons.Grossmesser;
  * Modified by:
  * @modifier Danny Duong
  */
-
 public class HeavySkeletalSwordsman extends RegularEnemy {
 
     /**
@@ -24,7 +23,7 @@ public class HeavySkeletalSwordsman extends RegularEnemy {
     public HeavySkeletalSwordsman(Actor target) {
         super("Heavy Skeletal Swordsman", 'q', 153, target);
         this.addCapability(Status.FRIENDLY_TO_SKELETON);
-        this.addCapability(Status.SECOND_LIFE);
+        this.addCapability(Status.RESPAWNABLE);
         this.addWeaponToInventory(new Grossmesser(target));
     }
 

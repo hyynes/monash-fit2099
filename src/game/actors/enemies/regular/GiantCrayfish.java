@@ -2,7 +2,6 @@ package game.actors.enemies.regular;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import game.actors.enemies.Enemy;
 import game.utils.Status;
 
 /**

@@ -11,6 +11,13 @@ import game.items.RemembranceOfTheGrafted;
 import game.items.weapons.AxeOfGodrick;
 import game.items.weapons.GraftedDragon;
 
+/**
+ * First boss that is located in the Boss Room.
+ * Drops a site of lost grace after being defeated.
+ * Created by:
+ * @author Kenan Baydar
+ *
+ */
 public class GodrickTheGrafted extends BossEnemy {
 
     /**

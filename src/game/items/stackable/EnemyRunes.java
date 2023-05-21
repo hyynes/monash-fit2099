@@ -18,9 +18,4 @@ public interface EnemyRunes {
      * get the maximum number of runes the enemy can generate after being killed.
      */
     int getRuneMax();
-
-    /**
-     * get the amount of runes the enemy will generate after being killed.
-     */
-    //int getRune();
 }

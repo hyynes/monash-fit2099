@@ -1,10 +1,19 @@
 package game.grounds.environments;
-
 import edu.monash.fit2099.engine.actors.Actor;
 import game.actors.enemies.regular.Dog;
 
+/**
+ * Environment that spawns dogs.
+ * Created by:
+ * @author Kenan Baydar
+ *
+ */
 public class Cage extends Environment{
 
+    /**
+     * Constructor.
+     *
+     */
     public Cage() {
         super('<');
     }
@@ -12,8 +21,7 @@ public class Cage extends Environment{
     /**
      * Spawn chance of enemies.
      *
-     * @return the chance that a certain enemy will spawn depending on whether the Graveyard is located east
-     * or west of the map.
+     * @return the chance that a certain enemy will spawn from the Cage.
      */
     @Override
     public int getSpawnChance() {
@@ -21,9 +29,8 @@ public class Cage extends Environment{
     }
 
     /**
-     * The enemy that will spawn from the Gust of Wind
      *
-     * @return A certain actor depending on whether the Graveyard is located east or west of the mop.
+     * @return The enemy that will spawn from the Cage
      */
     @Override
     public Actor spawningEnemy() {

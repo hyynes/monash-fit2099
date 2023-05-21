@@ -8,7 +8,6 @@ package game.utils;
 public enum Status {
     HOSTILE_TO_ENEMY,
     RESPAWNABLE,
-    RESTING,
     FRIENDLY_TO_WOLF,
     FRIENDLY_TO_SKELETON,
     FRIENDLY_TO_SEA,
@@ -17,7 +16,6 @@ public enum Status {
     EAST,
     WEST,
     TRADER,
-    SECOND_LIFE,
     GROSSMESSER,
     SCIMITAR,
     BOSS

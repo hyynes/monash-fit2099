@@ -3,6 +3,13 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.enemies.Enemy;
 
+/**
+ * An abstract class to be extended from normal enemies.
+ * Normal enemies have a 10% chance to despawn after each turn if not following or attacking a player.
+ * Normal enemies are also removed from the game after the game is reset.
+ * Created by:
+ * @author Kenan Baydar
+ */
 public abstract class RegularEnemy extends Enemy {
 
     /**
@@ -18,7 +25,7 @@ public abstract class RegularEnemy extends Enemy {
     }
 
     /**
-     * Resets the enemies
+     * Resets the enemies, removing them from the game.
      *
      * @param map - the map that the actors are in.
      */

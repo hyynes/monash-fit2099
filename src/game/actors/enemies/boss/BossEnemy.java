@@ -5,6 +5,13 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actors.enemies.Enemy;
 import game.utils.Status;
 
+/**
+ * An abstract class to be extended from enemies that are classified as Bosses.
+ * Bosses cannot be despawned and are not removed from the game after the reset action is called.
+ * Created by:
+ * @author Kenan Baydar
+ *
+ */
 public abstract class BossEnemy extends Enemy {
 
     /**

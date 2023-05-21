@@ -2,8 +2,14 @@ package game.actors.enemies.regular;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import game.actors.enemies.Enemy;
 import game.utils.Status;
+
+/**
+ * A Dog with 93 hp.
+ * Deals 101 damage with a 93% hit rate.
+ * Created by:
+ * @author Kenan Baydar
+ */
 
 public class Dog extends RegularEnemy {
 

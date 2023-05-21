@@ -2,9 +2,16 @@ package game.actors.enemies.regular;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import game.actors.enemies.Enemy;
+import game.items.weapons.Grossmesser;
 import game.items.weapons.Uchigatana;
 import game.utils.Status;
 
+/**
+ * A Godrick Soldier with 198 hp.
+ * Carries around a Grossmesser weapon.
+ * Created by:
+ * @author Kenan Baydar
+ */
 public class GodrickSoldier extends RegularEnemy {
 
     /**
@@ -15,7 +22,7 @@ public class GodrickSoldier extends RegularEnemy {
     public GodrickSoldier(Actor target) {
         super("Godrick Soldier", 'p', 198, target);
         this.addCapability(Status.FRIENDLY_TO_CASTLE);
-        this.addWeaponToInventory(new Uchigatana());
+        this.addWeaponToInventory(new Grossmesser(target));
     }
 
     /**

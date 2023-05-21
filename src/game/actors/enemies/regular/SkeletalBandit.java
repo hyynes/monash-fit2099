@@ -1,5 +1,4 @@
 package game.actors.enemies.regular;
-
 import edu.monash.fit2099.engine.actors.Actor;
 import game.actors.enemies.Enemy;
 import game.utils.Status;
@@ -13,7 +12,6 @@ import game.items.weapons.Scimitar;
  * Modified by:
  * @modifier Danny Duong
  */
-
 public class SkeletalBandit extends RegularEnemy {
 
     /**
@@ -24,7 +22,7 @@ public class SkeletalBandit extends RegularEnemy {
     public SkeletalBandit(Actor target) {
         super("Skeletal Bandit", 'b', 184, target);
         this.addCapability(Status.FRIENDLY_TO_SKELETON);
-        this.addCapability(Status.SECOND_LIFE);
+        this.addCapability(Status.RESPAWNABLE);
         this.addWeaponToInventory(new Scimitar(target));
     }
 

@@ -85,6 +85,11 @@ public class PlayerDeathAction extends Action{
         return actor + " has dropped " + runesDropped.getNoOfStacks() + " runes.";
     }
 
+    /**
+     * Adding all maps in the game to be reset when reset is called.
+     *
+     * @param map maps to be reset.
+     */
     public static void addMaps(GameMap map){
         gameMaps.add(map);
     }

@@ -8,18 +8,19 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actors.friendly.Merchant;
 import game.actors.friendly.PlayableCharacter;
 import game.utils.Status;
-import game.items.weapons.WeaponRunes;
+import game.items.weapons.PurchasableWeapon;
 
 /**
  * For buying stuff.
- * Author:
+ * Created by:
  * @author Danny Duong
  * Modifiers:
  * @modifier Kenan Baydar
  */
-public class BuyAction extends Action {
+public class BuyAction extends Action{
 
     private final WeaponItem weapon;
+
 
     public BuyAction(WeaponItem weapon){
         this.weapon = weapon;
@@ -43,9 +44,9 @@ public class BuyAction extends Action {
                 Actor merchantActor = destination.getActor();
                 if (merchantActor.hasCapability(Status.TRADER)) {
                     if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                        if (((PlayableCharacter) actor).removeRunes(((WeaponRunes) weapon).buyPrice())){
+                        if (((PlayableCharacter) actor).removeRunes(((PurchasableWeapon) weapon).buyPrice())){
                             actor.addWeaponToInventory(weapon);
-                            return actor + " purchased " + weapon + " for " + ((WeaponRunes) weapon).buyPrice() + " runes.";
+                            return actor + " purchased " + weapon + " for " + ((PurchasableWeapon) weapon).buyPrice() + " runes.";
                         }
                         else {
                             return actor + " does not have enough runes to purchase " + weapon + "!";
@@ -64,6 +65,6 @@ public class BuyAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " purchases " + weapon + " for " + ((WeaponRunes) weapon).buyPrice() + " runes.";
+        return actor + " purchases " + weapon + " for " + ((PurchasableWeapon) weapon).buyPrice() + " runes.";
     }
 }

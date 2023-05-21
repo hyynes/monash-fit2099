@@ -10,13 +10,18 @@ import game.items.GoldenRunes;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The map of Limgrave.
+ * Created by:
+ * @author Kenan Baydar
+ *
+ */
 public class Limgrave implements DifferentMaps{
 
     public GameMap map(){
 
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
-                new Graveyard(), new GustOfWind(), new PuddleOfWater(), new Cage(), new Barrack(), new SiteOfLostGrace(),
-                new Cliff());
+                new Graveyard(), new GustOfWind(), new PuddleOfWater(), new SiteOfLostGrace(), new Cliff());
 
         List<String> map = Arrays.asList(
                 "......................#.............#..........................+++.........",
@@ -47,6 +52,10 @@ public class Limgrave implements DifferentMaps{
         return new GameMap(groundFactory, map);
     }
 
+    /**
+     *
+     * Golden Runes scattered across the map.
+     */
     public void addGoldenRunes(GameMap maps, Player actor){
         maps.at(6,6).addItem(new GoldenRunes(actor));
         maps.at(22,10).addItem(new GoldenRunes(actor));
@@ -58,6 +67,10 @@ public class Limgrave implements DifferentMaps{
         maps.at(56,9).addItem(new GoldenRunes(actor));
     }
 
+    /**
+     *
+     * @return The name of the map displayed as a String.
+     */
     public static String displayString(){
         return "Limgrave";
     }

@@ -9,10 +9,9 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actors.friendly.PlayableCharacter;
 import game.utils.Status;
-import game.items.weapons.WeaponRunes;
 
 /**
- * An action executed for when the player death (not to be confused with DeathAction)
+ * An action executed for when the player sells an item
  * Created by:
  * @author Kenan Baydar
  * Modified by:
@@ -22,12 +21,15 @@ import game.items.weapons.WeaponRunes;
 public class SellAction extends Action {
     private final WeaponItem weapon;
 
+    private final int sellPrice;
+
     /**
      * Constructor.
      * @param weapon the weapon to be sold.
      */
-    public SellAction(WeaponItem weapon){
+    public SellAction(WeaponItem weapon, int sellPrice){
         this.weapon = weapon;
+        this.sellPrice = sellPrice;
     }
 
     /**
@@ -45,9 +47,9 @@ public class SellAction extends Action {
                 Actor merchantActor = destination.getActor();
                 if (merchantActor.hasCapability(Status.TRADER)) {
                     if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                        ((PlayableCharacter) actor).addRunes(((WeaponRunes) weapon).sellPrice());
+                        ((PlayableCharacter) actor).addRunes(sellPrice);
                         actor.removeWeaponFromInventory(weapon);
-                        return actor + " sold " + weapon + " for " + ((WeaponRunes) weapon).sellPrice() + " runes.";
+                        return actor + " sold " + weapon + " for " + sellPrice + " runes.";
                     }
                 }
             }
@@ -62,6 +64,6 @@ public class SellAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " sells " + weapon + " for " + ((WeaponRunes) weapon).sellPrice() + " runes.";
+        return actor + " sells " + weapon + " for " + sellPrice + " runes.";
     }
 }

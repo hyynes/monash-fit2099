@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actors.enemies.regular.PileOfBones;
 import game.actors.friendly.PlayableCharacter;
+import game.displays.FancyMessage;
 import game.grounds.neutral.SiteOfLostGrace;
 import game.items.stackable.EnemyRunes;
 import game.utils.Status;
@@ -56,7 +57,7 @@ public class DeathAction extends Action {
         ActionList dropActions = new ActionList();
 
         // Instead of dying, actors that have a second life will turn into a Pile of Bones.
-        if (target.hasCapability(Status.SECOND_LIFE)) {
+        if (target.hasCapability(Status.RESPAWNABLE)) {
 
             // remove actor
             map.removeActor(target);
@@ -79,6 +80,7 @@ public class DeathAction extends Action {
 
         if (target.hasCapability(Status.BOSS)){
             map.locationOf(target).setGround(new SiteOfLostGrace());
+            result += FancyMessage.DEMIGOD_FELLED;
         }
 
         // remove actor

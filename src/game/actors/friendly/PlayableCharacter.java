@@ -1,5 +1,4 @@
 package game.actors.friendly;
-
 import edu.monash.fit2099.engine.actors.Actor;
 import game.actions.BuyAction;
 import game.actions.DeathAction;
@@ -14,8 +13,6 @@ import game.items.stackable.EnemyRunes;
  * Modified by:
  * @modifier Danny Duong
  */
-
-
 public interface PlayableCharacter {
 
     /**

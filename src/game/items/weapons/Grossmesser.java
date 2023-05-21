@@ -2,7 +2,6 @@ package game.items.weapons;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.SurroundingAttack;
 import game.utils.Status;
 
@@ -13,7 +12,7 @@ import game.utils.Status;
  * @author Kenan Baydar
  *
  */
-public class Grossmesser extends WeaponItem implements WeaponRunes{
+public class Grossmesser extends SellableWeapon {
 
     /**
      * If carried by an enemy, stores its target actor to follow.
@@ -31,11 +30,6 @@ public class Grossmesser extends WeaponItem implements WeaponRunes{
         this.addCapability(Status.GROSSMESSER);
     }
 
-    public Grossmesser() {
-        super("Grossmesser", '?', 115, "Slices", 85);
-    }
-
-
     /**
      * Special Spin Attack Skill
      *
@@ -52,17 +46,7 @@ public class Grossmesser extends WeaponItem implements WeaponRunes{
 
     /**
      *
-     * @return The price at which the Grossmesser can be purchased from the Merchant
-     * In this case, not available for purchase from Merchant.
-     */
-    @Override
-    public int buyPrice() {
-        return 0;
-    }
-
-    /**
-     *
-     * @return The price at which the Grossmesser can be sold to the Merchant
+     * @return The price at which the Grossmesser can be sold to the trader.
      */
     @Override
     public int sellPrice() {

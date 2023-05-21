@@ -13,7 +13,7 @@ import java.util.List;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
- * @modifier Danny Duong
+ * @modifier Danny Duong, Kenan Baydar
  */
 
 public class ResetManager{

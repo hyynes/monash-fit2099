@@ -8,15 +8,41 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actions.MapTravelling;
 import game.utils.Status;
 
+/**
+ * New ground that only the player can enter.
+ * If the player enters, they will travel somewhere...
+ * Created by:
+ * @author Kenan Baydar
+ */
 public class GoldenFogDoor extends Ground {
+
+    /**
+     * The map to travel to.
+     */
     private final GameMap travel;
+
+    /**
+     * The name of the map.
+     */
     private final String displayString;
+
+    /**
+     * The location in the x direction.
+     */
     private int x;
+
+    /**
+     * The location in the y direction.
+     */
     private int y;
 
     /**
      * Constructor.
      *
+     * @param travel The map that the actor will travel to.
+     * @param displayString The name of the map which will be displayed as a string.
+     * @param x The location to travel to in the x direction.
+     * @param y The location to travel to in the y direciton.
      */
     public GoldenFogDoor(GameMap travel, String displayString, int x, int y) {
         super('D');
@@ -26,6 +52,15 @@ public class GoldenFogDoor extends Ground {
         this.y = y;
     }
 
+    /**
+     * The actions allowed to be performed on the Golden Fog Door.
+     * The actor will instantly teleport to another location after interaction with the Golden Fog Door.
+     *
+     * @param actor the Actor performing the action.
+     * @param location the current Location
+     * @param direction the direction of the Ground from the Actor
+     * @return
+     */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
 

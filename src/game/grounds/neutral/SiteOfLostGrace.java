@@ -31,13 +31,13 @@ public class SiteOfLostGrace extends Ground {
     private final DiscoverAction discoverAction = new DiscoverAction();
 
     /**
+     * The actions allowed to be performed on the Site of lost Grace.
      *
-     * @param actor the Actor acting
+     * @param actor the Actor performing the action.
      * @param location the current Location
      * @param direction the direction of the Ground from the Actor
-     * @return Actionlist
+     * @return An Actionlist.
      */
-
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         ActionList actions = new ActionList();
@@ -46,7 +46,6 @@ public class SiteOfLostGrace extends Ground {
                 actions.add(discoverAction);
             } else {
                 actions.add(new RestAction());
-                // Optional Implementation: actions.add(new MapTravelling());
             }
         }
         return actions;

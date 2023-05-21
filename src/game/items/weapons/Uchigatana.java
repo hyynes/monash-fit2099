@@ -1,7 +1,5 @@
 package game.items.weapons;
 
-import edu.monash.fit2099.engine.weapons.WeaponItem;
-
 /**
  * A knife that deals 115 damage with 80% hit rate
  * Created by:
@@ -10,7 +8,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * @modifier Kenan Baydar
  */
 
-public class Uchigatana extends WeaponItem implements WeaponRunes {
+public class Uchigatana extends SellableWeapon implements PurchasableWeapon {
 
     /**
      * Constructor.
@@ -21,7 +19,7 @@ public class Uchigatana extends WeaponItem implements WeaponRunes {
 
     /**
      *
-     * @return The price at which the Uchigatana can be purchased from the Merchant
+     * @return The price at which the Uchigatana can be purchased from the trader.
      */
     @Override
     public int buyPrice() {
@@ -30,7 +28,7 @@ public class Uchigatana extends WeaponItem implements WeaponRunes {
 
     /**
      *
-     * @return The price at which the Uchigatana can be sold to the Merchant
+     * @return The price at which the Uchigatana can be sold to the trader.
      */
     public int sellPrice(){
         return 500;

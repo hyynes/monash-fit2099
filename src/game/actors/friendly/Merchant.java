@@ -7,7 +7,6 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.BuyAction;
-import game.actions.SellAction;
 import game.utils.Status;
 import game.items.weapons.*;
 import java.util.ArrayList;
@@ -22,26 +21,27 @@ import java.util.List;
  *
  */
 
-public class Merchant extends Actor{
+public class Merchant extends Actor {
 
     /**
-     * Constructor. This constructor also adds 4 weapons to the merchant's inventory: a club, a scimitar, a great knife and an uchigatana.
-     * @param name - name of Merchant
-     * @param displayChar - displayCharacter
-     * @param hitPoints - irrelevant; just called from super class
+     * Constructor. Adds weapons to the merchant's inventory: a club, a scimitar, a great knife and an uchigatana.
      *
      */
-    public Merchant(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints);
+    public Merchant() {
+        super("Merchant Kale", 'K', 100);
         this.addCapability(Status.TRADER);
-        this.addWeaponToInventory(new Club());
-        this.addWeaponToInventory(new Scimitar());
-        this.addWeaponToInventory(new GreatKnife());
-        this.addWeaponToInventory(new Uchigatana());
+        merchantsShop();
     }
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        List<WeaponItem> purchaseWeapons = new ArrayList<>(this.getWeaponInventory());
+        if (!purchaseWeapons.isEmpty()) {
+            for (WeaponItem weapon : purchaseWeapons) {
+                this.removeWeaponFromInventory(weapon);
+            }
+        }
+        merchantsShop();
         return new DoNothingAction();
     }
 
@@ -54,31 +54,24 @@ public class Merchant extends Actor{
      */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-
-        // make an action list that stores all the possible actions on the Merchant.
-        // This would be all the weapons able to be purchased from him.
         ActionList actions = new ActionList();
-
         if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
 
             // A list that will store all weapons that the merchant has.
             List<WeaponItem> purchaseWeapons = new ArrayList<>(this.getWeaponInventory());
-
-            // If Player has a weapon, it may choose to either use it or its intrinsic weapon
             if (!purchaseWeapons.isEmpty()) {
                 for (WeaponItem weapon : purchaseWeapons) {
                     actions.add(new BuyAction(weapon));
                 }
             }
-            // A list that will store all weapons that the other actor has, in this case, the Player.
-            List<WeaponItem> sellWeapons = new ArrayList<>(otherActor.getWeaponInventory());
-            if (!sellWeapons.isEmpty()) {
-                for (WeaponItem weapon : sellWeapons) {
-                    actions.add(new SellAction(weapon));
-                }
-            }
-
         }
         return actions;
+    }
+
+    public void merchantsShop(){
+        this.addWeaponToInventory(new Club());
+        this.addWeaponToInventory(new Scimitar());
+        this.addWeaponToInventory(new GreatKnife());
+        this.addWeaponToInventory(new Uchigatana());
     }
 }

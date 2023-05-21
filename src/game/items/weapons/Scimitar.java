@@ -2,7 +2,6 @@ package game.items.weapons;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.SurroundingAttack;
 import game.utils.Status;
 
@@ -13,8 +12,7 @@ import game.utils.Status;
  * @author Kenan Baydar
  *
  */
-
-public class Scimitar extends WeaponItem implements WeaponRunes{
+public class Scimitar extends SellableWeapon implements PurchasableWeapon {
 
     /**
      * If carried by an enemy, stores its target actor to follow.
@@ -55,7 +53,7 @@ public class Scimitar extends WeaponItem implements WeaponRunes{
 
     /**
      *
-     * @return The price at which the Scimitar can be purchased from the Merchant
+     * @return The price at which the Scimitar can be purchased from the trader.
      */
     @Override
     public int buyPrice() {
@@ -64,10 +62,11 @@ public class Scimitar extends WeaponItem implements WeaponRunes{
 
     /**
      *
-     * @return The price at which the Scimitar can be sold to the Merchant
+     * @return The price at which the Scimitar can be sold to the trader.
      */
     @Override
     public int sellPrice() {
         return 100;
     }
+
 }

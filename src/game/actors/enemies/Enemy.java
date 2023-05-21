@@ -1,5 +1,4 @@
 package game.actors.enemies;
-
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
@@ -13,7 +12,6 @@ import game.behaviours.*;
 import game.items.stackable.EnemyRunes;
 import game.utils.Resettable;
 import game.utils.Status;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

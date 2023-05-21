@@ -47,6 +47,15 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		maxHP = hitPoints;
 	}
 
+	/**
+	 * New actions added after each turn depending on position and location, and others.
+	 *
+	 * @param actions    collection of possible Actions for this Actor
+	 * @param lastAction The Action this Actor took last turn.
+	 * @param map        the map containing the Actor
+	 * @param display    the I/O object to which messages may be written
+	 * @return All possible actions for the player
+	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 

@@ -7,9 +7,8 @@ import game.Application;
  * Created by:
  * @author Danny Duong
  * Modified by:
- *
+ * @modifier Kenan Baydar
  */
-
 public class PlayerSpawnPoint {
     private Location spawnLocation;
     private PlayerSpawnPoint(){}

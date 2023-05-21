@@ -1,7 +1,5 @@
 package game.items.weapons;
 
-import edu.monash.fit2099.engine.weapons.WeaponItem;
-
 /**
  * A simple weapon that can be used to attack the enemy.
  * It deals 103 damage with 80% hit rate
@@ -10,7 +8,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * Modified by:
  * @modifier Kenan Baydar
  */
-public class Club extends WeaponItem implements WeaponRunes{
+public class Club extends SellableWeapon implements PurchasableWeapon {
 
     /**
      * Constructor
@@ -21,7 +19,7 @@ public class Club extends WeaponItem implements WeaponRunes{
 
     /**
      *
-     * @return The price at which the Club can be purchased from the Merchant.
+     * @return The price at which the Club can be purchased from the trader.
      */
     public int buyPrice(){
         return 600;
@@ -29,9 +27,10 @@ public class Club extends WeaponItem implements WeaponRunes{
 
     /**
      *
-     * @return The price at which the Club can be sold to the Merchant
+     * @return The price at which the Club can be sold to the trader.
      */
     public int sellPrice(){
         return 100;
     }
+
 }

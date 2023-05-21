@@ -8,11 +8,15 @@ import game.grounds.neutral.*;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The map of the Round Table Hold.
+ * Created by:
+ * @author Kenan Baydar
+ *
+ */
 public class RoundTableHold implements DifferentMaps{
 
-    FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
-            new Graveyard(), new GustOfWind(), new PuddleOfWater(), new Cage(), new Barrack(), new SiteOfLostGrace(),
-            new Cliff());
+    FancyGroundFactory groundFactory = new FancyGroundFactory(new Wall(), new Floor(), new SiteOfLostGrace());
 
     public GameMap map(){
         List<String> map = Arrays.asList(
@@ -30,7 +34,11 @@ public class RoundTableHold implements DifferentMaps{
         return new GameMap(groundFactory, map);
     }
 
+    /**
+     *
+     * @return The name of the map displayed as a string.
+     */
     public static String displayString(){
-        return "Roundtable Hold";
+        return "Round Table Hold";
     }
 }

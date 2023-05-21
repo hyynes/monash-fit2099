@@ -112,7 +112,9 @@ public class Application {
 			};
 		}
 
-		Merchant merchant = new Merchant("Merchant Kale", 'K', 100);
+		Merchant merchant1 = new Merchant();
+		Merchant merchant2 = new Merchant();
+		Merchant merchant3 = new Merchant();
 
 		// Setting the target for the enemies spawned from the environments to Tarnished.
 		Graveyard.setTarget(player);
@@ -122,11 +124,13 @@ public class Application {
 		Barrack.setTarget(player);
 
 		// initialise merchant and player locations
-		world.addPlayer(merchant, limgrave.at(40, 12));
+		world.addPlayer(merchant1, limgrave.at(40, 12));
+		world.addPlayer(merchant2, limgrave.at(3, 21));
+		world.addPlayer(merchant3, stormveilCastle.at(40, 21));
 		world.addPlayer(player, limgrave.at(36, 10));
 		PlayerSpawnPoint.getInstance().setSpawnLocation(limgrave.at(36, 10));
 
-		// Adding golden runes into the game.
+		// Adding golden runes scattered across the game
 		limgraveBase.addGoldenRunes(limgrave, player);
 		stormveilCastleBase.addGoldenRunes(stormveilCastle, player);
 
