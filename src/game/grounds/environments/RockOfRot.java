@@ -13,7 +13,7 @@ public class RockOfRot extends Environment{
 
     @Override
     public int getSpawnChance() {
-        return 50;
+        return 33;
     }
 
     @Override

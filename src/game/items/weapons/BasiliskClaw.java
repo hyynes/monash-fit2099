@@ -11,7 +11,7 @@ public class BasiliskClaw extends SellableWeapon implements Inflictable{
      * Constructor.
      */
     public BasiliskClaw() {
-        super("Basilisk CLaw", 'C', 103, "slashes", 85);
+        super("Basilisk Claw", 'C', 103, "slashes", 85);
     }
 
     @Override
