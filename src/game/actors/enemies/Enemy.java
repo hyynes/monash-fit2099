@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import static game.utils.WeaponEffect.*;
 
 /**
  * An abstract class to identify enemy actors.
@@ -43,6 +44,7 @@ public abstract class Enemy extends Actor implements Resettable, EnemyRunes {
     protected boolean callReset = false;
 
 
+    protected ArrayList<StatusManager> statuses  = new ArrayList<StatusManager>();
     /**
      * Constructor.
      *
@@ -76,6 +78,24 @@ public abstract class Enemy extends Actor implements Resettable, EnemyRunes {
             callReset = false;
             return new DespawnAction();
         }
+
+        for (StatusManager status : statuses){
+            status.decreaseStatusTimer();
+            if (status.getStatusTimer() == 0){
+                this.removeCapability(status.getEffect());
+            }
+        }
+
+        if (this.hasCapability(POISON)){
+            int damageTaken = (int) ((0.07 * maxHitPoints) + 7);
+            this.hurt(damageTaken);
+            System.out.println(this + " has taken " + damageTaken + " poison damage.");
+        }
+
+        if (this.hasCapability(SLEEP)){
+            return new DoNothingAction();
+        }
+
         // General playTurn step for all regular enemies
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
@@ -113,6 +133,10 @@ public abstract class Enemy extends Actor implements Resettable, EnemyRunes {
             actions.add(new AttackAction(this, this.target, direction));
         }
         return actions;
+    }
+
+    public void addStatus(StatusManager status){
+        statuses.add(status);
     }
 
 }

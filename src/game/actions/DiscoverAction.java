@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.displays.FancyMessage;
+import game.grounds.neutral.SiteOfLostGrace;
 
 /**
  * When the Site Of Lost Grace is first discovered by the player.
@@ -17,11 +18,14 @@ public class DiscoverAction extends Action {
      * Whether the site of lost grace has been discovered yet or not.
      */
     private boolean discover = false;
+    private SiteOfLostGrace site;
 
     /**
      * Constructor.
      */
-    public DiscoverAction(){}
+    public DiscoverAction(SiteOfLostGrace site){
+        this.site = site;
+    }
 
     /**
      * When the player first discovers the site of lost grace and touches it.
@@ -44,7 +48,7 @@ public class DiscoverAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " touches Site of Lost Grace";
+        return actor + " touches " + site.getName() + '.';
     }
 
     /**
@@ -54,5 +58,9 @@ public class DiscoverAction extends Action {
      */
     public boolean isDiscovered(){
         return discover;
+    }
+
+    public void setDiscover(boolean bool){
+        discover = bool;
     }
 }

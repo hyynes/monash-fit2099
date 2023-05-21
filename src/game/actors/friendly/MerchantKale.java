@@ -76,5 +76,7 @@ public class MerchantKale extends Actor{
         this.addWeaponToInventory(new Scimitar());
         this.addWeaponToInventory(new GreatKnife());
         this.addWeaponToInventory(new Uchigatana());
+        this.addWeaponToInventory(new SwordOfStTrina());
+        this.addWeaponToInventory(new SerpentboneBlade());
     }
 }
