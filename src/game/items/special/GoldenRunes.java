@@ -2,9 +2,12 @@ package game.items.special;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.DropAction;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.ConsumeAction;
 import game.actors.friendly.Player;
+import game.items.stackable.Consumable;
+import game.utils.RandomNumberGenerator;
 
 /**
  * An item that is scattered across Elden Ring.
@@ -13,42 +16,18 @@ import game.actors.friendly.Player;
  * @author Kenan Baydar
  *
  */
-public class GoldenRunes extends Item {
+public class GoldenRunes extends Item implements Consumable {
 
-    /**
-     * New action when to consume the Golden Rune if held by the player.
-     *
-     */
-    private final ConsumeAction consumeAction;
-
-    /***
-     * Constructor.
-     *
-     * @param player The player holding the item.
-     */
     public GoldenRunes(Player player) {
         super("Golden Runes", '*', true);
-        consumeAction = new ConsumeAction(this, player);
     }
 
-    /**
-     * Adds the action to consume the Golden Rune if held by the player.
-     *
-     * This method is called once per turn, if the Item is being carried.
-     * @param currentLocation The location of the actor carrying this Item.
-     * @param actor The actor carrying this Item.
-     */
-    public void tick(Location currentLocation, Actor actor) {
-        addAction(consumeAction);
-    }
-
-    /**
-     * If the item is dropped, remove the consume action.
-     *
-     */
     @Override
-    public DropAction getDropAction(Actor actor) {
-        removeAction(consumeAction);
-        return super.getDropAction(actor);
+    public String consume(Actor actor, GameMap map) {
+        String results;
+        actor.removeItemFromInventory(this);
+        int runesGenerated = RandomNumberGenerator.getRandomInt(200,10000);
+        // actor.addRunes(runesGenerated);
+        return actor + " consumed " + this + " for " + runesGenerated + " runes.";
     }
 }

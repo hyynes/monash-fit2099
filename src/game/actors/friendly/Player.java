@@ -5,11 +5,13 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.displays.Menu;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.*;
 import game.Application;
+import game.items.stackable.Consumable;
 import game.items.stackable.EnemyRunes;
 import game.items.stackable.FlaskOfCrimsonTears;
 import game.items.stackable.Rune;
@@ -69,7 +71,11 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		// displays its health and runes, and updates it every turn.
 		System.out.println(displayStats());
 
-		actions.add(new HealAction());
+		for (Item item : getItemInventory()){
+			if (item instanceof Consumable){
+				actions.add(new ConsumeAction(item, this));
+			}
+		}
 
 		// if player is standing on top of rune, allow pick up runes action
 		if (!map.locationOf(this).getItems().isEmpty()){

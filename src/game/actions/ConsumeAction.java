@@ -6,13 +6,15 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.friendly.Player;
 import game.items.special.GoldenRunes;
+import game.items.stackable.Consumable;
 import game.utils.RandomNumberGenerator;
 
 /**
  * When the GoldenRunes is consumed by the player.
  * Created by:
  * @author Kenan Baydar
- *
+ * Modified by:
+ * @modifier Danny Duong
  */
 public class ConsumeAction extends Action {
 
@@ -31,6 +33,7 @@ public class ConsumeAction extends Action {
      * @param consumedItem the item being consumed
      * @param player The player consuming the item
      */
+
     public ConsumeAction(Item consumedItem, Player player){
         this.consumedItem = consumedItem;
         this.player = player;
@@ -46,10 +49,7 @@ public class ConsumeAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        player.removeItemFromInventory(consumedItem);
-        int runesGenerated = RandomNumberGenerator.getRandomInt(200,10000);
-        player.addRunes(runesGenerated);
-        return menuDescription(actor) + " for " + runesGenerated + " runes.";
+        return ((Consumable) consumedItem).consume(actor, map);
     }
 
     /**

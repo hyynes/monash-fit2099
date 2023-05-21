@@ -1,5 +1,8 @@
 package game.items.stackable;
 
+import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.positions.GameMap;
+
 /**
  * A healing potion for when you can't dodge attacks.
  * Created by:
@@ -8,7 +11,7 @@ package game.items.stackable;
  *
  */
 
-public class FlaskOfCrimsonTears extends StackableItem{
+public class FlaskOfCrimsonTears extends StackableItem implements Consumable {
 
     /**
      * Constructor.
@@ -20,5 +23,18 @@ public class FlaskOfCrimsonTears extends StackableItem{
     @Override
     public String displayToString() {
         return "Flask of Crimson Tears (" + getNoOfStacks() + ')';
+    }
+
+    @Override
+    public String consume(Actor actor, GameMap map) {
+        String results;
+        if (this.removeStacks(1)) {
+            actor.heal(250);
+            results = actor + " consumed " + this + '.';
+        }
+        else {
+            results = actor + " has no charges left in their " + this + ".";
+        }
+        return results;
     }
 }

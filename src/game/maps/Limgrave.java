@@ -24,8 +24,6 @@ public class Limgrave implements DifferentMaps{
                 new Graveyard(), new GustOfWind(), new PuddleOfWater(), new Cage(), new Barrack(), new SiteOfLostGrace(),
                 new Cliff());
 
-
-
         List<String> map = Arrays.asList(
                 "......................#.............#..........................+++.........",
                 "......................#.............#.......................+++++..........",
