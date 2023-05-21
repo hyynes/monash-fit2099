@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actors.Statusable;
 import game.actors.enemies.StatusManager;
 import game.utils.WeaponEffect;
-
 import static game.utils.Status.IMMUNE_TO_ROT;
 
 public class RotLakeWater extends Ground {
@@ -15,6 +14,11 @@ public class RotLakeWater extends Ground {
     public RotLakeWater() {
         super('=');
     }
+
+    /**
+     * Checks if an actor standing on the rot lake water is immune to rot or not. If not, apply scarlet rot for 2 turns.
+     * @param location The location of the Ground
+     */
 
     @Override
     public void tick(Location location) {

@@ -10,7 +10,7 @@ import game.items.stackable.Consumable;
 import game.utils.RandomNumberGenerator;
 
 /**
- * When the GoldenRunes is consumed by the player.
+ * A general action for modifying items that implement the Consumable interface.
  * Created by:
  * @author Kenan Baydar
  * Modified by:
@@ -40,8 +40,7 @@ public class ConsumeAction extends Action {
     }
 
     /**
-     * When executed, the actor receives runes from the GoldenRunes, and it is removed from the actors inventory
-     *
+     * Executes the consume action for the item.
      * @param actor The actor consuming the item
      * @param map The map the actor is on.
      * @return description of the actor consuming for the menu UI

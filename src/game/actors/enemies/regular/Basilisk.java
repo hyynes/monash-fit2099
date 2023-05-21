@@ -6,6 +6,11 @@ import game.items.weapons.BasiliskClaw;
 
 import static game.utils.Status.IMMUNE_TO_ROT;
 
+/**
+ * Inhabitant of the Lake of Rot.
+ * Created by:
+ * @author Danny Duong
+ */
 public class Basilisk extends RegularEnemy{
 
     /**
