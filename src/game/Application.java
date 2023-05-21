@@ -122,7 +122,8 @@ public class Application {
 		MerchantKale merchant1 = new MerchantKale();
 		MerchantKale merchant2 = new MerchantKale();
 		MerchantKale merchant3 = new MerchantKale();
-		FingerReaderEnia fingerReaderEnia = new FingerReaderEnia();
+		FingerReaderEnia fingerReaderEnia1 = new FingerReaderEnia();
+		FingerReaderEnia fingerReaderEnia2 = new FingerReaderEnia();
 
 		// Setting the target for the enemies spawned from the environments to Tarnished.
 		Graveyard.setTarget(player);
@@ -135,7 +136,8 @@ public class Application {
 		world.addPlayer(merchant1, limgrave.at(40, 12));
 		world.addPlayer(merchant2, limgrave.at(3, 21));
 		world.addPlayer(merchant3, stormveilCastle.at(40, 21));
-		world.addPlayer(fingerReaderEnia, bossRoom.at(5,5));
+		world.addPlayer(fingerReaderEnia1, bossRoom.at(5,5));
+		world.addPlayer(fingerReaderEnia2, roundTableHold.at(9,3));
 		world.addPlayer(player, limgrave.at(36, 10));
 		PlayerSpawnPoint.getInstance().setSpawnLocation(limgrave.at(36, 10));
 
@@ -168,7 +170,6 @@ public class Application {
 				}
 			}
 		}
-
 
 		// Spawn the Godrick the Grafted boss.
 		GodrickTheGrafted godrickTheGrafted = new GodrickTheGrafted(player);
