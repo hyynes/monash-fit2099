@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.MapTravelling;
 import game.utils.Status;
+import game.Application;
 
 /**
  * New ground that only the player can enter.
@@ -15,6 +16,7 @@ import game.utils.Status;
  * @author Kenan Baydar
  * Modified by:
  * @modifier Danny Duong
+ * @see Application
  */
 public class GoldenFogDoor extends Ground {
 

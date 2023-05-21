@@ -89,6 +89,7 @@ public class Application {
 		stormveilCastle.at(38,23).setGround(new GoldenFogDoor(limgrave, Limgrave.displayString(),30,0));
 		stormveilCastle.at(5,0).setGround(new GoldenFogDoor(bossRoom, BossRoom.displayString(),0,4));
 		roundTableHold.at(9,10).setGround(new GoldenFogDoor(limgrave, Limgrave.displayString(),5,23));
+		bossRoom.at(23,4).setGround(new GoldenFogDoor(stormveilCastle, StormveilCastle.displayString(),5,0));
 
 		// BEHOLD, ELDEN RING
 		for (String line : FancyMessage.ELDEN_RING.split("\n")) {
@@ -122,8 +123,7 @@ public class Application {
 		MerchantKale merchant1 = new MerchantKale();
 		MerchantKale merchant2 = new MerchantKale();
 		MerchantKale merchant3 = new MerchantKale();
-		FingerReaderEnia fingerReaderEnia1 = new FingerReaderEnia();
-		FingerReaderEnia fingerReaderEnia2 = new FingerReaderEnia();
+		FingerReaderEnia fingerReaderEnia = new FingerReaderEnia();
 
 		// Setting the target for the enemies spawned from the environments to Tarnished.
 		Graveyard.setTarget(player);
@@ -136,8 +136,7 @@ public class Application {
 		world.addPlayer(merchant1, limgrave.at(40, 12));
 		world.addPlayer(merchant2, limgrave.at(3, 21));
 		world.addPlayer(merchant3, stormveilCastle.at(40, 21));
-		world.addPlayer(fingerReaderEnia1, bossRoom.at(5,5));
-		world.addPlayer(fingerReaderEnia2, roundTableHold.at(9,3));
+		world.addPlayer(fingerReaderEnia, roundTableHold.at(9,3));
 		world.addPlayer(player, limgrave.at(36, 10));
 		PlayerSpawnPoint.getInstance().setSpawnLocation(limgrave.at(36, 10));
 
