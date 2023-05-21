@@ -156,6 +156,7 @@ public class Application {
 					if (maps.at(x,y).getDisplayChar() == 'U'){
 						if (maps.equals(limgrave)){
 							((SiteOfLostGrace) maps.at(x,y).getGround()).setName("The First Step");
+							((SiteOfLostGrace) maps.at(x,y).getGround()).setDiscovered(true);
 						}
 						if (maps.equals(roundTableHold)){
 							((SiteOfLostGrace) maps.at(x,y).getGround()).setName("Table of Lost Grace");

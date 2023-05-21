@@ -58,5 +58,10 @@ public class SiteOfLostGrace extends Ground {
         return actions;
     }
 
+    // only to be used once for The First Step
+    public void setDiscovered(boolean bool){
+        this.discoverAction.setDiscover(bool);
+    }
+
     public String getName() { return this.name;}
 }
