@@ -1,10 +1,7 @@
 package game.items.special;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.DropAction;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.positions.Location;
-import game.actions.ConsumeAction;
 import game.actors.friendly.Player;
 import game.items.stackable.Consumable;
 import game.utils.RandomNumberGenerator;
@@ -19,16 +16,18 @@ import game.utils.RandomNumberGenerator;
  */
 public class GoldenRunes extends Item implements Consumable {
 
+    Player player;
+
     public GoldenRunes(Player player) {
         super("Golden Runes", '*', true);
+        this.player = player;
     }
 
     @Override
     public String consume(Actor actor, GameMap map) {
-        String results;
         actor.removeItemFromInventory(this);
         int runesGenerated = RandomNumberGenerator.getRandomInt(200,10000);
-        ((Player)actor).addRunes(runesGenerated);
+        player.addRunes(runesGenerated);
         return actor + " consumed " + this + " for " + runesGenerated + " runes.";
     }
 }
