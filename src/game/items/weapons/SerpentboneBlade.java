@@ -1,7 +1,7 @@
 package game.items.weapons;
-import game.utils.WeaponEffect;
+import game.utils.StatusEffect;
 
-import static game.utils.WeaponEffect.*;
+import static game.utils.StatusEffect.*;
 
 public class SerpentboneBlade extends SellableWeapon implements PurchasableWeapon, Inflictable{
 
@@ -32,7 +32,7 @@ public class SerpentboneBlade extends SellableWeapon implements PurchasableWeapo
 
 
     @Override
-    public WeaponEffect inflict() {
+    public StatusEffect inflict() {
         return POISON;
     }
 

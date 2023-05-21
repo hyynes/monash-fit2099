@@ -3,7 +3,7 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.Statusable;
 import game.actors.enemies.StatusManager;
-import game.utils.WeaponEffect;
+import game.utils.StatusEffect;
 import static game.utils.Status.IMMUNE_TO_ROT;
 
 public class RotLakeWater extends Ground {
@@ -25,7 +25,7 @@ public class RotLakeWater extends Ground {
         if (location.containsAnActor()){
             if (location.getActor() instanceof Statusable && !location.getActor().hasCapability(IMMUNE_TO_ROT)) {
                 StatusManager status = new StatusManager(
-                        WeaponEffect.SCARLET_ROT,
+                        StatusEffect.SCARLET_ROT,
                         2
                 );
                 ((Statusable) location.getActor()).addStatus(status);

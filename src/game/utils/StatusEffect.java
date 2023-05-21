@@ -5,7 +5,7 @@ package game.utils;
  * Created by:
  * @author Danny Duong
  */
-public enum WeaponEffect {
+public enum StatusEffect {
     POISON,
     SLEEP,
     SCARLET_ROT

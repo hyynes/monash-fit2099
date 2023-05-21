@@ -1,7 +1,7 @@
 package game.items.weapons;
-import game.utils.WeaponEffect;
+import game.utils.StatusEffect;
 
-import static game.utils.WeaponEffect.*;
+import static game.utils.StatusEffect.*;
 
 public class SwordOfStTrina extends SellableWeapon implements PurchasableWeapon, Inflictable{
 
@@ -14,7 +14,7 @@ public class SwordOfStTrina extends SellableWeapon implements PurchasableWeapon,
     }
 
     @Override
-    public WeaponEffect inflict() {
+    public StatusEffect inflict() {
         return SLEEP;
     }
 

@@ -1,9 +1,8 @@
 package game.items.weapons;
 
-import game.utils.WeaponEffect;
+import game.utils.StatusEffect;
 
-import static game.utils.WeaponEffect.SCARLET_ROT;
-import static game.utils.WeaponEffect.SLEEP;
+import static game.utils.StatusEffect.SCARLET_ROT;
 
 public class BasiliskClaw extends SellableWeapon implements Inflictable{
 
@@ -15,7 +14,7 @@ public class BasiliskClaw extends SellableWeapon implements Inflictable{
     }
 
     @Override
-    public WeaponEffect inflict() {
+    public StatusEffect inflict() {
         return SCARLET_ROT;
     }
 

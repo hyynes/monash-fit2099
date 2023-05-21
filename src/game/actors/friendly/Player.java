@@ -21,7 +21,7 @@ import game.items.stackable.Rune;
 import game.utils.*;
 import java.util.ArrayList;
 
-import static game.utils.WeaponEffect.SLEEP;
+import static game.utils.StatusEffect.SLEEP;
 
 /**
  * Class representing the Player. It implements the Resettable interface.

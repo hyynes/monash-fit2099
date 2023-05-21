@@ -5,8 +5,8 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.enemies.StatusManager;
 import game.utils.RandomNumberGenerator;
 import game.utils.Status;
-import game.utils.WeaponEffect;
-import static game.utils.WeaponEffect.*;
+import game.utils.StatusEffect;
+import static game.utils.StatusEffect.*;
 
 /**
  * General action that manages statuses.
@@ -37,7 +37,7 @@ public class StatusAction extends Action {
         String results = "";
 
         statusManager.decreaseStatusTimer();
-        WeaponEffect status = statusManager.getEffect();
+        StatusEffect status = statusManager.getEffect();
         if (status == POISON){
             int damageTaken = (RandomNumberGenerator.getRandomInt(7,30));
             actor.hurt(damageTaken);

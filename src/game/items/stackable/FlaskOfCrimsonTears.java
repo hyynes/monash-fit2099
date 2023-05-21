@@ -2,10 +2,6 @@ package game.items.stackable;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.actors.Statusable;
-import game.actors.enemies.StatusManager;
-import game.actors.friendly.Player;
-import game.utils.WeaponEffect;
 
 /**
  * A healing potion for when you can't dodge attacks.

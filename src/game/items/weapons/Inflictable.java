@@ -1,7 +1,7 @@
 package game.items.weapons;
-import game.utils.WeaponEffect;
+import game.utils.StatusEffect;
 
 public interface Inflictable {
-    WeaponEffect inflict();
+    StatusEffect inflict();
     int inflictTimer();
 }

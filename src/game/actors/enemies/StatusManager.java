@@ -1,5 +1,5 @@
 package game.actors.enemies;
-import game.utils.WeaponEffect;
+import game.utils.StatusEffect;
 
 /**
  * Managing status effects.
@@ -9,7 +9,7 @@ import game.utils.WeaponEffect;
 
 public class StatusManager {
 
-    private WeaponEffect effect;
+    private StatusEffect effect;
     private int timer;
 
     /**
@@ -18,12 +18,12 @@ public class StatusManager {
      * @param timer - for how many turns.
      */
 
-    public StatusManager(WeaponEffect effect, int timer) {
+    public StatusManager(StatusEffect effect, int timer) {
         this.timer = timer;
         this.effect = effect;
     }
 
-    public WeaponEffect getEffect(){ return effect;}
+    public StatusEffect getEffect(){ return effect;}
 
     public int getStatusTimer(){ return timer;}
 
