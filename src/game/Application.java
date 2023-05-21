@@ -41,11 +41,13 @@ public class Application {
 		StormveilCastle stormveilCastleBase = new StormveilCastle();
 		BossRoom bossRoomBase = new BossRoom();
 		RoundTableHold roundTableHoldBase = new RoundTableHold();
+		LakeOfRot lakeOfRotBase = new LakeOfRot();
 
 		GameMap limgrave = limgraveBase.map();
 		GameMap stormveilCastle = stormveilCastleBase.map();
 		GameMap bossRoom = bossRoomBase.map();
 		GameMap roundTableHold = roundTableHoldBase.map();
+		GameMap lakeOfRot = lakeOfRotBase.map();
 
 		// Add all gameMaps into an arrayList.
 		ArrayList<GameMap> gameMaps = new ArrayList<>();
@@ -53,6 +55,7 @@ public class Application {
 		gameMaps.add(stormveilCastle);
 		gameMaps.add(bossRoom);
 		gameMaps.add(roundTableHold);
+		gameMaps.add(lakeOfRot);
 
 		// Loop through all gameMaps in the arrayList and add them into the world.
 		for (GameMap gameMap: gameMaps) {
@@ -82,6 +85,7 @@ public class Application {
 		// Add Golden Fog Doors to certain areas in different gameMaps.
 		limgrave.at(30,0).setGround(new GoldenFogDoor(stormveilCastle, StormveilCastle.displayString(),38,23));
 		limgrave.at(5,23).setGround(new GoldenFogDoor(roundTableHold, RoundTableHold.displayString(),9,10));
+		limgrave.at(74,11).setGround(new GoldenFogDoor(lakeOfRot, LakeOfRot.displayString(), 0, 10));
 		stormveilCastle.at(38,23).setGround(new GoldenFogDoor(limgrave, Limgrave.displayString(),30,0));
 		stormveilCastle.at(5,0).setGround(new GoldenFogDoor(bossRoom, BossRoom.displayString(),0,4));
 		roundTableHold.at(9,10).setGround(new GoldenFogDoor(limgrave, Limgrave.displayString(),5,23));
@@ -157,6 +161,9 @@ public class Application {
 						}
 						if (maps.equals(stormveilCastle)){
 							((SiteOfLostGrace) maps.at(x,y).getGround()).setName("Stormveil Main Gate");
+						}
+						if (maps.equals(lakeOfRot)){
+							((SiteOfLostGrace) maps.at(x,y).getGround()).setName("Grand Cloister");
 						}
 					}
 				}

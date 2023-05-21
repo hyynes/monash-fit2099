@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.AttackAction;
 import game.actions.DespawnAction;
 import game.actions.StatusAction;
+import game.actors.Statusable;
 import game.behaviours.*;
 import game.items.stackable.EnemyRunes;
 import game.utils.Resettable;
@@ -27,7 +28,7 @@ import static game.utils.WeaponEffect.*;
  * @modifier Danny Duong
  */
 
-public abstract class Enemy extends Actor implements Resettable, EnemyRunes {
+public abstract class Enemy extends Actor implements Resettable, EnemyRunes, Statusable {
 
     /**
      * Map object that stores all behaviours.
@@ -81,16 +82,12 @@ public abstract class Enemy extends Actor implements Resettable, EnemyRunes {
         }
 
         for (StatusManager status : statuses) {
-            status.decreaseStatusTimer();
-            actions.add(new StatusAction(status.getEffect()));
-            if (status.getStatusTimer() == 0) {
-                this.removeCapability(status.getEffect());
+            if (checkStatus(status) != null) {
+                checkStatus(status).execute(this, map);
             }
-        }
-
-        // end turn if sleeping
-        if (this.hasCapability(SLEEP)){
-            return null;
+            if (status.getEffect() == SLEEP){
+                return new DoNothingAction();
+            }
         }
 
         // General playTurn step for all regular enemies
@@ -132,8 +129,23 @@ public abstract class Enemy extends Actor implements Resettable, EnemyRunes {
         return actions;
     }
 
+    @Override
     public void addStatus(StatusManager status){
         statuses.add(status);
     }
 
+    @Override
+    public void removeStatus(StatusManager status) {statuses.remove(status);}
+
+    @Override
+    public Action checkStatus(StatusManager status){
+        status.decreaseStatusTimer();
+        if (status.getStatusTimer() == 0) {
+            this.removeStatus(status);
+            return null;
+        }
+        else {
+            return new StatusAction(status);
+        }
+    }
 }

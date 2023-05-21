@@ -19,5 +19,6 @@ public enum Status {
     GROSSMESSER,
     SCIMITAR,
     BOSS,
-    FINGER_READER
+    FINGER_READER,
+    IMMUNE_TO_ROT
 }
