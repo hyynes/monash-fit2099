@@ -18,5 +18,6 @@ public enum Status {
     TRADER,
     GROSSMESSER,
     SCIMITAR,
-    BOSS
+    BOSS,
+    FINGER_READER
 }

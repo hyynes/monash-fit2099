@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.actors.friendly.Merchant;
+import game.actors.friendly.MerchantKale;
 import game.actors.friendly.PlayableCharacter;
 import game.utils.Status;
 import game.items.weapons.PurchasableWeapon;
@@ -32,7 +32,7 @@ public class BuyAction extends Action{
      * allow buyAction.
      * @param actor The actor performing the purchase action.
      * @param map The map the actor is on.
-     * @see Merchant
+     * @see MerchantKale
      * @return a message whether the weapon is bought or not, or if the player doesn't have enough runes.
      */
     @Override
@@ -44,7 +44,11 @@ public class BuyAction extends Action{
                 Actor merchantActor = destination.getActor();
                 if (merchantActor.hasCapability(Status.TRADER)) {
                     if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                        if (((PlayableCharacter) actor).removeRunes(((PurchasableWeapon) weapon).buyPrice())){
+                        if(merchantActor.hasCapability(Status.FINGER_READER)){
+                            actor.addWeaponToInventory(weapon);
+                            return actor + " recieves " + weapon;
+                        }
+                        else if (((PlayableCharacter) actor).removeRunes(((PurchasableWeapon) weapon).buyPrice())){
                             actor.addWeaponToInventory(weapon);
                             return actor + " purchased " + weapon + " for " + ((PurchasableWeapon) weapon).buyPrice() + " runes.";
                         }

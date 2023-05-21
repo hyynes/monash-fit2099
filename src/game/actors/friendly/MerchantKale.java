@@ -21,13 +21,13 @@ import java.util.List;
  *
  */
 
-public class Merchant extends Actor {
+public class MerchantKale extends Actor{
 
     /**
      * Constructor. Adds weapons to the merchant's inventory: a club, a scimitar, a great knife and an uchigatana.
      *
      */
-    public Merchant() {
+    public MerchantKale() {
         super("Merchant Kale", 'K', 100);
         this.addCapability(Status.TRADER);
         merchantsShop();
@@ -68,6 +68,9 @@ public class Merchant extends Actor {
         return actions;
     }
 
+    /**
+     * The list of weapons available for purchase from Merchant Kale.
+     */
     public void merchantsShop(){
         this.addWeaponToInventory(new Club());
         this.addWeaponToInventory(new Scimitar());

@@ -9,7 +9,8 @@ import edu.monash.fit2099.engine.positions.NumberRange;
 import edu.monash.fit2099.engine.positions.World;
 import game.actions.PlayerDeathAction;
 import game.actors.enemies.boss.GodrickTheGrafted;
-import game.actors.friendly.Merchant;
+import game.actors.friendly.FingerReaderEnia;
+import game.actors.friendly.MerchantKale;
 import game.actors.friendly.Player;
 import game.grounds.environments.*;
 import game.displays.FancyMessage;
@@ -113,9 +114,10 @@ public class Application {
 		}
 
 		// Merchants to be added into the game.
-		Merchant merchant1 = new Merchant();
-		Merchant merchant2 = new Merchant();
-		Merchant merchant3 = new Merchant();
+		MerchantKale merchant1 = new MerchantKale();
+		MerchantKale merchant2 = new MerchantKale();
+		MerchantKale merchant3 = new MerchantKale();
+		FingerReaderEnia fingerReaderEnia = new FingerReaderEnia();
 
 		// Setting the target for the enemies spawned from the environments to Tarnished.
 		Graveyard.setTarget(player);
@@ -128,6 +130,7 @@ public class Application {
 		world.addPlayer(merchant1, limgrave.at(40, 12));
 		world.addPlayer(merchant2, limgrave.at(3, 21));
 		world.addPlayer(merchant3, stormveilCastle.at(40, 21));
+		world.addPlayer(fingerReaderEnia, bossRoom.at(5,5));
 		world.addPlayer(player, limgrave.at(36, 10));
 		PlayerSpawnPoint.getInstance().setSpawnLocation(limgrave.at(36, 10));
 
