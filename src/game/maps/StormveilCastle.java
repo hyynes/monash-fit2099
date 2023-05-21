@@ -22,8 +22,6 @@ public class StormveilCastle implements DifferentMaps{
             new Graveyard(), new GustOfWind(), new PuddleOfWater(), new Cage(), new Barrack(), new SiteOfLostGrace(),
             new Cliff());
 
-
-
     public GameMap map(){
         List<String> map = Arrays.asList(
                 "...........................................................................",

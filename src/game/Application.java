@@ -150,7 +150,6 @@ public class Application {
 			NumberRange xRange = maps.getXRange();
 			NumberRange yRange = maps.getYRange();
 
-			// Removes runes that may have been in the game previously
 			for (int y = 0; y <= yRange.max(); y++) {
 				for (int x = 0; x <= xRange.max(); x++) {
 					if (maps.at(x,y).getDisplayChar() == 'U'){

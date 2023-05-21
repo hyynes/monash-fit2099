@@ -10,4 +10,6 @@ Team members:
 - Danny Duong
 
 ## Design Rationale
-Design Rationale: https://docs.google.com/document/d/1PuviEZZuUjiy8ATE3seKCrNDA_rr-Q8Ox8IflGEpwHA/edit
+Design Rationale (Req 2): https://docs.google.com/document/d/1PuviEZZuUjiy8ATE3seKCrNDA_rr-Q8Ox8IflGEpwHA/edit
+
+Design Rationale (Req 3): https://docs.google.com/document/d/1ZuuhHbc9sOltAUKpXDcf3ofDI3xzf1D3WeTGKeux8-0/edit

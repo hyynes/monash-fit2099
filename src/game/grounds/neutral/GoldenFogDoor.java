@@ -13,6 +13,8 @@ import game.utils.Status;
  * If the player enters, they will travel somewhere...
  * Created by:
  * @author Kenan Baydar
+ * Modified by:
+ * @modifier Danny Duong
  */
 public class GoldenFogDoor extends Ground {
 
@@ -67,7 +69,6 @@ public class GoldenFogDoor extends Ground {
         ActionList actions = new ActionList();
         if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)){
             actions.add(new MapTravelling(travel, displayString, x, y));
-            //location.map().moveActor(actor,travel.locationOf(actor));
         }
         return actions;
     }
