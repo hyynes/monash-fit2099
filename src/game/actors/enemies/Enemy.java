@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.AttackAction;
 import game.actions.DespawnAction;
+import game.actions.StatusAction;
 import game.behaviours.*;
 import game.items.stackable.EnemyRunes;
 import game.utils.Resettable;
@@ -79,21 +80,17 @@ public abstract class Enemy extends Actor implements Resettable, EnemyRunes {
             return new DespawnAction();
         }
 
-        for (StatusManager status : statuses){
+        for (StatusManager status : statuses) {
             status.decreaseStatusTimer();
-            if (status.getStatusTimer() == 0){
+            actions.add(new StatusAction(status.getEffect()));
+            if (status.getStatusTimer() == 0) {
                 this.removeCapability(status.getEffect());
             }
         }
 
-        if (this.hasCapability(POISON)){
-            int damageTaken = (int) ((0.07 * maxHitPoints) + 7);
-            this.hurt(damageTaken);
-            System.out.println(this + " has taken " + damageTaken + " poison damage.");
-        }
-
+        // end turn if sleeping
         if (this.hasCapability(SLEEP)){
-            return new DoNothingAction();
+            return null;
         }
 
         // General playTurn step for all regular enemies
