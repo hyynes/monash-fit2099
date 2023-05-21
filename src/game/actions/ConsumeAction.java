@@ -7,7 +7,6 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.friendly.Player;
 import game.items.special.GoldenRunes;
 import game.items.stackable.Consumable;
-import game.utils.RandomNumberGenerator;
 
 /**
  * A general action for modifying items that implement the Consumable interface.
