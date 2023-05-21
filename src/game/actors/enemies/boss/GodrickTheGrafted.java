@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.behaviours.Behaviour;
-import game.items.RemembranceOfTheGrafted;
+import game.items.special.RemembranceOfTheGrafted;
 import game.items.weapons.AxeOfGodrick;
 import game.items.weapons.GraftedDragon;
 

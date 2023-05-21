@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.friendly.Player;
 import game.grounds.environments.*;
 import game.grounds.neutral.*;
-import game.items.GoldenRunes;
+import game.items.special.GoldenRunes;
 
 import java.util.Arrays;
 import java.util.List;
