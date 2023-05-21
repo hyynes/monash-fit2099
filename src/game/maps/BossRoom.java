@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class BossRoom implements DifferentMaps{
 
-    FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new SiteOfLostGrace(), new Cliff());
+    FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Floor(), new Cliff());
 
     public GameMap map(){
         List<String> map = Arrays.asList(

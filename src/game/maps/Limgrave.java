@@ -21,7 +21,10 @@ public class Limgrave implements DifferentMaps{
     public GameMap map(){
 
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
-                new Graveyard(), new GustOfWind(), new PuddleOfWater(), new SiteOfLostGrace(), new Cliff());
+                new Graveyard(), new GustOfWind(), new PuddleOfWater(), new Cage(), new Barrack(), new SiteOfLostGrace(),
+                new Cliff());
+
+
 
         List<String> map = Arrays.asList(
                 "......................#.............#..........................+++.........",

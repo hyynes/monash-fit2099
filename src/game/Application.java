@@ -112,6 +112,7 @@ public class Application {
 			};
 		}
 
+		// Merchants to be added into the game.
 		Merchant merchant1 = new Merchant();
 		Merchant merchant2 = new Merchant();
 		Merchant merchant3 = new Merchant();

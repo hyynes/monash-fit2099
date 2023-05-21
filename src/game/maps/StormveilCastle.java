@@ -19,7 +19,10 @@ import java.util.List;
 public class StormveilCastle implements DifferentMaps{
 
     FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
-            new Cage(), new Barrack(), new SiteOfLostGrace(), new Cliff());
+            new Graveyard(), new GustOfWind(), new PuddleOfWater(), new Cage(), new Barrack(), new SiteOfLostGrace(),
+            new Cliff());
+
+
 
     public GameMap map(){
         List<String> map = Arrays.asList(
@@ -34,7 +37,7 @@ public class StormveilCastle implements DifferentMaps{
                 "............................#................#.............................",
                 "#####################..#############...############.####..#########...#####",
                 "...............#++++++++++++#................#++++++++++++#................",
-                ".....U.........#++++++++++++...<.........<...#++++++++++++#................",
+                "...............#++++++++++++...<.........<...#++++++++++++#................",
                 "...............#++++++++++++..................++++++++++++#................",
                 "...............#++++++++++++#................#++++++++++++#................",
                 "#####...##########.....#############...#############..#############...#####",
