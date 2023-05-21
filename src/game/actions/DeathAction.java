@@ -80,6 +80,7 @@ public class DeathAction extends Action {
 
         if (target.hasCapability(Status.BOSS)){
             map.locationOf(target).setGround(new SiteOfLostGrace());
+            ((SiteOfLostGrace) map.locationOf(target).getGround()).setName("Godrick the Grafted");
             result += FancyMessage.DEMIGOD_FELLED;
         }
 

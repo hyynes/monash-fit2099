@@ -14,7 +14,8 @@ import game.utils.RandomNumberGenerator;
  * If picked up and consumed, creates runes.
  * Created by:
  * @author Kenan Baydar
- *
+ * Modified by:
+ * @modifier Danny Duong
  */
 public class GoldenRunes extends Item implements Consumable {
 
@@ -27,7 +28,7 @@ public class GoldenRunes extends Item implements Consumable {
         String results;
         actor.removeItemFromInventory(this);
         int runesGenerated = RandomNumberGenerator.getRandomInt(200,10000);
-        // actor.addRunes(runesGenerated);
+        ((Player)actor).addRunes(runesGenerated);
         return actor + " consumed " + this + " for " + runesGenerated + " runes.";
     }
 }

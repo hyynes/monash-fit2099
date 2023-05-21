@@ -13,8 +13,11 @@ import game.utils.ResetManager;
  *
  */
 public class RestAction extends Action {
-    public RestAction(){}
 
+    private final String name;
+    public RestAction(String name){
+        this.name = name;
+    }
     /**
      * Resets the player spawn point, and resets the map.
      * @param actor The actor performing the action.
@@ -28,7 +31,7 @@ public class RestAction extends Action {
 
         PlayerSpawnPoint.getInstance().setSpawnLocation(map.locationOf(actor));
         ResetManager.getInstance().run();
-        result = actor + " has rested.";
+        result = actor + " has rested at " + name + '.';
 
         return result;
     }
@@ -40,6 +43,6 @@ public class RestAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " rests at the Site of Lost Grace.";
+        return actor + " rests at " + name;
     }
 }

@@ -46,7 +46,7 @@ public class BuyAction extends Action{
                     if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
                         if(merchantActor.hasCapability(Status.FINGER_READER)){
                             actor.addWeaponToInventory(weapon);
-                            return actor + " recieves " + weapon;
+                            return actor + " receives " + weapon;
                         }
                         else if (((PlayableCharacter) actor).removeRunes(((PurchasableWeapon) weapon).buyPrice())){
                             actor.addWeaponToInventory(weapon);

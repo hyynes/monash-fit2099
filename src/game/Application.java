@@ -15,6 +15,7 @@ import game.actors.friendly.Player;
 import game.grounds.environments.*;
 import game.displays.FancyMessage;
 import game.grounds.neutral.GoldenFogDoor;
+import game.grounds.neutral.SiteOfLostGrace;
 import game.items.weapons.*;
 import game.actors.friendly.PlayerSpawnPoint;
 import game.maps.*;
@@ -137,6 +138,31 @@ public class Application {
 		// Adding golden runes scattered across the game
 		limgraveBase.addGoldenRunes(limgrave, player);
 		stormveilCastleBase.addGoldenRunes(stormveilCastle, player);
+
+		// name Site of Lost Graces & discover the first step
+		for (GameMap maps: gameMaps){
+			NumberRange xRange = maps.getXRange();
+			NumberRange yRange = maps.getYRange();
+
+			// Removes runes that may have been in the game previously
+			for (int y = 0; y <= yRange.max(); y++) {
+				for (int x = 0; x <= xRange.max(); x++) {
+					if (maps.at(x,y).getDisplayChar() == 'U'){
+						if (maps.equals(limgrave)){
+							((SiteOfLostGrace) maps.at(x,y).getGround()).setName("The First Step");
+							((SiteOfLostGrace) maps.at(x,y).getGround()).setDiscovered();
+						}
+						if (maps.equals(roundTableHold)){
+							((SiteOfLostGrace) maps.at(x,y).getGround()).setName("Table of Lost Grace");
+						}
+						if (maps.equals(stormveilCastle)){
+							((SiteOfLostGrace) maps.at(x,y).getGround()).setName("Stormveil Main Gate");
+						}
+					}
+				}
+			}
+		}
+
 
 		// Spawn the Godrick the Grafted boss.
 		GodrickTheGrafted godrickTheGrafted = new GodrickTheGrafted(player);
