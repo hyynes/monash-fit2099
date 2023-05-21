@@ -31,6 +31,7 @@ public class Cliff extends Ground {
      * @param actor The Actor that can enter the cliff
      * @return Either true or false whether the actor can enter the cliff or not
      */
+    @Override
     public boolean canActorEnter(Actor actor) {
         return actor.hasCapability(Status.HOSTILE_TO_ENEMY);
     }
@@ -40,6 +41,7 @@ public class Cliff extends Ground {
      *
      * @param location The location of the Ground
      */
+    @Override
     public void tick(Location location) {
         if (location.containsAnActor()) {
             location.getActor().hurt(MAX_VALUE);
