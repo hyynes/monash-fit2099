@@ -2,6 +2,7 @@ package game.actors.friendly;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.displays.Menu;
@@ -11,11 +12,18 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.*;
 import game.Application;
+import game.actors.Statusable;
+import game.actors.enemies.StatusManager;
 import game.items.stackable.Consumable;
 import game.items.stackable.EnemyRunes;
 import game.items.stackable.FlaskOfCrimsonTears;
 import game.items.stackable.Rune;
 import game.utils.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static game.utils.WeaponEffect.SLEEP;
 
 /**
  * Class representing the Player. It implements the Resettable interface.
@@ -25,13 +33,14 @@ import game.utils.*;
  * Modified by:
  * @modifier Danny Duong, Kenan Baydar
  */
-public class Player extends Actor implements Resettable, PlayableCharacter {
+public class Player extends Actor implements Resettable, PlayableCharacter, Statusable {
 
 	private final int maxHP;
 	private final Menu menu = new Menu();
 	private final Rune runes = new Rune();
-	public FlaskOfCrimsonTears flask = new FlaskOfCrimsonTears();
+	private final FlaskOfCrimsonTears flask = new FlaskOfCrimsonTears();
 	private Location lastLocation;
+	private ArrayList<StatusManager> statuses = new ArrayList<StatusManager>();
 
 	/**
 	 * Constructor.
@@ -61,6 +70,25 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
+		ArrayList<StatusManager> statusesToRemove = new ArrayList<>();
+
+		for (StatusManager status : statuses) {
+			if (checkStatus(status) != null) {
+				System.out.println(checkStatus(status).execute(this, map));
+			}
+			else {
+				statusesToRemove.add(status);
+			}
+			if (status.getEffect() == SLEEP) {
+				return new DoNothingAction();
+			}
+		}
+
+		for (StatusManager status : statusesToRemove){
+			statuses.remove(status);
+		}
+
+		statusesToRemove.clear();
 		if (this.hitPoints <= 0){
 			return new PlayerDeathAction();
 		}
@@ -97,6 +125,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 		if (map.locationOf(this) != PlayerSpawnPoint.getInstance().getSpawnLocation()) {
 			map.moveActor(this, PlayerSpawnPoint.getInstance().getSpawnLocation());
 		}
+		this.statuses.clear();
 		this.resetMaxHp(maxHP);
 		flask.setNoOfStacks(2);
 	}
@@ -111,7 +140,7 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 	public String enemyDefeatedRunes(Actor enemy, EnemyRunes enemyRunes){
 		int generatedRunes = RandomNumberGenerator.getRandomInt(enemyRunes.getRuneMin(), enemyRunes.getRuneMax());
 		runes.addStacks(generatedRunes);
-		return enemy + " drops " + generatedRunes + " runes";
+		return enemy + " drops " + generatedRunes + " runes.";
 	}
 
 	@Override
@@ -142,5 +171,23 @@ public class Player extends Actor implements Resettable, PlayableCharacter {
 
 	public Rune getRunes(){
 		return runes;
+	}
+
+	@Override
+	public void addStatus(StatusManager status){
+		statuses.add(status);
+	}
+
+	@Override
+	public void removeStatus(StatusManager status){statuses.remove(status);}
+
+	@Override
+	public Action checkStatus(StatusManager status){
+		if (status.getStatusTimer() == 0) {
+			return null;
+		}
+		else {
+			return new StatusAction(status);
+		}
 	}
 }

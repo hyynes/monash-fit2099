@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.actors.Statusable;
 import game.actors.enemies.Enemy;
 import game.actors.enemies.StatusManager;
 import game.items.weapons.Inflictable;
@@ -98,12 +99,12 @@ public class AttackAction extends Action{
 		target.hurt(damage);
 
 		if (weapon instanceof Inflictable){
-			if (target instanceof Enemy){
+			if (target instanceof Statusable){
 				StatusManager status = new StatusManager(
 						((Inflictable) weapon).inflict(),
 						((Inflictable) weapon).inflictTimer()
 				);
-				((Enemy) target).addStatus(status);
+				((Statusable) target).addStatus(status);
 			}
 		}
 

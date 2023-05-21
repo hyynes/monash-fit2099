@@ -1,7 +1,4 @@
 package game.items.weapons;
-
-import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.weapons.Weapon;
 import game.utils.WeaponEffect;
 
 import static game.utils.WeaponEffect.*;
