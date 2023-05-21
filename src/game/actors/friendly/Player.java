@@ -19,9 +19,7 @@ import game.items.stackable.EnemyRunes;
 import game.items.stackable.FlaskOfCrimsonTears;
 import game.items.stackable.Rune;
 import game.utils.*;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import static game.utils.WeaponEffect.SLEEP;
 

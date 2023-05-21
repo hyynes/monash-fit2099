@@ -33,7 +33,6 @@ public class FlaskOfCrimsonTears extends StackableItem implements Consumable {
     public String consume(Actor actor, GameMap map) {
         String results;
         if (this.removeStacks(1)) {
-            ((Statusable) actor).addStatus(new StatusManager(WeaponEffect.SCARLET_ROT, 10));
             actor.heal(250);
             results = actor + " consumed " + this + '.';
         }

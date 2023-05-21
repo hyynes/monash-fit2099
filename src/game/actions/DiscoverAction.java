@@ -10,7 +10,8 @@ import game.grounds.neutral.SiteOfLostGrace;
  * When the Site Of Lost Grace is first discovered by the player.
  * Created by:
  * @author Kenan Baydar
- *
+ * Modified by:
+ * @modifier Danny Duong
  */
 public class DiscoverAction extends Action {
 

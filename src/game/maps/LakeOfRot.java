@@ -10,6 +10,12 @@ import game.items.special.GoldenRunes;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Lake of rot.
+ * Created by:
+ * @author Danny Duong
+ */
+
 public class LakeOfRot implements DifferentMaps{
 
     public GameMap map(){

@@ -8,14 +8,30 @@ import game.utils.Status;
 import game.utils.WeaponEffect;
 import static game.utils.WeaponEffect.*;
 
+/**
+ * General action that manages statuses.
+ * Created by:
+ * @author Danny Duong
+ */
 public class StatusAction extends Action {
 
     private final StatusManager statusManager;
 
+    /**
+     * Constructor.
+     * @param statusManager - the status manager, containing information such as the duration of the effect and the effect itself
+     */
     public StatusAction(StatusManager statusManager) {
         this.statusManager = statusManager;
     }
 
+    /**
+     * Executes an action according to the effect.
+     * e.g poison inflicts damage between 7 and 30.
+     * @param actor The actor that is being affected.
+     * @param map The map the actor is on.
+     * @return the effect.
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         String results = "";
@@ -50,6 +66,7 @@ public class StatusAction extends Action {
         return results;
     }
 
+    // is never used.
     @Override
     public String menuDescription(Actor actor) {
         return null;
