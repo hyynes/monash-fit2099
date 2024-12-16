@@ -1,5 +1,6 @@
 # FIT2099 Assignment (Semester 1, 2023)
 # Elden Ring
+This is a slight replication of Elden Ring using a premade game engine in Java.
 
 ## CL_Lab05Team06
 Contribution Log:
